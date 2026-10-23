@@ -1,10 +1,10 @@
 # Acceptance checkpoint
 
-Checked 2026-10-23T11:34:14.089724+00:00. Candidate after 42a297d: type-check/build, 39 service tests and 14 browser tests pass.
+Checked 2026-10-23T11:35:42.582026+00:00. Code tested: `2c086da7e984a2608f758dbb371b9d17289840f7`.
 
-Source set: `e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4`. See `cycle6-source-manifest.json`.
+Full type-check/build, 39 service tests and 14 browser tests passed. A fresh anonymous checkout installed, built, passed all 39 service tests and survived process restart.
 
-A fresh public checkout exposed a type error in a new test. The repair passes locally; its clean-checkout result will be recorded separately.
+The failed first clean build is retained. The repair changes test typing only; product behavior remains the same.
 
 | Case | Status | Evidence and scope |
 | --- | --- | --- |
@@ -37,12 +37,12 @@ A fresh public checkout exposed a type error in a new test. The repair passes lo
 | C27 Protocol handshake | PASS | Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log. Evidence: `cycle6-tests-fixed.txt` |
 | C28 Actual tool execution | PASS | Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log. Evidence: `cycle6-tests-fixed.txt`, `cycle6-browser-fixed.txt` |
 | C29 Schema rejection | PASS | Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log. Evidence: `cycle6-tests-fixed.txt` |
-| C30 Restart recovery | PASS | Actual process stop/restart with the same SQLite directory restored the exact plan; repeated confirmation added no event. Hosted recovery is untested. Evidence: `restart-cycle3.json` |
+| C30 Restart recovery | PASS | Actual process stop/restart of the fresh repaired checkout restored the exact SQLite plan; repeated confirmation added no event. Hosted recovery remains untested. Evidence: `restart-cycle6-fixed.json` |
 | C31 Microphone denied | PASS | Browser reports microphone denied by policy. Typed planning and approval work; product does not request or use microphone access. Evidence: `cycle6-browser-fixed.txt` |
 | C32 Responsive and accessible | PASS | Four viewport widths, keyboard cancel/focus, reduced motion, selected-view axe checks, and actual Chrome 200% zoom passed. This is not a full screen-reader or WCAG certification. Evidence: `cycle6-browser-fixed.txt`, `browser-real-zoom.json`, `browser-real-200pct.jpg` |
 | C33 Loading/empty/error | PASS | No-plan policy states, failed session request/reconnect, successful write with a lost response, and stale-role recovery tested. No-match search is a service-only check. Evidence: `cycle6-browser-fixed.txt` |
 | C34 Live versus guided mode | PASS | No model provider exists in this runtime. API and UI explicitly label guided mode and synthetic data; real MCP remains in use. Evidence: `cycle6-tests-fixed.txt` |
-| C35 Clean checkout run | PARTIAL | The previous clean checkout passed at ee4c487. A new DST test caused a type-check failure in 42a297d; the test fixture is repaired and local build plus 39 service/14 browser tests now pass. Fresh public checkout of the repair is next. Evidence: `clean-cycle3.json`, `restart-cycle3.json` |
+| C35 Clean checkout run | PASS | Fresh anonymous public clone, npm ci, full type-check/build, 39 tests, start, actual process restart and idempotent replay all passed after repairing the DST test fixture. First failed build is retained. Evidence: `clean-cycle6-fixed.json`, `restart-cycle6-fixed.json` |
 | C36 Public demo and code access | PARTIAL | Public repository anonymously cloned. Hosted build exists, but persistent runtime and anonymous demo path are not yet verified. Evidence: `clean-cycle3.json` |
 | C37 Video validation | PARTIAL | Actual local English-captioned recording is 155.234 seconds. No public upload or logged-out playback yet. Evidence: `video-local.json` |
 | C38 Copy and feedback truth | PARTIAL | English source draft reviewed against current implementation. Final form fields and final release/link consistency are pending. Evidence: `DEVPOST.md`, `PRODUCT_FEEDBACK.md`, `FRICTION_LOG.md` |
