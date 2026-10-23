@@ -6,7 +6,7 @@ import {
 } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { DomainError } from "../domain/types";
+import { DomainError } from "../domain/types.js";
 let cached: string;
 function key(): string {
   if (cached) return cached;

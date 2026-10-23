@@ -1,0 +1,45 @@
+api/index.ts(1,23): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../src/server/app.js'?
+src/domain/fixtures.ts(1,21): error TS1543: Importing a JSON file into an ECMAScript module requires a 'type: "json"' import attribute when 'module' is set to 'NodeNext'.
+src/domain/fixtures.ts(2,45): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './types.js'?
+src/domain/planner.ts(2,33): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './fixtures.js'?
+src/domain/planner.ts(3,52): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './types.js'?
+src/domain/planner.ts(135,6): error TS7006: Parameter 'w' implicitly has an 'any' type.
+src/domain/service.ts(2,43): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './fixtures.js'?
+src/domain/service.ts(9,8): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './planner.js'?
+src/domain/service.ts(18,8): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './types.js'?
+src/domain/service.ts(19,38): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../server/crypto.js'?
+src/domain/service.ts(20,28): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../server/store.js'?
+src/domain/service.ts(49,29): error TS7006: Parameter 'x' implicitly has an 'any' type.
+src/domain/service.ts(69,20): error TS7006: Parameter 'o' implicitly has an 'any' type.
+src/domain/service.ts(70,17): error TS7006: Parameter 'o' implicitly has an 'any' type.
+src/domain/service.ts(72,36): error TS7006: Parameter 'c' implicitly has an 'any' type.
+src/domain/service.ts(98,79): error TS18046: 'windows' is of type 'unknown'.
+src/domain/service.ts(101,16): error TS7006: Parameter 'location' implicitly has an 'any' type.
+src/domain/service.ts(102,19): error TS7006: Parameter 'location' implicitly has an 'any' type.
+src/domain/service.ts(247,39): error TS7006: Parameter 'x' implicitly has an 'any' type.
+src/domain/service.ts(302,40): error TS7006: Parameter 'x' implicitly has an 'any' type.
+src/server.ts(1,17): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './server/app.js'?
+src/server/app.ts(10,36): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/fixtures.js'?
+src/server/app.ts(17,8): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/types.js'?
+src/server/app.ts(23,8): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/service.js'?
+src/server/app.ts(24,26): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './store.js'?
+src/server/app.ts(25,38): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './crypto.js'?
+src/server/app.ts(26,56): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './mcp.js'?
+src/server/app.ts(27,23): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/planner.js'?
+src/server/app.ts(159,52): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(214,60): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(232,60): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(282,56): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(312,54): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(350,52): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(433,8): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/app.ts(443,54): error TS7006: Parameter 'client' implicitly has an 'any' type.
+src/server/crypto.ts(9,29): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/types.js'?
+src/server/mcp.ts(7,59): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/service.js'?
+src/server/mcp.ts(8,45): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/types.js'?
+src/server/mcp.ts(9,26): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './store.js'?
+src/server/mcp.ts(10,24): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean './crypto.js'?
+src/server/mcp.ts(119,27): error TS18046: 'e' is of type 'unknown'.
+src/server/mcp.ts(120,30): error TS18046: 'e' is of type 'unknown'.
+src/server/mcp.ts(121,29): error TS18046: 'e' is of type 'unknown'.
+src/server/store.ts(5,32): error TS2835: Relative import paths need explicit file extensions in ECMAScript imports when '--moduleResolution' is 'node16' or 'nodenext'. Did you mean '../domain/types.js'?

@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-10-23T15:07:21.526538+00:00",
+  "cycle": 11,
+  "source_set_sha256": "89dc1a9c867cf4fac4f0855171259e6f65ae89cbe8d36dd7ab46e18a7509a466",
+  "review_roles": [
+    "hosted runtime",
+    "module compatibility",
+    "storage"
+  ],
+  "finding": "RR-012: native ESM import failure in the deployed API entrypoint. Reproduced with NodeNext check, fixed explicit extensions and JSON attribute.",
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 17,
+    "browser_tests_failed": 0
+  },
+  "native_node_import_and_health": "PASS",
+  "hosted_runtime": "PENDING_REDEPLOY",
+  "video_ui_effect": "Import/build checks only; demonstrated UI flow unchanged.",
+  "shared_store": "Existing free store, user explicitly approved, Production only. No other project data accessed."
+}

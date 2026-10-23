@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-23T13:07:49.688857+00:00",
+  "deployment": "dpl_5hMwDALjiwMp4aTwymZ6FPBHSLRH",
+  "commit": "97c20c1d33b6b5117adaebab2e8b099343694d3f",
+  "http_status": 500,
+  "error": "ERR_MODULE_NOT_FOUND: /var/task/src/server/app imported from /var/task/api/index.js",
+  "diagnosis": "Extensionless ESM imports worked under local tsx but failed in the deployed Node entrypoint.",
+  "sources": [
+    "https://nodejs.org/api/esm.html#mandatory-file-extensions",
+    "https://nodejs.org/api/esm.html#import-attributes"
+  ],
+  "regression": "NodeNext server check reproduced missing extension and JSON import attribute diagnostics."
+}

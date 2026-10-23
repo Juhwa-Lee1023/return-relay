@@ -27,3 +27,5 @@ These are observed issues from the Return Relay build, not invented customer inc
 **Important:** a small reference application that previews an action, asks the person to approve exact arguments, rejects stale revisions, and retries safely after an uncertain response. Return Relay implements this around a household errand; the same boundaries matter wherever a tool changes saved state.
 
 The official FAQ explicitly allows a self-built web MCP client and states that the gated Alexa+ development tools are unavailable to hackathon entrants. We used that published route rather than treating unavailable partner tooling as a runtime defect. [Official FAQ](https://amazonappdev2026.devpost.com/details/faqs), checked October 23, 2026.
+
+| RR-012 / High | Open `/api/health` after the first DB-connected production deployment. | Working server → HTTP 500 before storage was reached: `ERR_MODULE_NOT_FOUND` in the emitted API entrypoint. | Added explicit `.js` ESM imports and the JSON import attribute. Added a NodeNext server check to every build. Native Node import and health check pass; hosted retest follows deployment. This is our packaging error, not an Upstash defect. |

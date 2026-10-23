@@ -2,7 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { Redis } from "@upstash/redis";
-import type { Household } from "../domain/types";
+import type { Household } from "../domain/types.js";
 export interface Store {
   create(value: Household): Promise<boolean>;
   get(sid: string): Promise<Household | null>;

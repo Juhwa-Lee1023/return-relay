@@ -1,4 +1,4 @@
-import app from "./server/app";
+import app from "./server/app.js";
 const port = Number(process.env.PORT ?? 4318);
 app.listen(port, "127.0.0.1", () =>
   console.log(

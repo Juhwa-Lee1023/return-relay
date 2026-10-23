@@ -7,24 +7,24 @@ import { randomUUID } from "node:crypto";
 import { resolve } from "node:path";
 import { existsSync } from "node:fs";
 import { z } from "zod";
-import { demo, newHousehold } from "../domain/fixtures";
+import { demo, newHousehold } from "../domain/fixtures.js";
 import {
   DomainError,
   type Principal,
   type ReturnCase,
   type Preview,
   type Proposal,
-} from "../domain/types";
+} from "../domain/types.js";
 import {
   WRITE_TOOLS,
   RelayService,
   type Approval,
   type Arguments,
-} from "../domain/service";
-import { getStore } from "./store";
-import { seal, unseal, digest } from "./crypto";
-import { mcpHandler, withMcp, callTool, schemas } from "./mcp";
-import { label } from "../domain/planner";
+} from "../domain/service.js";
+import { getStore } from "./store.js";
+import { seal, unseal, digest } from "./crypto.js";
+import { mcpHandler, withMcp, callTool, schemas } from "./mcp.js";
+import { label } from "../domain/planner.js";
 const app = express();
 app.disable("x-powered-by");
 const hosted = !!process.env.VERCEL;

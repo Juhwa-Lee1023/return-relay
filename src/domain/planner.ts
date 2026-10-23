@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
-import { demo, getPolicy } from "./fixtures";
-import { DomainError, type Actor, type Plan } from "./types";
+import { demo, getPolicy } from "./fixtures.js";
+import { DomainError, type Actor, type Plan } from "./types.js";
 export const ZONE = demo.clock.timezone;
 export function instant(value: string): DateTime {
   const d = DateTime.fromISO(value, { setZone: true });

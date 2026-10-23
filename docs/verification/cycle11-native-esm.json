@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-23T13:07:49.688857+00:00",
+  "command": "npx tsc -p tsconfig.server.json --noEmit false --outDir .private/cycle11-native --rootDir .; node --input-type=module (import emitted api/index.js, GET /api/health)",
+  "exit_code": 0,
+  "native_esm_import": "PASS",
+  "health": "PASS",
+  "node": "v24.19.0",
+  "tsx_loader_used": false
+}

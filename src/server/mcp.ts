@@ -4,10 +4,10 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { z } from "zod";
 import type { Request, Response } from "express";
-import { RelayService, WRITE_TOOLS, type Arguments } from "../domain/service";
-import { DomainError, type Principal } from "../domain/types";
-import { getStore } from "./store";
-import { unseal } from "./crypto";
+import { RelayService, WRITE_TOOLS, type Arguments } from "../domain/service.js";
+import { DomainError, type Principal } from "../domain/types.js";
+import { getStore } from "./store.js";
+import { unseal } from "./crypto.js";
 const id = z.string().min(1).max(120),
   revision = z.number().int().min(0),
   dt = z.iso.datetime({ offset: true }),

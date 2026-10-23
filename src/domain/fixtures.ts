@@ -1,5 +1,5 @@
-import fixture from "../../fixtures/demo_household.json";
-import { DomainError, type Household } from "./types";
+import fixture from "../../fixtures/demo_household.json" with { type: "json" };
+import { DomainError, type Household } from "./types.js";
 import { randomUUID } from "node:crypto";
 export const demo = fixture;
 export function getOrder(id: string) {

@@ -1,12 +1,12 @@
 import { randomUUID } from "node:crypto";
-import { demo, getOrder, getPolicy } from "./fixtures";
+import { demo, getOrder, getPolicy } from "./fixtures.js";
 import {
   assertPlanStillValid,
   canActorTakePlan,
   findPlan,
   instant,
   label,
-} from "./planner";
+} from "./planner.js";
 import {
   DomainError,
   type Actor,
@@ -15,9 +15,9 @@ import {
   type Proposal,
   type Preview,
   type ReturnCase,
-} from "./types";
-import { digest, seal, unseal } from "../server/crypto";
-import type { Store } from "../server/store";
+} from "./types.js";
+import { digest, seal, unseal } from "../server/crypto.js";
+import type { Store } from "../server/store.js";
 export type Arguments = Record<string, unknown>;
 export interface Approval {
   sid: string;
