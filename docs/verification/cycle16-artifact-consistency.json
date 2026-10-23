@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-23T16:54:58.487725+00:00",
+  "status": "PASS",
+  "checks": [
+    "Local links in six reviewed documents resolve",
+    "Friction Log table contains no separated continuation rows",
+    "Current UI, CSS, recording script and video still match recorded hashes",
+    "Anonymous GitHub metadata confirms public repository and detected MIT license",
+    "Judging instructions specify typing, not voice input"
+  ],
+  "friction_rows_including_header": 22,
+  "public_repo": {
+    "private": false,
+    "license": "MIT"
+  },
+  "video_unchanged": true
+}

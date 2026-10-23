@@ -482,7 +482,7 @@
       ],
       "tested_commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
       "tested_source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
-      "scope": "Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. Hosted storage remains untested."
+      "scope": "Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. This is the original local restart check. Hosted Redis checks are recorded separately in cycle16-hosted-api.json."
     },
     {
       "id": "C31",
@@ -661,5 +661,8 @@
       "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
       "scope": "Final submission has not occurred. Do not retry an uncertain submit without checking the entry status."
     }
-  ]
+  ],
+  "current_execution_evidence": "docs/verification/cycle16-review.json",
+  "current_runtime_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+  "historical_case_evidence_preserved": true
 }

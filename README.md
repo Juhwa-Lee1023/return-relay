@@ -6,7 +6,7 @@ You planned to return the headphones on Thursday, before a Friday trip. Now you 
 
 [Open the demo](https://return-relay.vercel.app) — no sign-in required. Each visitor starts with a separate sample household, saved for seven days.
 
-This is a **self-built Alexa+ web simulation**. A labelled guided parser handles the supported phrases. The web host calls nine MCP tools through the official TypeScript SDK over **Streamable HTTP**, negotiating protocol **2025-11-25**. The call log is visible in the app.
+The Alexa+ entry is a **working, self-hosted MCP server with a custom web client**. A labelled guided parser handles the supported phrases in this self-built Alexa+ simulation. The web host calls nine MCP tools through the official TypeScript SDK over **Streamable HTTP**, negotiating protocol **2025-11-25**. The call log is visible in the app.
 
 Orders, policies, calendars, family roles and receipts are synthetic. The demo has no live Alexa or language-model connection, Amazon account access, real returns, refunds or family messages.
 

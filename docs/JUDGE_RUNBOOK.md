@@ -27,6 +27,10 @@ Open **http://127.0.0.1:4318**. This starts the real HTTP MCP server and serves 
 
 Open **Actual MCP calls** at any point. It lists the actual HTTP calls made by the web host, including the negotiated protocol. Tokens are not displayed.
 
+## What this demonstrates for Alexa+
+
+One departure change updates a continuing task: a saved return plan becomes a new proposal, then a packing checklist, a household handoff and a receipt. The MCP server owns those transitions; the web client makes them visible and asks before saving. The typed conversation uses a guided parser. The demonstration shows actual MCP execution and saved state through a custom client, rather than a connection to a live Alexa device.
+
 ## Try a failure
 
 - The travel adapter's deadline has passed, so there is no proposed plan.
@@ -49,4 +53,4 @@ The browser suite builds the app and starts an isolated local server on port 432
 
 The clock is fixed at November 2, 2026, in Los Angeles. Calendars and journeys are fictional inputs. The planner checks feasibility; it does not predict traffic. A sample session lasts seven days. **Reset sample** deletes only the current sample household. An incognito window receives a separate household.
 
-The hosted version is available at https://return-relay.vercel.app. It uses the approved Redis connection and a server-only signing secret. Five hosted browser flows and nine API/MCP checks passed on beeeec8; the exact scope is in docs/verification/cycle11-review.json.
+The hosted version is available at https://return-relay.vercel.app. It uses the approved Redis connection and a server-only signing secret. The current runtime is `81735a6`; its local build, 42 service tests, 17 browser tests and ten additional hosted checks passed in cycle15. See [cycle15-review.json](verification/cycle15-review.json). Earlier verification records identify the revisions they tested.

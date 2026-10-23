@@ -1,0 +1,53 @@
+{
+  "cycle": 16,
+  "checked_at": "2026-10-23T16:54:27.866282+00:00",
+  "source_set_sha256": "e80460a98a9416a5573613bc411e6bb4ef7640dcf039a6cb2005ef3317f37d35",
+  "runtime_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+  "scope": "Contest fit and documentation consistency; public rules/FAQ/resources rechecked, current service/browser/hosted MCP checks rerun.",
+  "findings_fixed": [
+    "MCP route and protocol underexplained in main story",
+    "Customer and continuing task value underexplained",
+    "Voice-like Say instruction for typed client",
+    "Stale current-version summary",
+    "Broken Friction Log table continuation"
+  ],
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 17,
+    "browser_tests_failed": 0
+  },
+  "hosted_runtime": {
+    "status": "PASS",
+    "checks_passed": 9,
+    "checks_failed": 0,
+    "source_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+    "evidence": "cycle16-hosted-api.json"
+  },
+  "video_ui_effect": "No runtime, interface, caption or video changes. Existing cycle15 recording still matches the runtime.",
+  "earlier_evidence_retained": {
+    "design_layout_accessibility": "cycle15-review.json",
+    "fresh_checkout_restart": "clean-cycle12.json"
+  },
+  "official_review": {
+    "source_urls": [
+      "https://amazonappdev2026.devpost.com/rules",
+      "https://amazonappdev2026.devpost.com/details/faqs",
+      "https://amazonappdev2026.devpost.com/resources"
+    ],
+    "deadline_kst": "2026-10-24T04:00:00+09:00",
+    "primary_route": "Actual self-hosted MCP server + custom web client",
+    "assessment": "Evidence supports track fit; organizer determines eligibility and awards."
+  },
+  "submission_sync": {
+    "main_story": "Updated in open draft, not saved because required video URL is blank",
+    "judging_instructions": "Saved; Say corrected to Type",
+    "final_submission": false
+  },
+  "pending": [
+    "Previously requested YouTube upload terms confirmation",
+    "Public video and logged-out playback",
+    "Save complete details and final entry after 03:30 KST"
+  ]
+}

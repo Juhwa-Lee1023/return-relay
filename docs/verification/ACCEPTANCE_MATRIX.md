@@ -1,10 +1,10 @@
 # Acceptance checkpoint
 
-Checked 2026-10-23T15:23:42.113291+00:00. Development checkpoint; final submission remains pending.
+Updated October 24, 2026 after cycle16. Development checkpoint; final submission remains pending.
 
 40 acceptance cases: 36 scoped PASS, 3 PARTIAL, 1 NOT_RUN. Test counts are distinct from acceptance cases.
 
-Current runtime beeeec8 passed local build, 42 service tests and 17 browser tests. Five hosted browser flows and nine API/MCP checks passed; anonymous fresh install and process restart also passed. Earlier case evidence retains its original source identity.
+Current runtime `81735a6` passed the cycle16 build, 42 service tests, 17 browser tests and nine hosted API/MCP checks. See [cycle16-review.json](cycle16-review.json). Clean installation and process restart evidence below retains its original tested revision; it was not rerun in cycle16.
 
 | Case | Status | Evidence and scope |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ Current runtime beeeec8 passed local build, 42 service tests and 17 browser test
 | C27 Protocol handshake | PASS | Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log. [cycle6-tests-fixed.txt](cycle6-tests-fixed.txt) |
 | C28 Actual tool execution | PASS | Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log. [cycle6-tests-fixed.txt](cycle6-tests-fixed.txt); [cycle6-browser-fixed.txt](cycle6-browser-fixed.txt) |
 | C29 Schema rejection | PASS | Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log. [cycle6-tests-fixed.txt](cycle6-tests-fixed.txt) |
-| C30 Restart recovery | PASS | Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. Hosted storage remains untested. [cycle10-package-execution.json](cycle10-package-execution.json); [restart-package-cycle10.json](restart-package-cycle10.json) |
+| C30 Restart recovery | PASS | Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. This row records the original local restart check; hosted Redis checks are recorded separately in cycle16-hosted-api.json. [cycle10-package-execution.json](cycle10-package-execution.json); [restart-package-cycle10.json](restart-package-cycle10.json) |
 | C31 Microphone denied | PASS | Browser reports microphone denied by policy. Typed planning and approval work; product does not request or use microphone access. [cycle6-browser-fixed.txt](cycle6-browser-fixed.txt) |
 | C32 Responsive and accessible | PASS | Four viewport widths, keyboard cancel/focus, reduced motion, selected-view axe checks, and actual Chrome 200% zoom passed. This is not a full screen-reader or WCAG certification. [cycle6-browser-fixed.txt](cycle6-browser-fixed.txt); [browser-real-zoom.json](browser-real-zoom.json); [browser-real-200pct.jpg](browser-real-200pct.jpg) |
 | C33 Loading/empty/error | PASS | No-plan policy states, failed session request/reconnect, successful write with a lost response, and stale-role recovery tested. No-match search is a service-only check. [cycle6-browser-fixed.txt](cycle6-browser-fixed.txt) |

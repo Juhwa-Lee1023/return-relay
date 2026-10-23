@@ -10,6 +10,8 @@ The headphones need to go back on Thursday. The trip starts Friday. Then departu
 
 Return Relay finds an earlier time and shows what to pack. If Maya can take the parcel, Alex sends her the plan. The handoff stays pending until she accepts.
 
+It is built for the person fitting a return around a trip and the household member taking the parcel. A changed departure affects the drop-off time, packing and who can help. Return Relay brings those decisions into one saved plan, so neither person has to reconstruct the arrangement from separate reminders and messages.
+
 ## What it does
 
 Start with the headphones and save the proposed Thursday drop-off. Type **“Actually, I’m leaving Thursday morning.”** The app checks the store’s deadline, counter hours, travel time and household calendar, then offers Wednesday. The old and new times appear together so you can review the change before saving it.
@@ -20,7 +22,9 @@ Two more items show where planning stops: an adapter whose deadline has passed a
 
 ## How it works
 
-Return Relay uses the permitted **self-built Alexa+ web simulation** route. The React app sends each action to the web host. The host uses the official TypeScript client to call our MCP server over Streamable HTTP. Nine tools cover orders, policies, availability, plan previews, approved changes, handoffs and progress. Open **Actual MCP calls** to inspect initialization, tool discovery and calls made during the session.
+Return Relay enters the Alexa+ track with a **working, self-hosted MCP server**, demonstrated through our own web client. The React app sends each action to the web host. The host uses the official TypeScript client over Streamable HTTP, negotiating MCP **2025-11-25**. Nine tools cover orders, policies, availability, plan previews, approved changes, handoffs and progress. Open **Actual MCP calls** to inspect initialization, tool discovery and calls made during the session.
+
+The useful assistant behavior is what happens after “I’m leaving Thursday morning.” The server reads the saved return, checks the earlier departure and proposes a replacement. After approval, it saves the new plan and carries the same return through packing, Maya’s acceptance and the sample receipt. Closing and reopening the page preserves that work.
 
 The planner checks candidate times against the same constraints before previewing and saving. Each approval names the exact change. Expiring proposals and revision checks stop an old preview from replacing a newer plan. Repeating a confirmed request returns its original result, avoiding a duplicate event. SQLite stores local sessions; Redis stores the hosted sessions.
 

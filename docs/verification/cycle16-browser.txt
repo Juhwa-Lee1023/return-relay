@@ -1,0 +1,58 @@
+
+> return-relay@0.1.0 pretest:browser
+> npm run build
+
+
+> return-relay@0.1.0 build
+> tsc --noEmit && tsc --noEmit -p tsconfig.server.json && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1937 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.63 kB │ gzip:   0.38 kB
+dist/assets/source-sans-3-latin-700-normal-CkzU-mV9.woff2   15.59 kB
+dist/assets/source-sans-3-latin-600-normal-DeckBYAU.woff2   15.66 kB
+dist/assets/source-sans-3-latin-400-normal-DQi5PRDE.woff2   15.69 kB
+dist/assets/source-sans-3-latin-700-normal-B-h9tW5h.woff    19.90 kB
+dist/assets/source-sans-3-latin-400-normal-RR2C27NP.woff    19.99 kB
+dist/assets/source-sans-3-latin-600-normal-Ck0n4g8U.woff    19.99 kB
+dist/assets/lora-latin-400-normal-DnxXpLNu.woff2            21.14 kB
+dist/assets/lora-latin-400-normal-DBJS-Hc6.woff             25.96 kB
+dist/assets/index-BwuW6vYR.css                              23.71 kB │ gzip:   5.58 kB
+dist/assets/index-CRxt45XK.js                              323.79 kB │ gzip: 100.83 kB
+
+✓ built in 247ms
+
+> return-relay@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:49374) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:49375) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 17 tests using 1 worker
+
+(node:49379) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/flow.spec.ts:28:1 › approve, change departure, hand off, distinguish receipt from refund, restore (1.9s)
+  ✓   2 tests/browser/flow.spec.ts:64:1 › unknown policy and passed deadline do not offer a plan (304ms)
+  ✓   3 tests/browser/flow.spec.ts:74:1 › keyboard approval can be cancelled without saving (334ms)
+  ✓   4 tests/browser/flow.spec.ts:86:1 › WCAG automated checks cover welcome, preview, and confirmation (967ms)
+  ✓   5 tests/browser/flow.spec.ts:95:3 › responsive 360px: no page overflow and reachable approval (403ms)
+  ✓   6 tests/browser/flow.spec.ts:95:3 › responsive 390px: no page overflow and reachable approval (387ms)
+  ✓   7 tests/browser/flow.spec.ts:95:3 › responsive 768px: no page overflow and reachable approval (380ms)
+  ✓   8 tests/browser/flow.spec.ts:95:3 › responsive 1440px: no page overflow and reachable approval (355ms)
+  ✓   9 tests/browser/flow.spec.ts:106:1 › C31: microphone permission denied still allows typed planning (614ms)
+  ✓  10 tests/browser/flow.spec.ts:116:1 › C32: text zoom and reduced motion keep controls usable (362ms)
+  ✓  11 tests/browser/flow.spec.ts:129:1 › C33: blocked session request shows recovery and never fabricates a plan (240ms)
+  ✓  12 tests/browser/flow.spec.ts:139:1 › C33: failed confirmation response is recovered by reading saved state (501ms)
+  ✓  13 tests/browser/flow.spec.ts:155:1 › C04: an approval from an older tab cannot replace a newer plan (1.0s)
+  ✓  14 tests/browser/flow.spec.ts:172:1 › role changed in another tab is recovered with the current session (887ms)
+  ✓  15 tests/browser/flow.spec.ts:186:1 › reset asks first; cancelling keeps the saved plan and keyboard focus (641ms)
+  ✓  16 tests/browser/flow.spec.ts:202:1 › confirmed reset clears the household and a reload starts with no saved changes (734ms)
+  ✓  17 tests/browser/flow.spec.ts:217:1 › a lost reset response closes the dialog and recovery reads the fresh household (653ms)
+
+  17 passed (11.6s)
