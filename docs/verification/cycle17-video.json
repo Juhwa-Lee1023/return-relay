@@ -1,0 +1,29 @@
+{
+  "duration_seconds": 155.234,
+  "width": 1280,
+  "height": 720,
+  "format": "H264 MP4",
+  "language": "English captions",
+  "audio": "No narration; captions explain each action",
+  "footage": "Actual local app UI actions",
+  "recorded_base_commit": "56dd708d2292ab2909cf9f12c9c97140c97faf9e",
+  "recorded_worktree": "Runtime and recording script unchanged during take-6; only verification records pending",
+  "source_commit": "44f0e38ed79f4c16ac07001ac50c38b0dc0fb204",
+  "ui_sha256": "8c2e2d2ab5d7da6347cf6aef5b53d5f49900cd8f2fe3d217478596ee89781c59",
+  "css_sha256": "273a5dc5508edd16d2b49855aa06b5b0e612bb995a6c0bd8a316157e97265427",
+  "record_script_sha256": "8e6df2656cd19cf0122abc04618dc1f7c0b8b42899d7aad2cf303cdd8b60e7ba",
+  "scenes": 14,
+  "page_errors": [],
+  "uploaded": false,
+  "public_access_verified": false,
+  "sha256": "9e3f0aa863cc56c9fa5b92244c985f421a9f9722255f135c9030c0f637eb2988",
+  "checked_at": "2026-10-23T17:17:11.530058+00:00",
+  "visual_review": {
+    "all_scene_midpoints": 14,
+    "separate_confirmation_frames": 7,
+    "max_caption_characters_per_second": 15.1,
+    "complete_decode": "PASS",
+    "result": "Reviewed all 14 scene boards and 7 confirmation frames after encoding. Captions fit, approved actions match UI, all four packing items remain in frame, and receipt/refund states are distinct.",
+    "prior_take_issue": "Take-5 scrolled too low in scenes 9\u201311; corrected and rerecorded as take-6."
+  }
+}

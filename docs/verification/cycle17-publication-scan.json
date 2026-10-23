@@ -1,0 +1,7 @@
+{
+  "checked_at": "2026-10-23T17:13:07.345922+00:00",
+  "tracked_files": 163,
+  "scope": "Known credential-prefix and private-file-path scan; not a guarantee that arbitrary secrets cannot exist.",
+  "findings": [],
+  "status": "PASS"
+}

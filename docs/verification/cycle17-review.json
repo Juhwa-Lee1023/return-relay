@@ -1,0 +1,83 @@
+{
+  "cycle": 17,
+  "checked_at": "2026-10-23T17:17:11.530058+00:00",
+  "source_set_sha256": "55ad9c5862b55d36d7d8f63ed23bf8149ef89c504bc634ef05e98a266eae71aa",
+  "runtime_commit": "44f0e38ed79f4c16ac07001ac50c38b0dc0fb204",
+  "recording_commit": "56dd708d2292ab2909cf9f12c9c97140c97faf9e",
+  "scope": "Adversarial input, state and error handling; clean install/restart; deployed MCP/browser; all 14 video scenes and seven confirmation screens.",
+  "findings_fixed": [
+    "Negated, uncertain and explicitly timed departures accepted as a fixed Thursday time",
+    "Hardcoded travel/counter explanation",
+    "Conflict copy blamed drop-off rather than return-home time",
+    "Malformed and oversized JSON presented as server outages",
+    "Optional localStorage denial blocked server-backed planning",
+    "Expanded browser suite exceeded a shared local test server session budget",
+    "Video framing cropped packing list in three scenes"
+  ],
+  "before_results": {
+    "service_tests_passed": 42,
+    "service_tests_failed": 5,
+    "new_browser_tests_passed": 0,
+    "new_browser_tests_failed": 2,
+    "post_fix_shared_server_run": {
+      "passed": 18,
+      "failed": 1,
+      "cause": "20 sessions/hour per-IP limit; fixed local fixture isolation, production limit unchanged"
+    }
+  },
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 47,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 19,
+    "browser_tests_failed": 0,
+    "layout_checks_passed": 20,
+    "layout_checks_failed": 0
+  },
+  "hosted_runtime": {
+    "status": "PASS",
+    "checks_passed": 9,
+    "checks_failed": 0,
+    "source_commit": "44f0e38ed79f4c16ac07001ac50c38b0dc0fb204",
+    "evidence": "cycle17-hosted-api.json",
+    "browser_checks_passed": 10,
+    "browser_checks_failed": 0,
+    "browser_evidence": "cycle17-hosted-browser.json",
+    "deployment_id": "dpl_2SgAUFKTrM6F2kMiSYn4Eg6m6xcq"
+  },
+  "fresh_checkout": {
+    "source": "git archive of runtime commit into a new directory",
+    "commit": "44f0e38ed79f4c16ac07001ac50c38b0dc0fb204",
+    "install": "npm ci --ignore-scripts: PASS",
+    "build": "PASS",
+    "service_tests_passed": 47,
+    "service_tests_failed": 0,
+    "restart": "PASS",
+    "evidence": [
+      "cycle17-clean-install.txt",
+      "cycle17-clean-build.txt",
+      "cycle17-clean-service.txt",
+      "cycle17-restart.json"
+    ]
+  },
+  "dependencies": {
+    "production_known_vulnerabilities": 0,
+    "all_dependencies_known_vulnerabilities": 0,
+    "source": "npm audit JSON reports at review time"
+  },
+  "release_consistency": {
+    "deployed_and_recorded_runtime_files_equal": 18,
+    "recording_commit_adds": "README, test evidence and camera-scroll changes only",
+    "video": "9e3f0aa863cc56c9fa5b92244c985f421a9f9722255f135c9030c0f637eb2988",
+    "duration_seconds": 155.234,
+    "video_review": "14 scenes plus 7 confirmation frames; second recording corrected packing framing"
+  },
+  "video_ui_effect": "Runtime explanation changed, so take-5 was rerecorded. Visual review then found cropped packing items; take-6 corrected framing. Canonical video is verified take-6.",
+  "pending": [
+    "Existing YouTube upload Terms/Community Guidelines confirmation",
+    "Public upload and logged-out playback",
+    "Save main Devpost story with the video URL and refresh gallery",
+    "Final entry no earlier than 03:30 KST"
+  ],
+  "submitted": false
+}
