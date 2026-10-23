@@ -183,6 +183,8 @@ test("C10: DST inputs preserve exact instants and reject missing offsets", () =>
   assert.throws(() => instant("2026-11-01T01:30:00"), { code: "INVALID_TIME" });
 });
 test("C10: a repeated DST hour still respects the exact acceptance deadline", () => {
+  const knownPolicy = getPolicy("RR-DEMO-1001");
+  if (knownPolicy.deadline === null) throw new Error("The DST test requires a known sample deadline.");
   const constraints = {
     now: "2026-11-01T00:00:00-07:00",
     availability: {
@@ -192,10 +194,10 @@ test("C10: a repeated DST hour still respects the exact acceptance deadline", ()
     locations: [{ ...demo.locations[0], windows: [{ start: "2026-11-01T00:00:00-07:00", end: "2026-11-01T03:00:00-08:00" }] }],
   };
   const before = findPlan("RR-DEMO-1001", "2026-11-01T03:00:00-08:00", "alex", {
-    ...constraints, policy: { ...getPolicy("RR-DEMO-1001"), deadline: "2026-11-01T01:45:00-07:00" },
+    ...constraints, policy: { ...knownPolicy, deadline: "2026-11-01T01:45:00-07:00" },
   }).plan!;
   const after = findPlan("RR-DEMO-1001", "2026-11-01T03:00:00-08:00", "alex", {
-    ...constraints, policy: { ...getPolicy("RR-DEMO-1001"), deadline: "2026-11-01T01:45:00-08:00" },
+    ...constraints, policy: { ...knownPolicy, deadline: "2026-11-01T01:45:00-08:00" },
   }).plan!;
   assert.equal(before.completion, "2026-11-01T08:35:00.000Z");
   assert.equal(after.completion, "2026-11-01T09:35:00.000Z");

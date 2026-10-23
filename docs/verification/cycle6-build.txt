@@ -1,0 +1,6 @@
+
+> return-relay@0.1.0 build
+> tsc --noEmit && vite build
+
+tests/domain.test.ts(195,61): error TS2322: Type 'string' is not assignable to type 'null'.
+tests/domain.test.ts(198,61): error TS2322: Type 'string' is not assignable to type 'null'.

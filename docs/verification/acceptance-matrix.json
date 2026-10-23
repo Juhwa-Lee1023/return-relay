@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T11:27:13.066574+00:00",
+  "checked_at": "2026-10-23T11:34:14.089724+00:00",
   "scope": "Development checkpoint, not final readiness. Test counts are distinct from acceptance cases.",
   "cases": [
     {
@@ -11,11 +11,11 @@
       "expected": "Preview explains conflict and proposes a feasible earlier window; no unapproved write.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -27,10 +27,10 @@
       "expected": "APPROVAL_REQUIRED; state/revision unchanged.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -42,10 +42,10 @@
       "expected": "Rejected; approval cannot authorize different data.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -57,11 +57,11 @@
       "expected": "STALE_REVISION; re-preview and re-confirm.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -73,10 +73,10 @@
       "expected": "One write, stable result and no duplicate plan/event.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -88,10 +88,10 @@
       "expected": "Denied; no silent renewal.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -103,10 +103,10 @@
       "expected": "No feasible plan, explanation and options; no impossible recommendation.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -118,10 +118,10 @@
       "expected": "Rejected; completion and travel matter.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -133,10 +133,10 @@
       "expected": "Clarification or explicit datetime summary before commitment.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -150,8 +150,8 @@
       "evidence": [
         "docs/verification/cycle5-dst-service.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Both repeated-hour offsets tested in parsing and complete planning. The two acceptance deadlines yield completions exactly one hour apart, each before its own deadline and departure."
     },
     {
@@ -163,10 +163,10 @@
       "expected": "Shows missing deadline basis; no eligibility or successful return claim.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -178,10 +178,10 @@
       "expected": "Expired status; no automatically invented exception.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -193,10 +193,10 @@
       "expected": "Do not treat drop-off before deadline as guaranteed eligible.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -208,10 +208,10 @@
       "expected": "Ask user to disambiguate rather than selecting silently.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -223,11 +223,11 @@
       "expected": "REQUESTED only, visibly awaiting sample assignee.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -239,10 +239,10 @@
       "expected": "Denied, correct owner check.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -254,11 +254,11 @@
       "expected": "Acceptance event attributed to sample actor; no real person contacted.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -270,11 +270,11 @@
       "expected": "DROPOFF_REPORTED; refund remains unknown/pending.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -286,11 +286,11 @@
       "expected": "Demo-confirmed status only; event is labelled synthetic.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -302,10 +302,10 @@
       "expected": "Rejected rather than language-model override.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -317,11 +317,11 @@
       "expected": "Persisted exact plan/revision and steps recovered.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -333,10 +333,10 @@
       "expected": "No other household data/action access.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -348,10 +348,10 @@
       "expected": "No approval bypass or refund change.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -366,8 +366,8 @@
         "docs/verification/secret-scan.json",
         "docs/verification/video-local.json"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Known signing secret and common token patterns absent from inspected history/bundle; selected video frames inspected. Repeat on final frozen release; not a universal secret-detection guarantee."
     },
     {
@@ -379,10 +379,10 @@
       "expected": "Transport and identity protections enforced, not CORS-only.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -394,10 +394,10 @@
       "expected": "Bounded error, no cost spiral or stuck loop.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Real MCP per-session cap returns 429; a deliberately hanging upstream is interrupted at about 10 seconds. Local SQLite limiter tested; hosted Redis limiter not yet exercised."
     },
     {
@@ -409,10 +409,10 @@
       "expected": "Recorded supported negotiated protocol and valid lifecycle.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -424,11 +424,11 @@
       "expected": "Wire request IDs and outputs prove the UI uses MCP.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt",
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-tests-fixed.txt",
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -440,10 +440,10 @@
       "expected": "Validated error with unchanged business state.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
     },
     {
@@ -470,10 +470,10 @@
       "expected": "Entire flow works; no forced permission.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Browser reports microphone denied by policy. Typed planning and approval work; product does not request or use microphone access."
     },
     {
@@ -485,12 +485,12 @@
       "expected": "No clipped controls; focus/contrast/labels and status text usable.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-browser.txt",
+        "docs/verification/cycle6-browser-fixed.txt",
         "docs/verification/browser-real-zoom.json",
         "docs/verification/browser-real-200pct.jpg"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Four viewport widths, keyboard cancel/focus, reduced motion, selected-view axe checks, and actual Chrome 200% zoom passed. This is not a full screen-reader or WCAG certification."
     },
     {
@@ -502,10 +502,10 @@
       "expected": "Actionable copy; no fabricated successful result.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-browser.txt"
+        "docs/verification/cycle6-browser-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "No-plan policy states, failed session request/reconnect, successful write with a lost response, and stale-role recovery tested. No-match search is a service-only check."
     },
     {
@@ -517,10 +517,10 @@
       "expected": "Mode labelled, real MCP still used, no hidden fake model inference.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle4-service-fixed.txt"
+        "docs/verification/cycle6-tests-fixed.txt"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "No model provider exists in this runtime. API and UI explicitly label guided mode and synthetic data; real MCP remains in use."
     },
     {
@@ -530,14 +530,14 @@
       "name": "Clean checkout run",
       "steps": "Fresh install/seed/build/test/run from README.",
       "expected": "Exact reproducible commands and declared dependencies.",
-      "status": "PASS",
+      "status": "PARTIAL",
       "evidence": [
         "docs/verification/clean-cycle3.json",
         "docs/verification/restart-cycle3.json"
       ],
       "tested_commit": "ee4c487",
       "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
-      "scope": "Anonymous public clone, clean npm install, build, 35 tests, server start and restart performed at ee4c487. Repeat on final freeze commit."
+      "scope": "The previous clean checkout passed at ee4c487. A new DST test caused a type-check failure in 42a297d; the test fixture is repaired and local build plus 39 service/14 browser tests now pass. Fresh public checkout of the repair is next."
     },
     {
       "id": "C36",
@@ -550,8 +550,8 @@
       "evidence": [
         "docs/verification/clean-cycle3.json"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Public repository anonymously cloned. Hosted build exists, but persistent runtime and anonymous demo path are not yet verified."
     },
     {
@@ -565,8 +565,8 @@
       "evidence": [
         "docs/verification/video-local.json"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Actual local English-captioned recording is 155.234 seconds. No public upload or logged-out playback yet."
     },
     {
@@ -582,8 +582,8 @@
         "docs/PRODUCT_FEEDBACK.md",
         "docs/FRICTION_LOG.md"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "English source draft reviewed against current implementation. Final form fields and final release/link consistency are pending."
     },
     {
@@ -597,8 +597,8 @@
       "evidence": [
         "docs/verification/deadline-gate-before-freeze.json"
       ],
-      "tested_commit": "working tree after ee4c487",
-      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "tested_commit": "candidate after 42a297d",
+      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
       "scope": "Actual clock gate run before 03:30 KST rejected final submission. A check at freeze remains required."
     },
     {
