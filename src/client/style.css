@@ -1,5 +1,5 @@
 :root {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Source Sans 3", Arial, sans-serif;
   color: #18384a;
   background: #f7f4ee;
   font-synthesis: none;
@@ -12,6 +12,12 @@
   --green: #126c64;
   --caution: #91431d;
   --white: #fffefa;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
 }
 * {
   box-sizing: border-box;
@@ -194,7 +200,8 @@ main {
 }
 .page-heading h1 {
   font:
-    normal 54px/1.08 Georgia,
+    normal 54px/1.08 Lora,
+    Georgia,
     "Times New Roman",
     serif;
   letter-spacing: -1.7px;
@@ -398,7 +405,8 @@ main {
 }
 .welcome h2 {
   font:
-    normal 42px/1.15 Georgia,
+    normal 42px/1.15 Lora,
+    Georgia,
     serif;
   letter-spacing: -1px;
   margin: 12px 0 19px;
@@ -805,7 +813,8 @@ details[open] > summary > svg:last-child {
   align-items: center;
   justify-content: center;
   font:
-    20px Georgia,
+    20px Lora,
+    Georgia,
     serif;
 }
 .handoff-person h3 {
@@ -867,7 +876,8 @@ details[open] > summary > svg:last-child {
 }
 .receipt h3 {
   font:
-    30px Georgia,
+    30px Lora,
+    Georgia,
     serif;
   margin: 9px 0;
 }
@@ -891,7 +901,8 @@ details[open] > summary > svg:last-child {
 }
 .blocked-card h3 {
   font:
-    27px/1.2 Georgia,
+    27px/1.2 Lora,
+    Georgia,
     serif;
   margin: 18px 0 13px;
 }
@@ -974,7 +985,7 @@ details[open] > summary > svg:last-child {
   white-space: nowrap;
 }
 .trace-table th {
-  font-family: Arial, sans-serif;
+  font-family: "Source Sans 3", Arial, sans-serif;
   font-size: 10px;
 }
 .trace-table small {
@@ -1025,7 +1036,8 @@ details[open] > summary > svg:last-child {
 }
 .help h2 {
   font:
-    29px Georgia,
+    29px Lora,
+    Georgia,
     serif;
   margin: 10px 0;
 }
@@ -1092,7 +1104,8 @@ footer p {
 }
 .confirm-dialog h2 {
   font:
-    34px Georgia,
+    34px Lora,
+    Georgia,
     serif;
   margin: 13px 0 22px;
 }

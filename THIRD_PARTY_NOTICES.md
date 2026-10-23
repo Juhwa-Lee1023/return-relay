@@ -11,4 +11,4 @@ Dependency versions are pinned in package-lock.json. Runtime libraries and their
 - react-dom 19.3.1 — MIT
 - zod 4.6.7 — MIT
 
-Lucide icons are used under the ISC license. The typeface stack uses installed system fonts; no font files are distributed. The parcel illustration and fictional scenario data were created for this project. Return Relay is not affiliated with or endorsed by Amazon.
+Lucide icons are used under the ISC license. Lora and Source Sans 3 are self-hosted through Fontsource under the SIL Open Font License 1.1. Their license texts are included in docs/font-licenses/. The parcel illustration and fictional scenario data were created for this project. Return Relay is not affiliated with or endorsed by Amazon.

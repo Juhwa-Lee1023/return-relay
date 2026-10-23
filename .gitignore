@@ -7,3 +7,6 @@ data/
 .private/
 *.log
 docs/IMPLEMENTATION_CONTRACT.json
+
+test-results/
+playwright-report/

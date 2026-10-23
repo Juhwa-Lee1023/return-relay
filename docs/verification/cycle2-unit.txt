@@ -1,0 +1,47 @@
+
+> return-relay@0.1.0 test
+> tsx --test tests/*.test.ts
+
+✔ C01: trip change replaces Thursday with Wednesday only in preview (37.106458ms)
+✔ C02: no approval means no write (0.456042ms)
+✔ C03: an approval cannot authorize another proposal (0.443625ms)
+✔ C04: stale revision rejected (11.766333ms)
+✔ C05: duplicate confirmed request produces one event (5.9755ms)
+✔ C06: expired approval is rejected (0.295125ms)
+✔ C07: departure before all available windows has no plan (2.1645ms)
+✔ C08: processing and return travel must fit closing and availability (0.700916ms)
+✔ C10: DST inputs preserve exact instants and reject missing offsets (0.196209ms)
+✔ C11: unknown policy cannot produce a plan (0.112375ms)
+✔ C12: expired return cannot produce a plan (0.07375ms)
+✔ C13: received-by policy is not treated as carrier acceptance (0.059209ms)
+✔ C14: multiple matches stay multiple (0.377333ms)
+✔ C15-C20: handoff, acceptance, report, sample receipt and refund are distinct (7.324584ms)
+✔ C22: another session cannot read a case or reuse approval (1.814875ms)
+✔ C23: injected policy text has no effect on progress or refund (0.990333ms)
+✔ C26: local rate limits bound requests (0.376958ms)
+✔ Incomplete packing cannot be marked ready (7.82425ms)
+✔ Concurrent writes allow only one revision winner (0.293666ms)
+✔ C25 HTTP: MCP rejects an unauthenticated direct call (405.259084ms)
+✔ C25 HTTP: invalid Origin is rejected before tool execution (0.991791ms)
+✔ C25 HTTP: invalid Host is rejected (3.309833ms)
+✔ C25 HTTP: a session cookie alone cannot authorize a write (22.34675ms)
+✔ C22 HTTP: a different session cannot read the selected case (19.402459ms)
+✔ C09 HTTP: ambiguous relative date asks for an exact departure (34.315458ms)
+✔ C23 HTTP: untrusted message does not approve or issue a refund (24.737583ms)
+✔ C29 HTTP: unknown status is rejected by schema (2.807416ms)
+✔ C29 HTTP: offset-free date is rejected (4.803875ms)
+✔ C27 HTTP: official MCP client negotiates protocol and lists all nine tools (27.993792ms)
+✔ C28 HTTP: preview exposes actual initialize/list/call wire evidence (67.580208ms)
+✔ C03 HTTP: signed confirmation cannot be modified (69.609375ms)
+✔ C22 HTTP: confirmation belongs to its original household (58.305125ms)
+✔ C05/C21 HTTP: repeated confirmation saves once and session reload resumes (138.28825ms)
+✔ C22 HTTP: reset cannot target another household (30.898834ms)
+✔ C34 HTTP: health truthfully identifies guided mode and synthetic data (4.209667ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1291.471125

@@ -1,0 +1,94 @@
+{
+  "generated_at": "2026-10-23T10:52:08.862387+00:00",
+  "scope": "local Chromium browser tests; not a manual WCAG conformance audit",
+  "stats": {
+    "startTime": "2026-10-23T10:51:02.235Z",
+    "duration": 8550.75,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "approve, change departure, hand off, distinguish receipt from refund, restore",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 2666
+        }
+      ]
+    },
+    {
+      "title": "unknown policy and passed deadline do not offer a plan",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 537
+        }
+      ]
+    },
+    {
+      "title": "keyboard approval can be cancelled without saving",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 777
+        }
+      ]
+    },
+    {
+      "title": "WCAG automated checks cover welcome, preview, and confirmation",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 1383
+        }
+      ]
+    },
+    {
+      "title": "responsive 360px: no page overflow and reachable approval",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 566
+        }
+      ]
+    },
+    {
+      "title": "responsive 390px: no page overflow and reachable approval",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 579
+        }
+      ]
+    },
+    {
+      "title": "responsive 768px: no page overflow and reachable approval",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 601
+        }
+      ]
+    },
+    {
+      "title": "responsive 1440px: no page overflow and reachable approval",
+      "ok": true,
+      "results": [
+        {
+          "status": "passed",
+          "duration_ms": 637
+        }
+      ]
+    }
+  ]
+}

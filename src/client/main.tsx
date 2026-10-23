@@ -1,3 +1,7 @@
+import "@fontsource/lora/latin-400.css";
+import "@fontsource/source-sans-3/latin-400.css";
+import "@fontsource/source-sans-3/latin-600.css";
+import "@fontsource/source-sans-3/latin-700.css";
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -179,11 +183,12 @@ function App() {
   }, []);
   useEffect(() => {
     if (confirm) {
-      lastFocus.current = document.activeElement as HTMLElement;
       dialog.current?.showModal();
     } else if (dialog.current?.open) {
       dialog.current.close();
-      lastFocus.current?.focus();
+      if (lastFocus.current?.isConnected) lastFocus.current.focus();
+      else document.getElementById("main")?.focus();
+      lastFocus.current = null;
     }
   }, [confirm]);
   const selected = orders.find((o) => o.id === current?.order_id),
@@ -253,6 +258,7 @@ function App() {
   }
   async function review(tool: string, extra: Record<string, unknown>) {
     if (!current) return;
+    lastFocus.current = document.activeElement as HTMLElement;
     await run(async () => {
       const args = {
         case_id: current.id,
@@ -293,6 +299,7 @@ function App() {
   }
   async function receipt() {
     if (!current) return;
+    lastFocus.current = document.activeElement as HTMLElement;
     await run(async () => {
       const r = await request("/receipt/" + current.id);
       const d = await request("/confirmation", {
@@ -386,7 +393,7 @@ function App() {
           </p>
         </section>
       )}
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <div className="page-heading">
           <div>
             <p className="eyebrow">A return deadline is not a plan.</p>
@@ -644,7 +651,12 @@ function App() {
                               : "Next step"}
                           </span>
                           <h3>{status.title}</h3>
-                          <p>{status.body}</p>
+                          <p>
+                            {actor === "maya" &&
+                            current.progress === "HANDOFF_REQUESTED"
+                              ? "The parcel is packed. Check the time and accept if you can take it."
+                              : status.body}
+                          </p>
                         </div>
                       )}
                       {preview && !preview.plan ? (
@@ -1157,6 +1169,8 @@ function App() {
       </div>
       <dialog
         ref={dialog}
+        aria-labelledby="confirmation-heading"
+        aria-describedby="confirmation-summary"
         onCancel={(e) => {
           e.preventDefault();
           if (!busy) setConfirm(null);
@@ -1172,8 +1186,8 @@ function App() {
           <X size={20} />
         </button>
         <p className="eyebrow">One change to confirm</p>
-        <h2>Save these details?</h2>
-        <p className="confirmation-summary">{confirm?.summary}</p>
+        <h2 id="confirmation-heading">Save these details?</h2>
+        <p id="confirmation-summary" className="confirmation-summary">{confirm?.summary}</p>
         <div className="confirmation-note">
           <Check size={18} />
           <span>This updates only your sample household.</span>
