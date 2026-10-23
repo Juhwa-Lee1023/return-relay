@@ -1,0 +1,43 @@
+{
+  "time": "2026-10-23T15:45:02.520029+00:00",
+  "cycle": 13,
+  "kind": "actual_agent_review",
+  "roles": [
+    "responsive",
+    "accessibility",
+    "alternate handoff scenario"
+  ],
+  "runtime_source_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+  "checks_passed": 10,
+  "failed_final_checks": 0,
+  "automated_accessibility_states": [
+    "saved plan",
+    "pending handoff",
+    "accepted handoff",
+    "carrier receipt"
+  ],
+  "failures_retained": [
+    {
+      "kind": "test harness",
+      "detail": "Axe requires explicit browser.newContext; corrected harness."
+    },
+    {
+      "kind": "scenario assumption",
+      "detail": "Thursday drop-off does not fit Maya. Revised test to verify unavailable action is withheld, then use Find a time for Maya and confirm Wednesday."
+    }
+  ],
+  "product_change": false,
+  "submitted": false,
+  "reproduced_with_public_script": {
+    "status": "PASS",
+    "checks": 10,
+    "result": "docs/verification/cycle13-public-script-result.json"
+  },
+  "visual_review": {
+    "images": [
+      "cycle13-approval-landscape.png",
+      "cycle13-receipt.png"
+    ],
+    "result": "Rendered controls and reading order inspected; no clipping or overlap observed."
+  }
+}

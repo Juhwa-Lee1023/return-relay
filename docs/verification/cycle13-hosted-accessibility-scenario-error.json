@@ -1,0 +1,28 @@
+{
+  "started_at": "2026-10-23T15:41:47.744Z",
+  "base_url": "https://return-relay.vercel.app",
+  "source_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+  "scope": "Synthetic hosted browser checks; not a complete accessibility audit",
+  "checks": [
+    {
+      "name": "320px preview has no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320px approval is reachable",
+      "status": "PASS"
+    },
+    {
+      "name": "landscape approval stays within viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "saved plan automated accessibility",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "failure": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Ask Maya to take it', exact: true })\u001b[22m\n",
+  "finished_at": "2026-10-23T15:42:35.587Z"
+}

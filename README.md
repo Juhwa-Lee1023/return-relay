@@ -89,6 +89,15 @@ Business keys use the `return-relay:v1:` prefix. Sessions expire after seven day
 
 `npm test` runs domain and real HTTP integration tests using temporary local stores. After `npx playwright install chromium`, `npm run test:browser` builds and tests the real interface on an isolated local server. Test logs and the acceptance matrix are added under `docs/verification/` as release candidates are verified. Local synthetic tests are not Amazon integration certification or household field research.
 
+To repeat the hosted checks against the synthetic demo:
+
+```sh
+RR_TEST_URL=https://return-relay.vercel.app node scripts/verify-hosted.mjs
+RR_TEST_URL=https://return-relay.vercel.app node scripts/verify-hosted-accessibility.mjs
+```
+
+The second script checks 320px and landscape approval layouts, replanning for an unavailable helper, and automated accessibility in saved-plan, handoff and receipt states. It creates its own sample session. Set `RR_TEST_URL` to test another deployment and `RR_VERIFY_OUTPUT` to choose its output directory. The hosted service limits new sessions per IP; avoid running the remote checks in parallel or repeatedly. An automated accessibility pass is a scoped check, not a complete audit.
+
 ## AI assistance and attribution
 
 This project was developed with OpenAI Codex assistance for implementation, test creation, review and English drafting. Runtime conversation uses the guided parser described above. The original parcel illustration is CSS; interface icons are Lucide. No Amazon logos, proprietary code or real order data are included.

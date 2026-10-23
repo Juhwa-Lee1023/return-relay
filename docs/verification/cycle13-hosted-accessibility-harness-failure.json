@@ -1,0 +1,29 @@
+{
+  "started_at": "2026-10-23T15:41:12.325Z",
+  "base_url": "https://return-relay.vercel.app",
+  "source_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+  "scope": "Synthetic hosted browser checks; not a complete accessibility audit",
+  "checks": [
+    {
+      "name": "320px preview has no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320px approval is reachable",
+      "status": "PASS"
+    },
+    {
+      "name": "landscape approval stays within viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "saved plan automated accessibility",
+      "status": "FAIL",
+      "error": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+    }
+  ],
+  "errors": [],
+  "status": "FAIL",
+  "failure": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md",
+  "finished_at": "2026-10-23T15:41:24.250Z"
+}

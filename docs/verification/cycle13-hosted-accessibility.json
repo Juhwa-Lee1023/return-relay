@@ -1,0 +1,51 @@
+{
+  "started_at": "2026-10-23T15:43:25.866Z",
+  "base_url": "https://return-relay.vercel.app",
+  "source_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+  "scope": "Synthetic hosted browser checks; not a complete accessibility audit",
+  "checks": [
+    {
+      "name": "320px preview has no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "320px approval is reachable",
+      "status": "PASS"
+    },
+    {
+      "name": "landscape approval stays within viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "saved plan automated accessibility",
+      "status": "PASS"
+    },
+    {
+      "name": "Thursday plan does not offer an unavailable Maya",
+      "status": "PASS"
+    },
+    {
+      "name": "replan for Maya keeps packing and offers Wednesday",
+      "status": "PASS"
+    },
+    {
+      "name": "pending handoff automated accessibility",
+      "status": "PASS"
+    },
+    {
+      "name": "accepted handoff automated accessibility",
+      "status": "PASS"
+    },
+    {
+      "name": "carrier receipt automated accessibility",
+      "status": "PASS"
+    },
+    {
+      "name": "no uncaught browser errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "status": "PASS",
+  "finished_at": "2026-10-23T15:44:12.294Z"
+}
