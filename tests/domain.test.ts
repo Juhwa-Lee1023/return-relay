@@ -5,8 +5,8 @@ import { SqliteStore } from "../src/server/store";
 import { RelayService, type Approval } from "../src/domain/service";
 import { demo, newHousehold, getPolicy } from "../src/domain/fixtures";
 import { findPlan, instant, utc } from "../src/domain/planner";
-import { seal, digest } from "../src/server/crypto";
-import type { Principal, Preview, ReturnCase } from "../src/domain/types";
+import { seal, unseal, digest } from "../src/server/crypto";
+import type { Principal, Preview, Proposal, ReturnCase } from "../src/domain/types";
 async function context() {
   const store = new SqliteStore(":memory:");
   const p: Principal = {
@@ -398,4 +398,62 @@ test("Concurrent writes allow only one revision winner", async () => {
     ctx.store.replace(ctx.p.sid, 0, b!),
   ]);
   assert.equal(outcomes.filter(Boolean).length, 1);
+});
+
+test("An expired proposal cannot be saved with a fresh approval", async () => {
+  const ctx = await context();
+  const preview = await ctx.service.execute("return_plan_preview", {
+    case_id: ctx.c.id, expected_revision: 0, departure_at: demo.trip.initial_departure,
+  }, ctx.p) as Preview;
+  // Time-expiry fixture signed with the local test key; this is not a forged external proof.
+  const proposal = unseal<Proposal>("proposal", preview.proposal_id!);
+  const args = {
+    case_id: ctx.c.id, expected_revision: 0,
+    proposal_id: seal("proposal", { ...proposal, exp: Date.now() - 1 }),
+    idempotency_key: randomUUID(),
+  };
+  const before = await ctx.store.get(ctx.p.sid);
+  await assert.rejects(ctx.service.execute("return_plan_commit", args, ctx.p,
+    approved(ctx.p, "return_plan_commit", args)), { code: "PROOF_EXPIRED" });
+  assert.deepEqual(await ctx.store.get(ctx.p.sid), before);
+});
+
+test("Reusing an idempotency key for changed arguments cannot overwrite a plan", async () => {
+  const ctx = await context();
+  const saved = await commit(ctx);
+  const preview = await ctx.service.execute("return_plan_preview", {
+    case_id: ctx.c.id, expected_revision: saved.result.revision,
+    departure_at: demo.trip.changed_departure,
+  }, ctx.p) as Preview;
+  const args = { ...saved.args, expected_revision: saved.result.revision, proposal_id: preview.proposal_id };
+  const before = await ctx.store.get(ctx.p.sid);
+  await assert.rejects(ctx.service.execute("return_plan_commit", args, ctx.p,
+    approved(ctx.p, "return_plan_commit", args)), { code: "IDEMPOTENCY_CONFLICT" });
+  assert.deepEqual(await ctx.store.get(ctx.p.sid), before);
+});
+
+test("A delayed family acceptance cannot revive a handoff after replanning", async () => {
+  const ctx = await context();
+  let c = (await commit(ctx, demo.trip.changed_departure)).result;
+  async function write(tool: string, extra: Record<string, unknown>) {
+    const args = { case_id: c.id, expected_revision: c.revision, idempotency_key: randomUUID(), ...extra };
+    c = await ctx.service.execute(tool, args, ctx.p, approved(ctx.p, tool, args)) as ReturnCase;
+  }
+  await write("return_step_update", { step: "PREPARED", checked_items: c.plan!.required_items });
+  await write("handoff_request", { actor_id: "maya" });
+  const maya = { ...ctx.p, actor: "maya" as const };
+  const delayed = { case_id: c.id, expected_revision: c.revision, request_id: c.handoff!.id, idempotency_key: randomUUID() };
+  const proof = approved(maya, "handoff_accept", delayed);
+  const preview = await ctx.service.execute("return_plan_preview", {
+    case_id: c.id, expected_revision: c.revision, departure_at: demo.trip.initial_departure,
+  }, ctx.p) as Preview;
+  await write("return_plan_commit", { proposal_id: preview.proposal_id });
+  assert.equal(c.handoff, null);
+  assert.equal(c.progress, "PREPARED");
+  const before = await ctx.store.get(ctx.p.sid);
+  await assert.rejects(ctx.service.execute("handoff_accept", delayed, maya, proof), { code: "STALE_REVISION" });
+  const currentRevision = { ...delayed, expected_revision: c.revision, idempotency_key: randomUUID() };
+  await assert.rejects(ctx.service.execute("handoff_accept", currentRevision, maya,
+    approved(maya, "handoff_accept", currentRevision)), { code: "ASSIGNEE_REQUIRED" });
+  assert.deepEqual(await ctx.store.get(ctx.p.sid), before);
 });

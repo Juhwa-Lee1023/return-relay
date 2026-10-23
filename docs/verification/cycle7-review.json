@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-23T11:54:44.019935+00:00",
+  "cycle": 7,
+  "scope": "Local synthetic domain and actual HTTP MCP regression; no runtime change",
+  "checks": [
+    "Fresh approval cannot revive expired proposal",
+    "Changed arguments cannot reuse an idempotency key",
+    "Delayed Maya acceptance cannot revive an obsolete handoff after replanning"
+  ],
+  "first_run": "41 passed, 1 failed because the new test selected a time outside Maya availability; application correctly rejected it",
+  "test_correction": "Start with the existing Wednesday slot, then replan to Friday departure before delivering the old acceptance",
+  "final_result": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0
+  },
+  "browser": "Previous 14-case browser run remains applicable: app source has not changed",
+  "new_product_defect": null
+}

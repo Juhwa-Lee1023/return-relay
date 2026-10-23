@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-23T11:54:44.019935+00:00",
+  "base_commit": "f4973ad",
+  "source_set_sha256": "a0a7d8cd168f489ac4aafbd3b784552dece503d3ae90d5dee5d5e2e7a766162a",
+  "scope": "Expanded manifest includes fixtures, API and build configuration",
+  "files": {
+    "api/index.ts": "07b68b480509f919d75499b1619563f8371c956ab8a6afef19b2b01f1f9aaaf1",
+    "fixtures/demo_household.json": "fe5bd525195790f2fdd82ec9a608ac53229928d953548448e2bbd7f3e13d9ed3",
+    "index.html": "d77327a9f6d01ba6a5ae6b9279ba6011c3d6b8c828882251669cc8e3c28ac149",
+    "package-lock.json": "a234ae96adfb176c16ac5fca4f032d349e3feebfc2d4936268ad8759a790fe20",
+    "package.json": "f72aeadb3ae99b5cab2a69ec218e061e91a932668724b485e9bbbd40292109b5",
+    "playwright.config.ts": "6f9765a561ebf10f07350bca4dd2d808a6cd61afb577ea14f292251a9ddbb09d",
+    "src/client/main.tsx": "4edee14f97868fdf8211b3281c62a95486104c238df97cc67ad3fae4699c2074",
+    "src/client/style.css": "c844886e7d4aa0bc7565f2bd55d9581aad6bca6141d84908ae05f2bd87e08885",
+    "src/domain/fixtures.ts": "c60268ad1bcc873840daa06831137d1844c38a95fdcbfc5e9677e371896b06df",
+    "src/domain/planner.ts": "9b23f621bb3abaf87d1c71b5e7984535d2508cdd78f95bbec27cb8f33394bc28",
+    "src/domain/service.ts": "d21f740c27094b789e7915199070de54e8d416446113247cd4b2bb7b1960304e",
+    "src/domain/types.ts": "d08958c3ecab18b9e3b4901022995b2e7e1aec68511621a53c0edf824c80a755",
+    "src/server/app.ts": "008cbabe0ba1ef435aa092d1195a15b6ece1bb053353a38029cdefec4e7f4d7e",
+    "src/server/crypto.ts": "5909ca1421efb2990637d6235fccd70d1cb8e318fe61d4b09e616151a134ae3c",
+    "src/server/mcp.ts": "87899dcb3922b37f5f63f96388426baff833fde188ad20baa38c725bf8ffdd9c",
+    "src/server/store.ts": "0a575ec8804a89d9211c0268019a3cdddf0ecb84e8ddcd7f0a222e9cfa0b40bc",
+    "src/server.ts": "a9bbce6ca283f6c81fb70facda54f7f58b19f5aed084fecc961337a9be9cb3ba",
+    "tests/browser/flow.spec.ts": "9b40881cdd279972e2b029187efb89c7d9b076c624e505481b568914c09005b7",
+    "tests/domain.test.ts": "da6658112cb76a3e58369d2f4a105d23f1eea9354d0987c1d56ea3542c6fea0c",
+    "tests/http.test.ts": "447d9057f465dc1163cb5c8592cc6fa2c003558786351f4a030196668354d4bd",
+    "tsconfig.json": "2a84e6a30b471311caa50a0c3a992c0ef75786d50429ea8b29bc085880d5f2f0",
+    "vercel.json": "58d880a752b26fc6b62f2acfed8f237b98c95a50893db0a5cca619c6b95a24d2",
+    "vite.config.ts": "7e836e6b6cd2c95f61c78788242dd8efb959cf50da776972a066eb7e11ae4671"
+  }
+}

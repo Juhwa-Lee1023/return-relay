@@ -2,7 +2,7 @@
 
 Checked 2026-10-23T11:35:42.582026+00:00. Code tested: `2c086da7e984a2608f758dbb371b9d17289840f7`.
 
-Full type-check/build, 39 service tests and 14 browser tests passed. A fresh anonymous checkout installed, built, passed all 39 service tests and survived process restart.
+Full type-check/build and 42 service tests passed in cycle 7. The previous 14 browser tests apply to the unchanged product code. A fresh anonymous checkout at 2c086da installed, built, passed its then-current 39 service tests and survived process restart. The three additional cycle-7 cases cover expired proposals, idempotency conflicts and delayed family acceptance.
 
 The failed first clean build is retained. The repair changes test typing only; product behavior remains the same.
 
