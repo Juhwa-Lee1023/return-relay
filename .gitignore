@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env*
+!.env.example
+.vercel/
+data/
+.private/
+*.log
+docs/IMPLEMENTATION_CONTRACT.json

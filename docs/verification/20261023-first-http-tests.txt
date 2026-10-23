@@ -1,0 +1,85 @@
+
+> return-relay@0.1.0 test
+> tsx --test tests/*.test.ts
+
+✔ C01: trip change replaces Thursday with Wednesday only in preview (114.029334ms)
+✔ C02: no approval means no write (0.628083ms)
+✔ C03: an approval cannot authorize another proposal (0.395583ms)
+✔ C04: stale revision rejected (12.611042ms)
+✔ C05: duplicate confirmed request produces one event (13.643625ms)
+✔ C06: expired approval is rejected (1.173041ms)
+✔ C07: departure before all available windows has no plan (21.247375ms)
+✔ C08: processing and return travel must fit closing and availability (1.993833ms)
+✔ C10: DST inputs preserve exact instants and reject missing offsets (0.633834ms)
+✔ C11: unknown policy cannot produce a plan (0.333ms)
+✔ C12: expired return cannot produce a plan (0.360709ms)
+✔ C13: received-by policy is not treated as carrier acceptance (0.220667ms)
+✔ C14: multiple matches stay multiple (0.498042ms)
+✔ C15-C20: handoff, acceptance, report, sample receipt and refund are distinct (17.841584ms)
+✔ C22: another session cannot read a case or reuse approval (0.523666ms)
+✔ C23: injected policy text has no effect on progress or refund (0.356333ms)
+✔ C26: local rate limits bound requests (0.185166ms)
+✔ Incomplete packing cannot be marked ready (5.327333ms)
+✔ Concurrent writes allow only one revision winner (0.257042ms)
+✔ C25 HTTP: MCP rejects an unauthenticated direct call (231.102458ms)
+✔ C25 HTTP: invalid Origin is rejected before tool execution (0.779583ms)
+✖ C25 HTTP: invalid Host is rejected (2.3725ms)
+✔ C25 HTTP: a session cookie alone cannot authorize a write (24.436459ms)
+✔ C22 HTTP: a different session cannot read the selected case (21.22025ms)
+✔ C09 HTTP: ambiguous relative date asks for an exact departure (24.293667ms)
+✔ C23 HTTP: untrusted message does not approve or issue a refund (16.452958ms)
+✔ C29 HTTP: unknown status is rejected by schema (4.898833ms)
+✔ C29 HTTP: offset-free date is rejected (4.129834ms)
+✔ C27 HTTP: official MCP client negotiates protocol and lists all nine tools (20.419333ms)
+✔ C28 HTTP: preview exposes actual initialize/list/call wire evidence (69.216666ms)
+✔ C03 HTTP: signed confirmation cannot be modified (82.883417ms)
+✔ C22 HTTP: confirmation belongs to its original household (56.437625ms)
+✔ C05/C21 HTTP: repeated confirmation saves once and session reload resumes (134.571709ms)
+✖ C22 HTTP: reset cannot target another household (23.186292ms)
+✔ C34 HTTP: health truthfully identifies guided mode and synthetic data (0.898416ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 33
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1308.10525
+
+✖ failing tests:
+
+test at tests/http.test.ts:30:1
+✖ C25 HTTP: invalid Host is rejected (2.3725ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  200 !== 403
+  
+      at TestContext.<anonymous> (/Users/juhwalee/.codex/.chatgpt-projects/g-p-6a40c868a75481919dfcc927a98d8bf0/artifacts/return-relay-20261023/app/tests/http.test.ts:30:143)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 200,
+    expected: 403,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/http.test.ts:46:1
+✖ C22 HTTP: reset cannot target another household (23.186292ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  503 !== 401
+  
+      at TestContext.<anonymous> (/Users/juhwalee/.codex/.chatgpt-projects/g-p-6a40c868a75481919dfcc927a98d8bf0/artifacts/return-relay-20261023/app/tests/http.test.ts:46:261)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 503,
+    expected: 401,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
