@@ -27,15 +27,15 @@ Open **http://127.0.0.1:4318**. This starts the real HTTP MCP server and serves 
 
 Open **Actual MCP calls** at any point. It lists the actual HTTP calls made by the web host, including the negotiated protocol. Tokens are not displayed.
 
-## What this demonstrates for Alexa+
+## Follow the MCP calls
 
-One departure change updates a continuing task: a saved return plan becomes a new proposal, then a packing checklist, a household handoff and a receipt. The MCP server owns those transitions; the web client makes them visible and asks before saving. The typed conversation uses a guided parser. The demonstration shows actual MCP execution and saved state through a custom client, rather than a connection to a live Alexa device.
+A changed departure starts with the saved return. The MCP server checks the new date and proposes an earlier drop-off; it saves the replacement after confirmation. Packing, Maya’s reply and the sample receipt remain attached to that return. The web client shows these steps and the calls behind them. It uses typed, guided conversation rather than a live Alexa connection.
 
-## Try a failure
+## Check the edge cases
 
 - The travel adapter's deadline has passed, so there is no proposed plan.
 - The canvas bag has no confirmed return instructions, so the app asks for them.
-- **Before Friday** is ambiguous; the guided conversation asks for an exact departure.
+- **Before Friday**, **not leaving Thursday morning**, or an explicit hour asks for an exact departure. The saved plan stays unchanged.
 - **Change departure or person** lets you select a departure before any available slot. The app explains that no slot fits.
 - Escape closes a confirmation without saving. Keyboard focus returns to the button that opened it.
 
@@ -47,10 +47,10 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-The browser suite builds the app and starts an isolated local server on port 4326 with a fresh test database. It covers the complete relay, cancelled approval, blocked policies, automatic accessibility checks, and 360/390/768/1440px layouts. It does not reuse or reset your normal sample household. Raw browser traces can contain session capabilities; do not publish them.
+The browser suite builds the app and starts isolated servers on ports 4326 and 4327, each with a fresh database. It covers the complete relay, cancelled approval, blocked policies, automatic accessibility checks, and 360/390/768/1440px layouts. It does not reuse or reset your normal sample household. Raw browser traces can contain session capabilities; do not publish them.
 
 ## State and scope
 
 The clock is fixed at November 2, 2026, in Los Angeles. Calendars and journeys are fictional inputs. The planner checks feasibility; it does not predict traffic. A sample session lasts seven days. **Reset sample** deletes only the current sample household. An incognito window receives a separate household.
 
-The hosted version is available at https://return-relay.vercel.app. It uses the approved Redis connection and a server-only signing secret. The current runtime is `81735a6`; its local build, 42 service tests, 17 browser tests and ten additional hosted checks passed in cycle15. See [cycle15-review.json](verification/cycle15-review.json). Earlier verification records identify the revisions they tested.
+The hosted version is available at https://return-relay.vercel.app. It uses the approved Redis connection and a server-only signing secret. Runtime `44f0e38` passed the build, 47 service tests, 19 browser tests, nine hosted API/MCP checks and ten hosted browser checks. See [cycle17-review.json](verification/cycle17-review.json) for the results and tested source. Earlier records keep their original revision and counts.

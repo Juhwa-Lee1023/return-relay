@@ -1,0 +1,94 @@
+{
+  "cycle": 18,
+  "checked_at": "2026-10-23T17:33:49.790104+00:00",
+  "source_set_sha256": "23a355b69a9d0acfab42fb420ae78876fc90d1bbae7cfcb28db97518740191b3",
+  "runtime_commit": "44f0e38ed79f4c16ac07001ac50c38b0dc0fb204",
+  "recording_commit": "56dd708d2292ab2909cf9f12c9c97140c97faf9e",
+  "scope": "Current English documents, eight Devpost answers, public story, pitch, gallery captions, video subtitles and existing Figma working screens. Historical logs and license wording preserved.",
+  "editorial_passes": [
+    {
+      "pass": 1,
+      "action": "Concrete scenario, eliminate repeated explanations, shorten tool feedback, rewrite 14 captions."
+    },
+    {
+      "pass": 2,
+      "action": "Correct browser/host MCP description, date-control behavior, stale test counts and Figma return-home explanation; split long feedback sentence."
+    },
+    {
+      "pass": 3,
+      "action": "Inspect rendered video/Figma and saved form readbacks; review remaining heuristic warnings. No further actionable issue identified within the checked scope."
+    }
+  ],
+  "findings_fixed": [
+    "Thursday planned drop-off could be mistaken for the policy deadline",
+    "Main story repeated the workflow in three sections",
+    "Product feedback repeated the same recommendation for each tool",
+    "Runbook and current contest review pointed to old runtime/counts",
+    "Wording could imply MCP SDK runs in the browser or that date controls open automatically",
+    "One feedback sentence combined three unrelated tool groups",
+    "Figma conflict wording omitted the return-home calculation",
+    "Gallery still showed prior runtime screenshots"
+  ],
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 47,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 19,
+    "browser_tests_failed": 0
+  },
+  "editorial": {
+    "comparable_files": 18,
+    "before": {
+      "write_good": 76,
+      "alex": 36
+    },
+    "after": {
+      "write_good": 85,
+      "alex": 33
+    },
+    "expanded_final_inputs": 22,
+    "retained_findings": 319,
+    "unresolved_actionable_findings": 0,
+    "warning_count_is_not_quality_or_authorship_score": true
+  },
+  "hosted_runtime": {
+    "new_deployment": false,
+    "runtime_files_equal": 18,
+    "evidence_reused": "cycle17-hosted-api.json and cycle17-hosted-browser.json; unchanged runtime. No fresh hosted checks claimed."
+  },
+  "release_consistency": {
+    "deployed_and_recorded_runtime_files_equal": 18,
+    "video": "2f1018caeb06772ee5aadce77a330d8a81cc937f1ac1b377314d822ec3cbc00c",
+    "duration_seconds": 155.234,
+    "caption_max_cps": 12.7
+  },
+  "video_ui_effect": "Same verified take-6 recording, newly encoded captions. All 14 scene midpoints, seven approval frames and full decode checked. No new runtime UI changes.",
+  "devpost": {
+    "additional_fields_saved_and_read_back": 8,
+    "overview_saved_and_read_back": true,
+    "main_story_entered_and_matched": true,
+    "main_story_saved": false,
+    "gallery_photo_ids": [
+      "5661397",
+      "5661398"
+    ],
+    "gallery_caption_save_pending": true,
+    "pending_reason": "Required public video URL awaits previously requested YouTube upload terms confirmation."
+  },
+  "figma": {
+    "file_key": "eCCehWBtA9W2bW0N2zd6qE",
+    "text_nodes_changed": [
+      "3:110"
+    ],
+    "two_frames_read": true,
+    "changed_frame_rendered": true,
+    "clipping_observed": false
+  },
+  "pending": [
+    "Existing YouTube upload Terms/Community Guidelines confirmation",
+    "Public video upload and logged-out playback",
+    "Save main Devpost story and gallery captions with video URL",
+    "Final entry no earlier than 03:30 KST"
+  ],
+  "submitted": false
+}

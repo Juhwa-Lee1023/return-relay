@@ -29,20 +29,20 @@ async function confirm(name, wait=1500){
   await expect(page.getByRole('dialog')).not.toBeVisible();
 }
 try {
-  await scene('Leaving a day earlier? Move the return, too.\nReturn Relay finds a drop-off time around the trip.',9,async()=>{
+  await scene('A trip moves from Friday to Thursday.\nThe return has to move with it.',9,async()=>{
     await page.goto(process.env.RR_RECORD_URL ?? 'http://127.0.0.1:4330');
     await expect(page.getByRole('button',{name:'Plan the headphones return'})).toBeEnabled();
   });
-  await scene('The headphones need to go back before a Friday trip.\nThis demonstration uses a synthetic household and store policy.',10,async()=>{
+  await scene('Alex planned to drop off these headphones on Thursday.\nThis demo uses a fictional household and store policy.',10,async()=>{
     await page.getByRole('button',{name:'Plan the headphones return'}).click();
     await expect(page.getByRole('region',{name:'Return plan'})).toBeVisible();
     await show('.return-header');
   });
-  await scene('Open the call log to see the MCP requests over Streamable HTTP.\nThe web host initializes the connection, discovers tools and calls them.',9,async()=>{
+  await scene('These are the calls made by the app’s MCP client.\nIt connects over Streamable HTTP, finds the tools and runs them.',9,async()=>{
     await page.getByText('Actual MCP calls',{exact:true}).click();
     await show('.tool-trace');
   });
-  await scene('The first plan puts the drop-off on Thursday.\nAlex reviews the packing, travel and counter times, then saves it.',13,async()=>{
+  await scene('The first plan fits before Friday’s departure.\nAlex checks the times and saves it.',13,async()=>{
     await page.getByText('Actual MCP calls',{exact:true}).click();
     await page.getByRole('button',{name:'Review & save'}).click();
     await pause(4500);
@@ -50,57 +50,57 @@ try {
     await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
     await show('.return-header');
   });
-  await scene('“Actually, I’m leaving Thursday morning.”\nThe saved Thursday errand is now too late.',14,async()=>{
+  await scene('Alex types: “Actually, I’m leaving Thursday morning.”\nThursday’s drop-off is now too late.',14,async()=>{
     await show('.conversation');
     await page.getByRole('textbox',{name:'Message Return Relay'}).pressSequentially('Actually, I’m leaving Thursday morning.',{delay:55});
     await page.getByRole('button',{name:'Send message'}).click();
     await expect(page.getByText('The old drop-off is too late.',{exact:true})).toBeVisible();
     await show('.return-header');
   });
-  await scene('Wednesday fits the earlier departure and the household calendar.\nThe new plan includes packing, travel and counter hours.',11,async()=>{
+  await scene('The app finds a Wednesday slot.\nThere’s time to pack, travel and finish at the counter.',11,async()=>{
     await show('.plan-sheet');
   });
-  await scene('Compare the old and new times, then approve Wednesday.\nUntil this confirmation, Thursday stays saved.',12,async()=>{
+  await scene('Alex checks the new times and confirms the change.\nWednesday becomes the saved plan.',12,async()=>{
     await page.getByRole('button',{name:'Review & save'}).click();
     await pause(5500);
     await page.getByRole('button',{name:'Confirm & save'}).click();
     await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
     await show('.return-header');
   });
-  await scene('Refresh the page. Wednesday’s plan comes back from the server.\nThe saved itinerary and history survive the reload.',8,async()=>{
+  await scene('A refresh brings back the saved Wednesday plan.',8,async()=>{
     await page.reload();
     await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
     await show('.plan-sheet');
   });
-  await scene('Check the four packing items, including the sample return label.\nAlex confirms the parcel is ready for Maya.',12,async()=>{
+  await scene('Alex checks the headphones, case, cable and sample return label,\nthen confirms that the parcel is packed.',12,async()=>{
     await show('.packing');
     for (const box of await page.getByRole('checkbox').all()){await box.check();await pause(500);}
     await confirm('Mark parcel packed',2500);
     await show('.packing');
   });
-  await scene('Ask Maya to take the parcel at the saved time.\nThe status changes to “Waiting for Maya.”',11,async()=>{
+  await scene('Alex asks Maya to take the parcel on Wednesday.\nHer reply is still pending.',11,async()=>{
     await confirm('Ask Maya to take it',2500);
     await expect(page.getByText('Waiting for Maya',{exact:true})).toBeVisible();
     await show('.packing');
   });
-  await scene('Open Maya’s sample view and accept the request.\nThe judge plays both household roles in this demo.',12,async()=>{
+  await scene('Switch to Maya’s demo view to accept the request.\nOne browser plays both household roles here.',12,async()=>{
     await page.getByRole('button',{name:'Open Maya’s view'}).click();
     await expect(page.getByRole('button',{name:'Accept as Maya'})).toBeVisible();
     await pause(2500);
     await confirm('Accept as Maya',2500);
     await show('.packing');
   });
-  await scene('Record Maya’s drop-off report.\nThe next step checks the sample carrier receipt.',10,async()=>{
+  await scene('Maya reports the drop-off.\nThe app still needs a carrier receipt.',10,async()=>{
     await confirm('Report drop-off as Maya',2500);
     await expect(page.getByText('Drop-off reported',{exact:true})).toBeVisible();
     await show('.next-action');
   });
-  await scene('Load the sample receipt and match it to the return.\nThe parcel has a receipt; the refund field stays “Unknown.”',12,async()=>{
+  await scene('A matching sample receipt confirms the demo drop-off.\nRefund status stays “Unknown.”',12,async()=>{
     await confirm('Load sample carrier receipt',2500);
     await expect(page.getByRole('heading',{name:'Parcel accepted'})).toBeVisible();
     await show('.receipt');
   });
-  await scene('Try the changed departure and the handoff in your own session.\nGuided web simulation, synthetic data, real MCP calls. No Amazon account connection.',12,async()=>{
+  await scene('Try it at return-relay.vercel.app.\nThis is a guided web demo, with no Amazon account connection.',12,async()=>{
     await page.getByRole('button',{name:'How it works'}).click();
     await show('.help');
     await page.screenshot({path:resolve(dir,'last-frame.png')});

@@ -6,45 +6,41 @@ Leaving a day earlier? Move the return, too.
 
 ## Inspiration
 
-The headphones need to go back on Thursday. The trip starts Friday. Then departure moves to Thursday morning, leaving a parcel by the door and a return plan that no longer works.
+Alex plans to return his headphones on Thursday, before a Friday trip. Then he has to leave on Thursday morning. He needs an earlier drop-off time and may need Maya to take the parcel.
 
-Return Relay finds an earlier time and shows what to pack. If Maya can take the parcel, Alex sends her the plan. The handoff stays pending until she accepts.
-
-It is built for the person fitting a return around a trip and the household member taking the parcel. A changed departure affects the drop-off time, packing and who can help. Return Relay brings those decisions into one saved plan, so neither person has to reconstruct the arrangement from separate reminders and messages.
+Return Relay checks the return deadline, counter hours and household calendar, then proposes a time that fits. It keeps the packing list and handoff with that plan, so Alex and Maya can see what still needs to happen.
 
 ## What it does
 
-Start with the headphones and save the proposed Thursday drop-off. Type **“Actually, I’m leaving Thursday morning.”** The app checks the store’s deadline, counter hours, travel time and household calendar, then offers Wednesday. The old and new times appear together so you can review the change before saving it.
+Save Thursday’s plan, then type **“Actually, I’m leaving Thursday morning.”** The app offers Wednesday and shows the old and new times together. The saved plan changes when you confirm it.
 
-After packing the four required items, ask Maya to take the parcel. Open Maya’s sample view to accept the time and report the drop-off. Loading the sample carrier receipt adds a separate receipt record; the refund field stays **Unknown**. Refreshing the page brings back the saved plan, packing progress and handoff history.
+Check the four packing items, then ask Maya to take the parcel. Switch to Maya’s demo view to accept the request and report the drop-off. The app records her report separately from the sample carrier receipt. Even after that receipt matches, the refund field stays **Unknown**. Refresh the page to retrieve the saved plan and history.
 
-Two more items show where planning stops: an adapter whose deadline has passed and a bag with missing return instructions.
+The other sample items show two common obstacles: the adapter’s return deadline has passed, and the bag is missing return instructions.
 
 ## How it works
 
-Return Relay enters the Alexa+ track with a **working, self-hosted MCP server**, demonstrated through our own web client. The React app sends each action to the web host. The host uses the official TypeScript client over Streamable HTTP, negotiating MCP **2025-11-25**. Nine tools cover orders, policies, availability, plan previews, approved changes, handoffs and progress. Open **Actual MCP calls** to inspect initialization, tool discovery and calls made during the session.
+The React interface sends actions to the web host, which connects to a **self-hosted MCP server** through the official TypeScript SDK. Nine tools read orders and policies, check available times, propose plans, save approved changes and handle the handoff. They run over **Streamable HTTP** with MCP **2025-11-25**. The app’s **Actual MCP calls** panel shows the connection, tool discovery and calls from your session.
 
-The useful assistant behavior is what happens after “I’m leaving Thursday morning.” The server reads the saved return, checks the earlier departure and proposes a replacement. After approval, it saves the new plan and carries the same return through packing, Maya’s acceptance and the sample receipt. Closing and reopening the page preserves that work.
+Before saving, the server checks the plan again. An approval applies to the exact change shown on screen. If another tab has changed the plan, the old approval cannot replace it. Sending the same confirmed request twice returns the first result instead of adding another event. SQLite stores local sessions; Redis stores hosted sessions.
 
-The planner checks candidate times against the same constraints before previewing and saving. Each approval names the exact change. Expiring proposals and revision checks stop an old preview from replacing a newer plan. Repeating a confirmed request returns its original result, avoiding a duplicate event. SQLite stores local sessions; Redis stores the hosted sessions.
+This entry uses a self-built Alexa+ web simulation. A guided parser handles the supported departure phrases; ambiguous wording prompts the user for an exact date and time. Orders, policies, calendars, household roles and receipts are fictional. The demo does not connect to Alexa hardware, a live language model or an Amazon account, and it does not process real returns or refunds.
 
-The conversation uses a labelled guided parser for the supported departure changes. Orders, policies, calendars, family roles and receipts are synthetic. There is no live Alexa or language-model connection, Amazon account access, real return, refund or family message. The role switch lets the judge play both sides of a handoff in one browser.
+## Challenges and fixes
 
-## Challenges and changes made
+A save can succeed even when its response never reaches the browser. Our first recovery screen suggested nothing had been saved, and the confirmation dialog covered the recovery button. We changed it to close the dialog and offer **Refresh saved plan**. The test now drops the response after a successful write and checks that recovery finds one saved event.
 
-A successful save can still look like a failure when its response never reaches the browser. Our first recovery message suggested the change had not happened, and the open confirmation dialog blocked the recovery button. The fix closes the dialog and offers **Refresh saved plan**. The regression test drops the response after the write, then confirms that recovery shows one saved event.
+Another test found that **“I’m not leaving Thursday morning”** could still produce a Thursday proposal. The guided parser now asks for a date and time when the message contains a negation, a choice of days or a specific hour. It leaves the saved plan alone.
 
-Keyboard testing caught another problem: cancelling a dialog lost focus because we had disabled its trigger before recording the focused element. Capturing it before the request fixed the issue. A two-tab test also exposed stale role information during recovery; the app now reloads the session as well as the case.
-
-The first hosted deployment built successfully but returned HTTP 500. Its emitted Node modules needed explicit file extensions. We fixed the imports, added a NodeNext build check, and reran the hosted flows. The Friction Log records these failures and the checks that followed.
+Keyboard tests also caught lost focus after cancelling a dialog. The hosted build exposed missing file extensions in the server’s imports. Both fixes have regression checks; the Friction Log includes the original failures and repairs.
 
 ## What we learned
 
-When a save response disappears, the app needs to retrieve the saved plan before asking the person to try again. Each recovery test now checks both the screen and the stored events. The same approach keeps Maya’s acceptance separate from the carrier receipt.
+The difficult part was keeping the screen and the saved record in agreement when a response went missing or another tab changed the plan. Checking the stored events as well as the screen caught errors that a successful button click would have missed.
 
 ## What is next
 
-Connect one authorized policy or calendar source, then test changes against it. Real household invitations would add separate accounts so that the recipient, rather than the demo visitor, accepts the handoff.
+Connect an authorized calendar or return-policy source and test schedule changes against it. Separate household accounts would let Maya receive and accept an invitation on her own device.
 
 ## Submission fields
 

@@ -4,9 +4,9 @@
 
 You planned to return the headphones on Thursday, before a Friday trip. Now you leave Thursday morning. Return Relay checks the return deadline, counter hours and household calendar, then offers Wednesday instead. Review the new time, save it, pack the parcel and ask Maya to take it.
 
-[Open the demo](https://return-relay.vercel.app) — no sign-in required. Each visitor starts with a separate sample household, saved for seven days.
+[Open the demo](https://return-relay.vercel.app) — no sign-in required. Your sample household is separate from other visitors’ and stays available for seven days.
 
-The Alexa+ entry is a **working, self-hosted MCP server with a custom web client**. A labelled guided parser handles the supported phrases in this self-built Alexa+ simulation. The web host calls nine MCP tools through the official TypeScript SDK over **Streamable HTTP**, negotiating protocol **2025-11-25**. The call log is visible in the app.
+The Alexa+ entry is a **working, self-hosted MCP server with a custom web client**. A guided parser handles the supported departure phrases in this self-built Alexa+ simulation. The web host calls nine MCP tools through the official TypeScript SDK over **Streamable HTTP**, negotiating protocol **2025-11-25**. The call log is visible in the app.
 
 Orders, policies, calendars, family roles and receipts are synthetic. The demo has no live Alexa or language-model connection, Amazon account access, real returns, refunds or family messages.
 
@@ -71,7 +71,7 @@ The role switch lets one visitor try both Alex and Maya within the sample househ
 
 ## Planning rules
 
-The planner checks packing time, travel in both directions, counter processing, opening hours, actor availability, departure and the policy's deadline basis. It enumerates 15-minute starts within the fixed scenario. It does not estimate road traffic or learn a schedule. When instructions are missing, or a received-by deadline lacks transit information, the planner asks for those details.
+The planner checks packing time, travel in both directions, counter processing, opening hours, actor availability, departure and the policy's deadline basis. It enumerates 15-minute starts within the fixed scenario. It does not estimate road traffic or learn a schedule. If return instructions are missing, the app asks for them. A deadline based on arrival at the store also needs transit information before it can offer a plan.
 
 ## Hosted configuration
 

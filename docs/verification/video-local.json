@@ -7,7 +7,7 @@
   "audio": "No narration; captions explain each action",
   "footage": "Actual local app UI actions",
   "recorded_base_commit": "56dd708d2292ab2909cf9f12c9c97140c97faf9e",
-  "recorded_worktree": "Runtime and recording script unchanged during take-6; only verification records pending",
+  "recorded_worktree": "Verified take-6 footage reused. Cycle18 changed captions only; it did not record new app actions.",
   "source_commit": "44f0e38ed79f4c16ac07001ac50c38b0dc0fb204",
   "ui_sha256": "8c2e2d2ab5d7da6347cf6aef5b53d5f49900cd8f2fe3d217478596ee89781c59",
   "css_sha256": "273a5dc5508edd16d2b49855aa06b5b0e612bb995a6c0bd8a316157e97265427",
@@ -16,14 +16,17 @@
   "page_errors": [],
   "uploaded": false,
   "public_access_verified": false,
-  "sha256": "9e3f0aa863cc56c9fa5b92244c985f421a9f9722255f135c9030c0f637eb2988",
-  "checked_at": "2026-10-23T17:17:11.530058+00:00",
+  "sha256": "2f1018caeb06772ee5aadce77a330d8a81cc937f1ac1b377314d822ec3cbc00c",
+  "checked_at": "2026-10-23T17:33:49.790104+00:00",
   "visual_review": {
     "all_scene_midpoints": 14,
     "separate_confirmation_frames": 7,
-    "max_caption_characters_per_second": 15.1,
+    "max_caption_characters_per_second": 12.7,
     "complete_decode": "PASS",
-    "result": "Reviewed all 14 scene boards and 7 confirmation frames after encoding. Captions fit, approved actions match UI, all four packing items remain in frame, and receipt/refund states are distinct.",
+    "result": "Reviewed 14 scene midpoints and seven approval frames from the newly encoded captions. Captions match the action, fit the strip, and stay readable. Complete file decode passed. Original take-6 footage is unchanged.",
     "prior_take_issue": "Take-5 scrolled too low in scenes 9\u201311; corrected and rerecorded as take-6."
-  }
+  },
+  "caption_revision": "cycle18",
+  "caption_record_script_sha256": "5f3dd6c819d10f4489f10aecb8ada0a4ea13bf4e18874141e47c1069549af371",
+  "caption_source_sha256": "92c5f1c2da7a65995bb7ddab8993ddb671a549aeb21bda211eb0c4a08dfd85eb"
 }
