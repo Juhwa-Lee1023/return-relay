@@ -1,0 +1,209 @@
+{
+  "started_at": "2026-10-23T17:07:20.368Z",
+  "checks": [
+    {
+      "state": "start",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "start",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "help",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "help",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "proposal",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "proposal",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "confirmation",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "confirmation",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "saved",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "saved",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "replan",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "replan",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "maya",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "maya",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "receipt",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "receipt",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "expired",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "expired",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "missing-policy",
+      "width": 1440,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    },
+    {
+      "state": "missing-policy",
+      "width": 320,
+      "receiptHeadingOverlap": false,
+      "overflow": false,
+      "smallText": [],
+      "smallTargets": [],
+      "axe": [],
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "scope": "Local actual UI with synthetic household; rendered checks at 320px and 1440px, not physical-device or screen-reader certification.",
+  "status": "PASS",
+  "finished_at": "2026-10-23T17:07:26.052Z"
+}

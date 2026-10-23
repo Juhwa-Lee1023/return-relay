@@ -85,7 +85,7 @@ Business keys use the `return-relay:v1:` prefix. Sessions expire after seven day
 
 ## Verification
 
-`npm test` runs domain and real HTTP integration tests using temporary local stores. After `npx playwright install chromium`, `npm run test:browser` builds and tests the real interface on an isolated local server. Test logs and the acceptance matrix are added under `docs/verification/` as release candidates are verified. These checks cover the synthetic scenario and our application; Amazon integration and household user research have not been tested.
+`npm test` runs domain and real HTTP integration tests using temporary local stores. After `npx playwright install chromium`, `npm run test:browser` builds and tests the real interface on isolated local servers at ports 4326 and 4327. The core flow and input-boundary suites use separate stores, so test sessions do not exhaust the production session limit. Test logs and the acceptance matrix are added under `docs/verification/` as release candidates are verified. These checks cover the synthetic scenario and our application; Amazon integration and household user research have not been tested.
 
 To repeat the hosted checks against the synthetic demo:
 

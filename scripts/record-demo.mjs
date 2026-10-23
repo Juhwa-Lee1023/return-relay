@@ -76,19 +76,19 @@ try {
     await show('.packing');
     for (const box of await page.getByRole('checkbox').all()){await box.check();await pause(500);}
     await confirm('Mark parcel packed',2500);
-    await show('.handoff');
+    await show('.packing');
   });
   await scene('Ask Maya to take the parcel at the saved time.\nThe status changes to “Waiting for Maya.”',11,async()=>{
     await confirm('Ask Maya to take it',2500);
     await expect(page.getByText('Waiting for Maya',{exact:true})).toBeVisible();
-    await show('.handoff');
+    await show('.packing');
   });
   await scene('Open Maya’s sample view and accept the request.\nThe judge plays both household roles in this demo.',12,async()=>{
     await page.getByRole('button',{name:'Open Maya’s view'}).click();
     await expect(page.getByRole('button',{name:'Accept as Maya'})).toBeVisible();
     await pause(2500);
     await confirm('Accept as Maya',2500);
-    await show('.handoff');
+    await show('.packing');
   });
   await scene('Record Maya’s drop-off report.\nThe next step checks the sample carrier receipt.',10,async()=>{
     await confirm('Report drop-off as Maya',2500);
