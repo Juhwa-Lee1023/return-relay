@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-23T12:32:42.239Z",
+  "scope": "local process restart, durable SQLite and signing key; not hosted Redis",
+  "steps": [
+    "Started built app from selected checkout",
+    "Approved and saved a Wednesday plan over real HTTP MCP",
+    "Server process terminated",
+    "Started a new server process with the same data directory",
+    "Prior signed session restored exact case; repeat confirmation did not add an event"
+  ],
+  "server_log": "Return Relay listening at http://127.0.0.1:4342; synthetic data; guided mode; real HTTP MCP.\nReturn Relay listening at http://127.0.0.1:4342; synthetic data; guided mode; real HTTP MCP.\n"
+}

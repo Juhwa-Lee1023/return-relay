@@ -203,6 +203,18 @@ test("C27 HTTP: official MCP client negotiates protocol and lists all nine tools
     assert.equal(negotiated, "2025-11-25");
     const list = await c.listTools();
     assert.equal(list.tools.length, 9);
+    const updates = new Set([
+      "return_plan_commit", "handoff_request", "handoff_accept", "return_step_update",
+    ]);
+    for (const tool of list.tools) {
+      assert.equal(tool.annotations?.readOnlyHint, !updates.has(tool.name));
+      assert.equal(
+        tool.annotations?.destructiveHint,
+        updates.has(tool.name),
+        `${tool.name}: state-replacing tools must not advertise additive-only updates`,
+      );
+      assert.equal(tool.annotations?.openWorldHint, false);
+    }
     const r = await c.callTool({
       name: "return_case_get",
       arguments: { case_id: first.id },

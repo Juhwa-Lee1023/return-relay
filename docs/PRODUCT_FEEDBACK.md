@@ -14,6 +14,8 @@ Recorded from building Return Relay on October 23, 2026. Exact package versions 
 
 **Use again?** Yes, for a tool service with a separate trusted UI host. Evidence: `src/server/mcp.ts`, HTTP tests C03/C27/C28, and `docs/verification/`.
 
+A later protocol review found that we had described every tool as additive-only. Planning and progress tools replace saved fields, so their `destructiveHint` is now true. The HTTP test checks the published annotations. These remain descriptive hints; approval is enforced separately by the service. [MCP ToolAnnotations, 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/schema#toolannotations), checked October 23, 2026.
+
 ## Node.js 24, Express 5.3.0 and SQLite — runtime
 
 **Use.** HTTP routes, cookie sessions, request validation, persistent local household state, and compare-and-swap writes.

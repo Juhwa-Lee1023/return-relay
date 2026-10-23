@@ -4,7 +4,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 import { z } from "zod";
 import type { Request, Response } from "express";
-import { RelayService, type Arguments } from "../domain/service";
+import { RelayService, WRITE_TOOLS, type Arguments } from "../domain/service";
 import { DomainError, type Principal } from "../domain/types";
 import { getStore } from "./store";
 import { unseal } from "./crypto";
@@ -94,13 +94,10 @@ export function makeMcpServer(
         description: descriptions[name],
         inputSchema: schemas[name],
         annotations: {
-          readOnlyHint: ![
-            "return_plan_commit",
-            "handoff_request",
-            "handoff_accept",
-            "return_step_update",
-          ].includes(name),
-          destructiveHint: false,
+          readOnlyHint: !WRITE_TOOLS.has(name),
+          // These tools replace plan, handoff or progress fields. In MCP,
+          // destructiveHint:false promises additive-only updates.
+          destructiveHint: WRITE_TOOLS.has(name),
           openWorldHint: false,
         },
       },

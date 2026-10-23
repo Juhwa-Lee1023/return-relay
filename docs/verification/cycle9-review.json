@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-10-23T12:35:34.537941+00:00",
+  "cycle": 9,
+  "review_roles": [
+    "protocol/security",
+    "installation/reproduction"
+  ],
+  "base_commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
+  "source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
+  "finding": {
+    "id": "RR-011",
+    "severity": "Low",
+    "issue": "tools/list described all tools as additive-only, even when they replace the plan, handoff or progress fields.",
+    "source": "https://modelcontextprotocol.io/specification/2025-11-25/schema#toolannotations",
+    "source_checked_at": "2026-10-23T12:35:34.537941+00:00",
+    "source_scope": "ToolAnnotations destructiveHint semantics; annotations do not grant authorization.",
+    "fix": "Use WRITE_TOOLS to distinguish read-only tools from state-changing tools in the actual published annotations.",
+    "security_impact": "Misleading tool metadata; no approval bypass observed. Existing signed-approval enforcement is unchanged."
+  },
+  "regression": {
+    "before": "Actual HTTP list assertion failed on return_plan_commit destructiveHint=false",
+    "after": {
+      "typecheck_build": "PASS",
+      "service_tests_passed": 42,
+      "service_tests_failed": 0,
+      "browser_tests_passed": 17,
+      "browser_tests_failed": 0
+    }
+  },
+  "fresh_checkout": {
+    "commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
+    "anonymous_clone": "PASS",
+    "npm_ci": "PASS",
+    "typecheck_build": "PASS",
+    "service_tests": 42,
+    "process_restart_and_idempotent_replay": "PASS",
+    "scope": "Executed before this metadata-only repair; latest working source has full build/service/browser checks, not a second public-clone run."
+  },
+  "secret_history": {
+    "checked_commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
+    "reachable_objects": 178,
+    "known_signing_secret_values": 15,
+    "matches": 0,
+    "forbidden_paths": 0,
+    "scope": "Known task signing secrets and forbidden paths only; no claim of exhaustive secret detection."
+  },
+  "video_ui_effect": "No UI or demonstrated workflow changed. Video remains a local file awaiting upload approval.",
+  "submission": "No final submission attempt or receipt recorded; pending approvals unchanged."
+}

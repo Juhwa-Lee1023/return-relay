@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T12:20:17.276261+00:00",
+  "checked_at": "2026-10-23T12:35:34.537941+00:00",
   "scope": "Development checkpoint, not final readiness. Test counts are distinct from acceptance cases.",
   "cases": [
     {
@@ -424,7 +424,18 @@
       ],
       "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
       "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
-      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log.",
+      "follow_up": [
+        {
+          "cycle": 9,
+          "source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
+          "evidence": [
+            "docs/verification/cycle9-service-fixed.txt",
+            "docs/verification/cycle9-review.json"
+          ],
+          "scope": "Official HTTP client verifies all nine tool annotations; approval-less write rejection still passes."
+        }
+      ]
     },
     {
       "id": "C28",
@@ -466,11 +477,12 @@
       "expected": "Business data recover as documented; no fake persistent-memory claim.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/restart-cycle6-fixed.json"
+        "docs/verification/clean-cycle9.json",
+        "docs/verification/restart-cycle9.json"
       ],
-      "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
-      "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
-      "scope": "Actual process stop/restart of the fresh repaired checkout restored the exact SQLite plan; repeated confirmation added no event. Hosted recovery remains untested."
+      "tested_commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
+      "tested_source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
+      "scope": "Anonymous public checkout of 42c5ed6, npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. This is the revision immediately before the cycle 9 tool-metadata-only repair. Hosted recovery remains untested."
     },
     {
       "id": "C31",
@@ -565,12 +577,12 @@
       "expected": "Exact reproducible commands and declared dependencies.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/clean-cycle6-fixed.json",
-        "docs/verification/restart-cycle6-fixed.json"
+        "docs/verification/clean-cycle9.json",
+        "docs/verification/restart-cycle9.json"
       ],
-      "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
-      "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
-      "scope": "Fresh anonymous public clone, npm ci, full type-check/build, 39 tests, start, actual process restart and idempotent replay all passed after repairing the DST test fixture. First failed build is retained."
+      "tested_commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
+      "tested_source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
+      "scope": "Anonymous public checkout of 42c5ed6, npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. This is the revision immediately before the cycle 9 tool-metadata-only repair. Hosted recovery remains untested."
     },
     {
       "id": "C36",

@@ -1,0 +1,29 @@
+✖ C27 HTTP: official MCP client negotiates protocol and lists all nine tools (267.424542ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 675.731
+
+✖ failing tests:
+
+test at tests/http.test.ts:1:4653
+✖ C27 HTTP: official MCP client negotiates protocol and lists all nine tools (267.424542ms)
+  AssertionError [ERR_ASSERTION]: return_plan_commit: state-replacing tools must not advertise additive-only updates
+
+  false !== true
+
+      at TestContext.<anonymous> (<task>/app/tests/http.test.ts:211:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
