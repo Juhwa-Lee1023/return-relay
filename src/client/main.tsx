@@ -39,7 +39,9 @@ type Order = {
   eligible_by_fixture: boolean | null;
 };
 type Message = { who: "you" | "relay"; text: string };
-type Confirmation = { ticket: string; summary: string };
+type Confirmation =
+  | { kind: "tool"; ticket: string; summary: string }
+  | { kind: "reset"; summary: string };
 const ZONE = "America/Los_Angeles",
   INITIAL = "2026-11-06T08:00:00-08:00",
   CHANGED = "2026-11-05T07:00:00-08:00";
@@ -273,11 +275,15 @@ function App() {
         ...extra,
       };
       const d = await request("/confirmation", { tool, args });
-      setConfirm(d);
+      setConfirm({ ...d, kind: "tool" });
     });
   }
   async function save() {
     if (!confirm) return;
+    if (confirm.kind === "reset") {
+      await reset();
+      return;
+    }
     await run(async () => {
       try {
         const d = await request("/confirm", { ticket: confirm.ticket });
@@ -327,17 +333,30 @@ function App() {
           evidence_ref: r.evidence_ref,
         },
       });
-      setConfirm(d);
+      setConfirm({ ...d, kind: "tool" });
     });
   }
   async function reset() {
     await run(async () => {
-      await request("/reset", {});
+      try {
+        await request("/reset", {});
+      } catch (error) {
+        setConfirm(null);
+        setPreview(null);
+        if (error instanceof TypeError) {
+          throw new Error("The response did not arrive. Refresh saved plan to check whether the reset finished.");
+        }
+        throw error;
+      }
+      setConfirm(null);
       localStorage.removeItem("rr-selected-case");
       setCurrent(null);
       setPreview(null);
       setPolicy(null);
       setTrace([]);
+      setChecked([]);
+      setText("");
+      setDeparture(INITIAL);
       setMessages([
         {
           who: "relay",
@@ -370,7 +389,13 @@ function App() {
           <button
             className="quiet reset"
             disabled={busy || booting}
-            onClick={reset}
+            onClick={() => {
+              lastFocus.current = document.activeElement as HTMLElement;
+              setConfirm({
+                kind: "reset",
+                summary: "This deletes the saved plans, packing updates and handoff history for your sample household. You will start again with the original sample items.",
+              });
+            }}
           >
             <RotateCcw size={15} />
             Reset sample
@@ -396,8 +421,8 @@ function App() {
           <h2>One return, from plan to handoff.</h2>
           <p>
             Pick an item, change your departure, and approve the new plan. You
-            can then pack it and try Maya’s side of the handoff. Every saved
-            change goes through a real HTTP MCP tool.
+            can then pack it and try Maya’s side of the handoff. Plans, packing
+            updates and handoffs use real HTTP MCP tools.
           </p>
           <p>
             This is a self-built Alexa+ experience, not a connected Alexa or
@@ -1201,11 +1226,11 @@ function App() {
           <X size={20} />
         </button>
         <p className="eyebrow">One change to confirm</p>
-        <h2 id="confirmation-heading">Save these details?</h2>
+        <h2 id="confirmation-heading">{confirm?.kind === "reset" ? "Reset this sample household?" : "Save these details?"}</h2>
         <p id="confirmation-summary" className="confirmation-summary">{confirm?.summary}</p>
         <div className="confirmation-note">
           <Check size={18} />
-          <span>This updates only your sample household.</span>
+          <span>{confirm?.kind === "reset" ? "This cannot be undone." : "This updates only your sample household."}</span>
         </div>
         <div className="modal-actions">
           <button
@@ -1213,10 +1238,10 @@ function App() {
             disabled={busy}
             onClick={() => setConfirm(null)}
           >
-            Go back
+            {confirm?.kind === "reset" ? "Keep household" : "Go back"}
           </button>
           <button className="primary" disabled={busy} onClick={save}>
-            {busy ? "Saving…" : "Confirm & save"}
+            {confirm?.kind === "reset" ? (busy ? "Resetting…" : "Reset household") : (busy ? "Saving…" : "Confirm & save")}
             <ArrowRight size={18} />
           </button>
         </div>

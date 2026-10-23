@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T11:35:42.582026+00:00",
+  "checked_at": "2026-10-23T12:20:17.276261+00:00",
   "scope": "Development checkpoint, not final readiness. Test counts are distinct from acceptance cases.",
   "cases": [
     {
@@ -337,7 +337,18 @@
       ],
       "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
       "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
-      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log.",
+      "follow_up": [
+        {
+          "cycle": 8,
+          "source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
+          "evidence": [
+            "docs/verification/cycle8-review.json",
+            "docs/verification/cycle8-browser-fixed.txt"
+          ],
+          "scope": "Own-household reset confirmation, cancel, successful reset and read-back after a lost reset response."
+        }
+      ]
     },
     {
       "id": "C23",
@@ -491,7 +502,18 @@
       ],
       "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
       "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
-      "scope": "Four viewport widths, keyboard cancel/focus, reduced motion, selected-view axe checks, and actual Chrome 200% zoom passed. This is not a full screen-reader or WCAG certification."
+      "scope": "Four viewport widths, keyboard cancel/focus, reduced motion, selected-view axe checks, and actual Chrome 200% zoom passed. This is not a full screen-reader or WCAG certification.",
+      "follow_up": [
+        {
+          "cycle": 8,
+          "source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
+          "evidence": [
+            "docs/verification/cycle8-review.json",
+            "docs/verification/cycle8-browser-fixed.txt"
+          ],
+          "scope": "17 browser cases including four widths and automated reset-dialog accessibility. New 360px reset screenshot manually inspected; earlier real 200% zoom check unchanged."
+        }
+      ]
     },
     {
       "id": "C33",
@@ -506,7 +528,18 @@
       ],
       "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
       "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
-      "scope": "No-plan policy states, failed session request/reconnect, successful write with a lost response, and stale-role recovery tested. No-match search is a service-only check."
+      "scope": "No-plan policy states, failed session request/reconnect, successful write with a lost response, and stale-role recovery tested. No-match search is a service-only check.",
+      "follow_up": [
+        {
+          "cycle": 8,
+          "source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
+          "evidence": [
+            "docs/verification/cycle8-review.json",
+            "docs/verification/cycle8-browser-fixed.txt"
+          ],
+          "scope": "Reset response deliberately lost after the real server write; recovery reads the new household with no saved events."
+        }
+      ]
     },
     {
       "id": "C34",

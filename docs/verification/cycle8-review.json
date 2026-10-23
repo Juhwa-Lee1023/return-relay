@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-23T12:20:17.276261+00:00",
+  "cycle": 8,
+  "review_roles": [
+    "product user",
+    "visual/accessibility",
+    "English documentation"
+  ],
+  "scope": "Local synthetic browser-to-HTTP-MCP workflow; not hosted or live Amazon verification",
+  "base_commit": "ff3980b2c6c8559dc4f8eda426fd377c2aeb3b70",
+  "source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
+  "finding": {
+    "id": "RR-010",
+    "severity": "Medium",
+    "reproduction": "Saving a plan then selecting Reset sample immediately deleted the sample household, without an explanation or opportunity to cancel.",
+    "fix": "Use the existing modal for a specific reset approval; keep saved plan on cancel; expose read-back recovery after an uncertain reset response."
+  },
+  "first_regression": "Failed before the fix: reset confirmation dialog absent.",
+  "first_fix_run": "Cancel/focus test passed. Two new tests incorrectly expected text inside a collapsed history disclosure to be visible; corrected test interaction opens it.",
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 17,
+    "browser_tests_failed": 0,
+    "reset_dialog_axe": "PASS",
+    "manual_360px_screenshot": "PASS: text and both actions legible, no clipping",
+    "relative_markdown_links": 5,
+    "relative_links_resolve": true
+  },
+  "documentation_changes": [
+    "Narrowed every-write statement to MCP writes; reset is a separate session-management operation.",
+    "Added actual FFmpeg/ffprobe use and the observed binary architecture issue to Product Feedback."
+  ],
+  "release_consistency": "Existing video does not show reset or help text. Main demonstrated happy path is unchanged; video is still local only.",
+  "remaining": [
+    "Devpost registration remains on Cloudflare security check at 12:19 UTC.",
+    "Existing eligibility, shared-store access and YouTube-terms answers remain pending.",
+    "Final release fresh-install and publication/submission checks remain separate."
+  ]
+}

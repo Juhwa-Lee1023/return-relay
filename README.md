@@ -63,9 +63,9 @@ The UI's **Actual MCP calls** panel records HTTP request IDs, method/tool, negot
 | `return_step_update` | Records packing, reported drop-off, or a matching sample receipt. |
 | `return_case_get` | Reads saved state, revision and history. |
 
-Every write needs a host-issued approval bound to the session, actor, tool and exact arguments. A preview is signed and expires. A stale revision must be reviewed again. An idempotency key prevents a repeated confirmed request from adding a second event. The MCP access token alone cannot approve a write.
+Every MCP write needs a host-issued approval bound to the session, actor, tool and exact arguments. A preview is signed and expires. A stale revision must be reviewed again. An idempotency key prevents a repeated confirmed request from adding a second event. The MCP access token alone cannot approve a write.
 
-Actor switching is an explicit demo control within one isolated sample household. It demonstrates workflow roles, **not independent family-member authentication**.
+Actor switching is an explicit demo control within one isolated sample household. It demonstrates workflow roles, **not independent family-member authentication**. Reset is a separate session-management action: its dialog explains what will be deleted and asks for confirmation before clearing that household.
 
 ## Planning rules
 

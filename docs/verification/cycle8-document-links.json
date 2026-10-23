@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-23T12:18:56.801641+00:00",
+  "scope": "Local Markdown relative document links only; external URLs not checked",
+  "links": [
+    {
+      "file": "README.md",
+      "target": "LICENSE",
+      "exists": true
+    },
+    {
+      "file": "README.md",
+      "target": "THIRD_PARTY_NOTICES.md",
+      "exists": true
+    },
+    {
+      "file": "docs/DEVPOST.md",
+      "target": "PRODUCT_FEEDBACK.md",
+      "exists": true
+    },
+    {
+      "file": "docs/DEVPOST.md",
+      "target": "FRICTION_LOG.md",
+      "exists": true
+    },
+    {
+      "file": "docs/DEVPOST.md",
+      "target": "JUDGE_RUNBOOK.md",
+      "exists": true
+    }
+  ],
+  "all_resolve": true
+}

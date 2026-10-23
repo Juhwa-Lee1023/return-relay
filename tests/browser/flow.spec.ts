@@ -182,3 +182,49 @@ test('role changed in another tab is recovered with the current session', async 
   await expect(page.getByRole('button',{name:'Back to Alex'})).toBeVisible();
   await expect(page.getByRole('button',{name:'I dropped it off myself'})).toHaveCount(0);
 });
+
+test('reset asks first; cancelling keeps the saved plan and keyboard focus', async ({page}) => {
+  await start(page); await select(page); await save(page);
+  let resetRequests = 0;
+  page.on('request', request => { if(request.url().endsWith('/api/reset')) resetRequests++; });
+  const reset = page.getByRole('button', {name:'Reset sample', exact:true});
+  await reset.focus(); await page.keyboard.press('Enter');
+  await expect(page.getByRole('dialog', {name:'Reset this sample household?'})).toBeVisible();
+  expect(resetRequests).toBe(0);
+  await axe(page);
+  await page.keyboard.press('Escape');
+  await expect(reset).toBeFocused();
+  await page.reload();
+  await expect(page.getByText('Plan saved', {exact:true})).toBeVisible();
+  expect(resetRequests).toBe(0);
+});
+
+test('confirmed reset clears the household and a reload starts with no saved changes', async ({page}) => {
+  await page.setViewportSize({width:360,height:900});
+  await start(page); await select(page); await save(page);
+  await page.getByRole('button', {name:'Reset sample', exact:true}).click();
+  const confirmReset = page.getByRole('button', {name:'Reset household', exact:true});
+  await expect(confirmReset).toBeInViewport();
+  await page.screenshot({path:'test-results/reset-360.png', fullPage:true});
+  await confirmReset.click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByRole('region', {name:'Return plan'})).toHaveCount(0);
+  await page.reload(); await select(page);
+  await page.getByText('Return instructions & saved history', {exact:true}).click();
+  await expect(page.getByText('No saved changes yet.', {exact:true})).toBeVisible();
+});
+
+test('a lost reset response closes the dialog and recovery reads the fresh household', async ({page}) => {
+  await start(page); await select(page); await save(page);
+  await page.getByRole('button', {name:'Reset sample', exact:true}).click();
+  await page.route('**/api/reset', async route => {await route.fetch(); await route.abort('failed');});
+  await page.getByRole('button', {name:'Reset household', exact:true}).click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('check whether the reset finished');
+  await page.unroute('**/api/reset');
+  await page.getByRole('button', {name:'Refresh saved plan'}).click();
+  await expect(page.getByRole('region', {name:'Return plan'})).toHaveCount(0);
+  await select(page);
+  await page.getByText('Return instructions & saved history', {exact:true}).click();
+  await expect(page.getByText('No saved changes yet.', {exact:true})).toBeVisible();
+});

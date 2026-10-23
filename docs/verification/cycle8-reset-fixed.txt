@@ -1,0 +1,127 @@
+
+> return-relay@0.1.0 pretest:browser
+> npm run build
+
+
+> return-relay@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1937 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.63 kB │ gzip:   0.38 kB
+dist/assets/source-sans-3-latin-700-normal-CkzU-mV9.woff2   15.59 kB
+dist/assets/source-sans-3-latin-600-normal-DeckBYAU.woff2   15.66 kB
+dist/assets/source-sans-3-latin-400-normal-DQi5PRDE.woff2   15.69 kB
+dist/assets/source-sans-3-latin-700-normal-B-h9tW5h.woff    19.90 kB
+dist/assets/source-sans-3-latin-400-normal-RR2C27NP.woff    19.99 kB
+dist/assets/source-sans-3-latin-600-normal-Ck0n4g8U.woff    19.99 kB
+dist/assets/lora-latin-400-normal-DnxXpLNu.woff2            21.14 kB
+dist/assets/lora-latin-400-normal-DBJS-Hc6.woff             25.96 kB
+dist/assets/index-CNkZOSgy.css                              23.19 kB │ gzip:   5.58 kB
+dist/assets/index-l1uufzpX.js                              323.97 kB │ gzip: 100.98 kB
+
+✓ built in 321ms
+
+> return-relay@0.1.0 test:browser
+> playwright test --grep reset
+
+[WebServer] (node:17869) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:17870) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:17871) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/flow.spec.ts:186:1 › reset asks first; cancelling keeps the saved plan and keyboard focus (1.4s)
+  ✘  2 tests/browser/flow.spec.ts:202:1 › confirmed reset clears the household and a reload starts with no saved changes (10.9s)
+(node:17910) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/browser/flow.spec.ts:216:1 › a lost reset response closes the dialog and recovery reads the fresh household (11.1s)
+
+
+  1) tests/browser/flow.spec.ts:202:1 › confirmed reset clears the household and a reload starts with no saved changes 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('No saved changes yet.', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeVisible" getByText('No saved changes yet.', { exact: true }) with timeout 10000ms
+      - waiting for getByText('No saved changes yet.', { exact: true })
+        24 × locator resolved to <p>No saved changes yet.</p>
+           - unexpected value "hidden"
+
+
+      211 |   await expect(page.getByRole('region', {name:'Return plan'})).toHaveCount(0);
+      212 |   await page.reload(); await select(page);
+    > 213 |   await expect(page.getByText('No saved changes yet.', {exact:true})).toBeVisible();
+          |                                                                       ^
+      214 | });
+      215 |
+      216 | test('a lost reset response closes the dialog and recovery reads the fresh household', async ({page}) => {
+        at <app>/tests/browser/flow.spec.ts:213:71
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-confirmed-reset-clear-e61e5-tarts-with-no-saved-changes/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/flow-confirmed-reset-clear-e61e5-tarts-with-no-saved-changes/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/flow-confirmed-reset-clear-e61e5-tarts-with-no-saved-changes/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/flow-confirmed-reset-clear-e61e5-tarts-with-no-saved-changes/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/browser/flow.spec.ts:216:1 › a lost reset response closes the dialog and recovery reads the fresh household 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('No saved changes yet.', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  10000ms
+
+    Call log:
+      - Expect "toBeVisible" getByText('No saved changes yet.', { exact: true }) with timeout 10000ms
+      - waiting for getByText('No saved changes yet.', { exact: true })
+        24 × locator resolved to <p>No saved changes yet.</p>
+           - unexpected value "hidden"
+
+
+      225 |   await expect(page.getByRole('region', {name:'Return plan'})).toHaveCount(0);
+      226 |   await select(page);
+    > 227 |   await expect(page.getByText('No saved changes yet.', {exact:true})).toBeVisible();
+          |                                                                       ^
+      228 | });
+      229 |
+        at <app>/tests/browser/flow.spec.ts:227:71
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/browser/flow.spec.ts:202:1 › confirmed reset clears the household and a reload starts with no saved changes 
+    tests/browser/flow.spec.ts:216:1 › a lost reset response closes the dialog and recovery reads the fresh household 
+  1 passed (25.9s)

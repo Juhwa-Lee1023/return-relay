@@ -83,3 +83,13 @@ Recorded from building Return Relay on October 23, 2026. Exact package versions 
 **What needed work.** One early install ran from the wrong working directory. Only newly created task files were identified and moved into this project. Subsequent commands use explicit project paths. Agent output needed real browser and protocol checks; a plausible implementation was not sufficient.
 
 **Use again?** Yes, with exact work directories, secret checks and independent execution evidence. No live model API is part of this runtime.
+
+## FFmpeg and ffprobe — demo production
+
+**Use.** Encoded a real Playwright browser recording as H.264, added English captions and removed idle frames at the end. ffprobe measured the finished video at 155.234 seconds, below the three-minute limit.
+
+**What worked.** The video shows the working local application, including the HTTP MCP call log. Captions explain the synthetic data and guided conversation without replacing the actual screen recording.
+
+**What needed work.** The arm64 path supplied by `ffprobe-static` 3.1.0 contained an x86_64 binary in this installation. We used `@ffprobe-installer/darwin-arm64` 5.0.1 instead. The encoder came from `ffmpeg-static` 5.3.0. These are development tools, not runtime dependencies or bundled app binaries.
+
+**Use again?** Yes. The local file's codec, dimensions and duration were inspected; public playback remains a separate upload check. Evidence: `docs/verification/video-local.json`.
