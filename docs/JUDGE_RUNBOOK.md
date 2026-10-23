@@ -1,6 +1,6 @@
 # Try Return Relay
 
-Allow about three minutes for the core scenario. No account, API key, paid service, microphone or Amazon device is needed for the local version.
+Open [Return Relay](https://return-relay.vercel.app) and allow about three minutes for the core scenario. No account, API key, microphone or Amazon device is needed. To run your own copy, follow the local setup below.
 
 ## Start
 
@@ -49,4 +49,4 @@ The browser suite builds the app and starts an isolated local server on port 432
 
 The clock is fixed at November 2, 2026, in Los Angeles. Calendars and journeys are fictional inputs. The planner checks feasibility; it does not predict traffic. A sample session lasts seven days. **Reset sample** deletes only the current sample household. An incognito window receives a separate household.
 
-The hosted version needs an approved Redis connection and server signing secret. A deployment build alone is not evidence that this connection works. See the release verification record for the version actually tested.
+The hosted version is available at https://return-relay.vercel.app. It uses the approved Redis connection and a server-only signing secret. Five hosted browser flows and nine API/MCP checks passed on beeeec8; the exact scope is in docs/verification/cycle11-review.json.

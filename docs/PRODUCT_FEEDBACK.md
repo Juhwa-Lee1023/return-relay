@@ -62,9 +62,9 @@ A later protocol review found that we had described every tool as additive-only.
 
 **Onboarding and what worked.** The first deployment built successfully. The adapter type-checks. The dashboard allowed the project environment settings to be entered.
 
-**What needed work.** The connected Vercel tool returned 403 for integration discovery and environment writes. The dashboard provided the environment-setting path. The available storage-creation screen showed paid plans; we did not purchase one. Connecting an existing approved free store remains a separate access decision. A build marked READY does not prove Redis-backed runtime behavior. A TypeScript error in our first Redis `eval` generic was fixed by reading the installed SDK types.
+**What needed work.** The connected Vercel tool returned 403 for integration discovery and environment writes. The dashboard provided the environment-setting path. The available storage-creation screen showed paid plans; we did not purchase one. After owner approval, we connected an existing free store to Production only. The first READY build failed at runtime because our ESM imports omitted file extensions. Explicit extensions and a NodeNext build check fixed it. A TypeScript error in our first Redis `eval` generic was fixed by reading the installed SDK types.
 
-**Use again?** Vercel: yes, subject to verified configuration. Upstash: a decision about reliability needs hosted tests; local success is not enough. This section will be updated after those tests. Evidence: `src/server/store.ts` and the deployment record.
+**Use again?** Yes for this bounded demo. Five deployed browser flows and nine API/MCP checks passed, including save/restore, revision conflict, replay, and session isolation. This is a short functional check, not a load or long-term reliability study. Evidence: `docs/verification/cycle11-review.json` and `cycle11-hosted-api.json`.
 
 ## Figma, Lucide and self-hosted fonts — design
 

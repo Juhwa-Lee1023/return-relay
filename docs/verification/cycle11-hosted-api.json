@@ -1,0 +1,144 @@
+{
+  "started_at": "2026-10-23T15:13:20.323Z",
+  "base": "https://return-relay.vercel.app",
+  "checks": [
+    {
+      "name": "Two anonymous sessions use secure cookies",
+      "status": "PASS"
+    },
+    {
+      "name": "Another session cannot read the first case",
+      "status": "PASS"
+    },
+    {
+      "name": "Origin, CSRF, and unauthenticated MCP checks reject requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Official MCP client negotiates protocol, lists nine tools, and cannot write without approval",
+      "status": "PASS",
+      "protocol": "2025-11-25",
+      "tools": 9
+    },
+    {
+      "name": "Preview leaves saved revision unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Another session cannot use the issued confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "Approved save and repeated confirmation produce one revision and one event",
+      "status": "PASS"
+    },
+    {
+      "name": "Session restoration retains the saved record",
+      "status": "PASS"
+    },
+    {
+      "name": "Resetting the second household preserves the first",
+      "status": "PASS"
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "ms": 1015
+    },
+    {
+      "path": "/api/session",
+      "status": 200,
+      "ms": 2899
+    },
+    {
+      "path": "/api/session",
+      "status": 200,
+      "ms": 2034
+    },
+    {
+      "path": "/api/case/[id]",
+      "status": 404,
+      "ms": 1699
+    },
+    {
+      "path": "/api/session",
+      "status": 403,
+      "ms": 208
+    },
+    {
+      "path": "/api/role",
+      "status": 403,
+      "ms": 203
+    },
+    {
+      "path": "/api/mcp",
+      "status": 401,
+      "ms": 223
+    },
+    {
+      "path": "/api/mcp-access",
+      "status": 200,
+      "ms": 355
+    },
+    {
+      "path": "/api/preview",
+      "status": 200,
+      "ms": 2270
+    },
+    {
+      "path": "/api/case/[id]",
+      "status": 200,
+      "ms": 2272
+    },
+    {
+      "path": "/api/confirmation",
+      "status": 200,
+      "ms": 1689
+    },
+    {
+      "path": "/api/confirm",
+      "status": 403,
+      "ms": 218
+    },
+    {
+      "path": "/api/confirm",
+      "status": 200,
+      "ms": 1902
+    },
+    {
+      "path": "/api/confirm",
+      "status": 200,
+      "ms": 1671
+    },
+    {
+      "path": "/api/case/[id]",
+      "status": 200,
+      "ms": 2342
+    },
+    {
+      "path": "/api/session",
+      "status": 200,
+      "ms": 2033
+    },
+    {
+      "path": "/api/case/[id]",
+      "status": 200,
+      "ms": 2205
+    },
+    {
+      "path": "/api/reset",
+      "status": 200,
+      "ms": 358
+    },
+    {
+      "path": "/api/case/[id]",
+      "status": 200,
+      "ms": 2232
+    }
+  ],
+  "build": "beeeec88cebe",
+  "status": "PASS",
+  "completed_at": "2026-10-23T15:13:50.533Z"
+}

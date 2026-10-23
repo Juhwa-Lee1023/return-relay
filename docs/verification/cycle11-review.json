@@ -16,7 +16,41 @@
     "browser_tests_failed": 0
   },
   "native_node_import_and_health": "PASS",
-  "hosted_runtime": "PENDING_REDEPLOY",
+  "hosted_runtime": "PASS",
   "video_ui_effect": "Import/build checks only; demonstrated UI flow unchanged.",
-  "shared_store": "Existing free store, user explicitly approved, Production only. No other project data accessed."
+  "shared_store": "Existing free store, user explicitly approved, Production only. No other project data accessed.",
+  "hosted_verified_at": "2026-10-23T15:15:56.141995+00:00",
+  "hosted_deployment": "dpl_FnGWghSSfWU2AbxwnmgCNkVDhMgQ",
+  "hosted_source_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+  "hosted_browser": {
+    "passed": 5,
+    "failed": 0,
+    "scope": "happy path and restore, 360px, lost confirmation response, stale-tab conflict, reset"
+  },
+  "hosted_api": {
+    "passed": 9,
+    "failed": 0,
+    "scope": "secure cookies, origin/CSRF, unauthorized and nine-tool MCP, cross-session read/approval, save/replay, restore, isolated reset"
+  },
+  "fresh_checkout": {
+    "commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+    "clone": "anonymous HTTPS",
+    "install": "PASS",
+    "build": "PASS",
+    "service_tests_passed": 42,
+    "restart": "PASS",
+    "evidence": [
+      "docs/verification/clean-cycle12.json",
+      "docs/verification/restart-cycle12.json"
+    ]
+  },
+  "hosted_verifier_sha256": "43ffef82050e8f0ffca44b5c1ee8a245bc1bd97546cfc17c3a9e9f4544b7ebc5",
+  "visual_review": {
+    "checked_at": "2026-10-23T15:23:42.113291+00:00",
+    "images": [
+      "evidence/hosted-complete-flow.png",
+      "evidence/hosted-approval-360.png"
+    ],
+    "result": "Read order, labels, approval controls and full-page overflow inspected. No clipping or overlap observed in these two renders."
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T12:57:28.225104+00:00",
+  "checked_at": "2026-10-23T15:23:42.113291+00:00",
   "scope": "Development checkpoint, not final readiness. Test counts are distinct from acceptance cases.",
   "cases": [
     {
@@ -577,12 +577,12 @@
       "expected": "Exact reproducible commands and declared dependencies.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/cycle10-package-execution.json",
-        "docs/verification/restart-package-cycle10.json"
+        "docs/verification/clean-cycle12.json",
+        "docs/verification/restart-cycle12.json"
       ],
-      "tested_commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
-      "tested_source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
-      "scope": "Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. Hosted storage remains untested."
+      "tested_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+      "tested_source_set_sha256": "89dc1a9c867cf4fac4f0855171259e6f65ae89cbe8d36dd7ab46e18a7509a466",
+      "scope": "Anonymous fresh checkout at deployed commit. Clean install, full build including NodeNext, 42 service tests and actual local process restart/idempotent replay passed. Hosted storage is separately verified in cycle11."
     },
     {
       "id": "C36",
@@ -591,13 +591,15 @@
       "name": "Public demo and code access",
       "steps": "Open links without author login.",
       "expected": "Judge can access intended scope and code per selected publication route.",
-      "status": "PARTIAL",
+      "status": "PASS",
       "evidence": [
-        "docs/verification/clean-cycle3.json"
+        "docs/verification/clean-cycle12.json",
+        "docs/verification/cycle11-hosted-api.json",
+        "docs/verification/cycle11-hosted-browser.txt"
       ],
-      "tested_commit": "2c086da7e984a2608f758dbb371b9d17289840f7",
-      "tested_source_set_sha256": "e8e5527589840e35e7cf41fdf95ea93806ca98fa2c650050dd605df1179ecfd4",
-      "scope": "Public repository anonymously cloned. Hosted build exists, but persistent runtime and anonymous demo path are not yet verified."
+      "tested_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+      "tested_source_set_sha256": "89dc1a9c867cf4fac4f0855171259e6f65ae89cbe8d36dd7ab46e18a7509a466",
+      "scope": "Public repository anonymously cloned; public Vercel demo tested in fresh browser contexts. Five hosted flows and nine API/MCP checks passed against deployed Redis-backed runtime. Public video remains a separate gate."
     },
     {
       "id": "C37",

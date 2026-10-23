@@ -22,7 +22,7 @@ The exact plan and history survive a refresh. An adapter with an expired deadlin
 
 This is a self-built Alexa+ web simulation backed by a real Streamable HTTP MCP server. The React interface talks to a web host, which uses the official TypeScript MCP client for `initialize`, `tools/list` and `tools/call`. Nine tools cover orders, policies, availability, previews, approved plans, handoffs and progress. A visible call log comes from those HTTP requests.
 
-The schedule calculation enumerates feasible times and compares the same set of constraints again before saving. Signed proposals expire. Write approvals bind the session, actor, tool and exact arguments. Revision checks reject outdated changes, and repeated confirmed requests return the original result instead of adding duplicate events. SQLite provides the tested local persistence path; a Redis adapter is included for hosted deployment.
+The schedule calculation enumerates feasible times and compares the same set of constraints again before saving. Signed proposals expire. Write approvals bind the session, actor, tool and exact arguments. Revision checks reject outdated changes, and repeated confirmed requests return the original result instead of adding duplicate events. SQLite stores local sessions; the hosted version saves sessions in Redis. Deployed browser tests confirmed approval, rescheduling, handoff and reload, while separate API tests checked cross-session access and repeated confirmations.
 
 Conversation uses a labelled deterministic guided parser. It supports the demonstrated departure changes and asks for an exact date when a phrase is unclear. It is not a live language-model or Alexa+ device connection. Orders, policies, calendars, family members and receipts are synthetic. No Amazon account, real return, refund or family message is connected.
 
@@ -47,9 +47,9 @@ The next integration would replace a single synthetic policy or calendar adapter
 - Primary track: Alexa+
 - Mini challenges: none
 - Repository: https://github.com/Juhwa-Lee1023/return-relay
-- Demo: hosted URL to be added after runtime verification; local run is available in README
+- Demo: https://return-relay.vercel.app
 - Video: public URL to be added after upload and logged-out verification
-- Built with: TypeScript, React, Node.js, Express, MCP TypeScript SDK, Zod, Luxon, SQLite, Redis adapter, Vite, Playwright, axe-core, Figma, Vercel, GitHub, OpenAI Codex
+- Built with: TypeScript, React, Node.js, Express, MCP TypeScript SDK, Zod, Luxon, SQLite, Upstash Redis, Vite, Playwright, axe-core, Figma, Vercel, GitHub, OpenAI Codex
 - New project: created during the hackathon period; no prior application or employer code reused
 - AI assistance: OpenAI Codex assisted implementation, test creation, review, documentation and demo preparation. Runtime conversation is the guided parser described above.
 - Product Feedback: [PRODUCT_FEEDBACK.md](PRODUCT_FEEDBACK.md)

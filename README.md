@@ -8,6 +8,10 @@ The web host really calls nine MCP tools over **Streamable HTTP** using the offi
 
 Orders, store policies, calendars, family members and carrier receipts are synthetic. Nothing connects to an Amazon account, sends a family message, creates a real return or issues a refund.
 
+## Try it online
+
+[Open Return Relay](https://return-relay.vercel.app). No account is needed. Each visitor receives a separate synthetic household. The hosted version uses the approved shared Redis store with Return Relay-specific keys; no real orders are connected.
+
 ## Run locally
 
 Requires Node.js 24 and npm. No API key or paid service is needed for local use.

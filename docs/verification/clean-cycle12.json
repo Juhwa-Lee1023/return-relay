@@ -1,0 +1,62 @@
+{
+  "expected_commit": "beeeec88cebe29fc9ecd2f85507d1564949d7d7e",
+  "steps": [
+    {
+      "step": "clone",
+      "command": [
+        "git",
+        "-c",
+        "credential.helper=",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/Juhwa-Lee1023/return-relay",
+        "<task>/qa/clean-checkout-cycle12"
+      ],
+      "started_at": "2026-10-23T15:21:23.321291+00:00",
+      "ended_at": "2026-10-23T15:21:24.216542+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "install",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "started_at": "2026-10-23T15:21:24.229475+00:00",
+      "ended_at": "2026-10-23T15:21:26.294804+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "started_at": "2026-10-23T15:21:26.294983+00:00",
+      "ended_at": "2026-10-23T15:21:27.848805+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "tests",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "started_at": "2026-10-23T15:21:27.848942+00:00",
+      "ended_at": "2026-10-23T15:21:39.491856+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "restart",
+      "command": [
+        "node",
+        "scripts/check-restart.mjs"
+      ],
+      "started_at": "2026-10-23T15:21:39.492264+00:00",
+      "ended_at": "2026-10-23T15:21:40.116168+00:00",
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+
+Running 5 tests using 1 worker
+
+(node:37096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/browser/flow.spec.ts:28:1 › approve, change departure, hand off, distinguish receipt from refund, restore (54.2s)
+  ✓  2 tests/browser/flow.spec.ts:95:3 › responsive 360px: no page overflow and reachable approval (9.5s)
+  ✓  3 tests/browser/flow.spec.ts:139:1 › C33: failed confirmation response is recovered by reading saved state (17.2s)
+  ✓  4 tests/browser/flow.spec.ts:155:1 › C04: an approval from an older tab cannot replace a newer plan (32.7s)
+  ✓  5 tests/browser/flow.spec.ts:202:1 › confirmed reset clears the household and a reload starts with no saved changes (20.4s)
+
+  5 passed (2.2m)
