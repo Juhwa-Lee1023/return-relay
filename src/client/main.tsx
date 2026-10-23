@@ -70,22 +70,22 @@ const progressCopy: Record<
   },
   HANDOFF_REQUESTED: {
     label: "Waiting for Maya",
-    title: "Asked, not yet accepted.",
-    body: "Maya needs to accept this time. Switch to her sample view to try the next step.",
+    title: "Maya has a request to review.",
+    body: "Open Maya’s sample view to review the time and accept the request.",
   },
   HANDOFF_ACCEPTED: {
     label: "Maya accepted",
-    title: "Maya has the next step.",
-    body: "The handoff is agreed. After the visit, Maya can record that she dropped it off.",
+    title: "Maya will take the parcel.",
+    body: "After visiting the drop point, Maya can record the drop-off here.",
   },
   DROPOFF_REPORTED: {
     label: "Drop-off reported",
-    title: "Reported. Waiting for a receipt.",
-    body: "A person’s report and a carrier’s receipt are different records.",
+    title: "Waiting for the carrier receipt.",
+    body: "The drop-off report is saved. Load the sample receipt to check it against this return.",
   },
   DROPOFF_CONFIRMED_DEMO: {
     label: "Sample receipt matched",
-    title: "The sample parcel made it.",
+    title: "The sample receipt matches.",
     body: "The carrier receipt matches this return. Refund status is still unknown.",
   },
 };
@@ -420,28 +420,30 @@ function App() {
           <p className="eyebrow">About this working demo</p>
           <h2>One return, from plan to handoff.</h2>
           <p>
-            Pick an item, change your departure, and approve the new plan. You
-            can then pack it and try Maya’s side of the handoff. Plans, packing
-            updates and handoffs use real HTTP MCP tools.
+            Choose the headphones, save a drop-off time, then change your
+            departure to Thursday morning. Review the earlier time before
+            saving it. After packing, ask Maya to take the parcel and try
+            accepting from Maya’s view.
           </p>
           <p>
-            This is a self-built Alexa+ experience, not a connected Alexa or
-            Amazon service. Typed phrases use a guided parser, not a live
-            language model. The clock, orders, policies, calendars, family and
-            receipt are all sample data. No real return, refund, or message is
-            sent. Your sample session is saved for seven days.
+            This self-built Alexa+ web simulation uses sample orders,
+            policies, calendars, family roles and a carrier receipt. A guided
+            parser handles the supported phrases; nine MCP tools carry out
+            the actions over HTTP and save your session for seven days.
+            Live Alexa, language-model calls, Amazon accounts, real returns
+            and family messages are outside this demo.
           </p>
         </section>
       )}
       <main id="main" tabIndex={-1}>
         <div className="page-heading">
           <div>
-            <p className="eyebrow">A return deadline is not a plan.</p>
-            <h1>{current ? "Before you go." : "Make the handoff."}</h1>
+            <p className="eyebrow">Plan the return before your trip</p>
+            <h1>{current ? "Your return plan" : "Return it before you leave."}</h1>
             <p className="intro">
               {current
-                ? "A workable time. A packed parcel. Someone who said yes."
-                : "Your trip can change. Your return plan should change with it."}
+                ? "Check the drop-off time, pack the parcel, and ask Maya for help."
+                : "Find a drop-off time that fits your trip and the household calendar."}
             </p>
           </div>
           <div className="demo-clock">
@@ -607,13 +609,14 @@ function App() {
                   </div>
                   <p className="eyebrow">Start with the headphones</p>
                   <h2>
-                    Your flight moved.
+                    Leaving a day earlier?
                     <br />
-                    The parcel is still here.
+                    Move the return, too.
                   </h2>
                   <p>
-                    Choose a sample return to build a plan around the trip. Then
-                    change the departure and see what needs to move.
+                    Plan a Thursday drop-off, then move your trip to Thursday
+                    morning. Return Relay will find an earlier time and show
+                    the change for you to approve.
                   </p>
                   <button
                     className="primary"
@@ -652,8 +655,8 @@ function App() {
                       </h3>
                       <p>
                         {selected?.eligible_by_fixture === false
-                          ? "This sample adapter had a November 1 deadline. Return Relay does not invent an extension."
-                          : "The sample bag has no confirmed deadline or return method. There is not enough information to promise a workable drop-off."}
+                          ? "The sample adapter’s return deadline was November 1. Check with the store before arranging a drop-off."
+                          : "The sample bag is missing a return deadline and return method. Both are needed to find a drop-off time."}
                       </p>
                       <button
                         className="secondary"
@@ -964,7 +967,7 @@ function App() {
                           <div className="handoff-person">
                             <span className="avatar">M</span>
                             <div>
-                              <h3>Maya’s part of the relay</h3>
+                              <h3>Maya’s drop-off</h3>
                               <p>
                                 {current.handoff?.status === "ACCEPTED"
                                   ? "Accepted this drop-off"
@@ -1121,7 +1124,7 @@ function App() {
                       </div>
                       <div>
                         <dt>Refund</dt>
-                        <dd>Unknown · never inferred from drop-off</dd>
+                        <dd>Unknown · no refund record</dd>
                       </div>
                     </dl>
                     {current.events.length ? (

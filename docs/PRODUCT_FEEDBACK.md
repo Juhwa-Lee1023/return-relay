@@ -1,97 +1,67 @@
 # Product Feedback
 
-Recorded from building Return Relay on October 23, 2026. Exact package versions are pinned in `package-lock.json`. This log separates problems in our code, tool permissions, and proposed improvements. The gated Alexa+ Category SDK, Toolkit, CLI and official Web Simulator were not used.
+Build observations from October 23–24, 2026. `package-lock.json` records the exact versions. Return Relay uses the official MCP TypeScript SDK and a self-built web client; the gated Alexa+ Category SDK, Toolkit, CLI and official Web Simulator were not available for this entry.
 
-## MCP TypeScript SDK 1.32.1 — runtime
+## MCP TypeScript SDK 1.32.1
 
-**Use.** The official server and client implement all nine tools over Streamable HTTP. The client performs initialization and tool discovery before the UI requests a tool action.
+The official client initializes the connection, discovers nine tools and calls them over Streamable HTTP. Defining Zod schemas and enabling stateless JSON responses gave the web app and integration tests the same tool path.
 
-**Onboarding and what worked.** Installing the published package, defining Zod schemas and enabling stateless JSON responses produced an interoperable HTTP flow. The integration test connects the official client and lists all nine tools. The UI uses the same client path, rather than a separate mock dispatcher.
+Our wrapper initially turned an expired session into a generic 503. Preserving the domain error and sanitized trace made recovery possible. Approval needed application rules too: the signed approval names the session, actor, tool and exact arguments, while revision checks prevent an old plan from overwriting a newer one.
 
-**What needed work.** Our HTTP wrapper initially collapsed an expired session into a generic 503. This was our error handling, not an SDK defect. Forwarding the domain error with a sanitized request trace made the actual failure visible. We also had to design approval, state revisions and idempotency outside the protocol: tool authentication does not supply those product rules.
+A protocol review caught another mistake in our code. The tools advertised additive-only updates even when they replaced saved fields. Four tools now set `destructiveHint: true`, and the HTTP test checks all nine annotations. The service enforces approval separately from these hints. [ToolAnnotations specification](https://modelcontextprotocol.io/specification/2025-11-25/schema#toolannotations), checked October 23, 2026.
 
-**Suggestion.** A small end-to-end example of a read-only preview followed by a session-bound, exact-arguments approval would be useful for transactional household apps. Priority: Important. This is a sample request, not a claim that the protocol lacks authorization support.
+**Request — Important:** publish a working preview-and-approval example that also handles stale revisions and a lost save response. Return Relay needed all three for a changed departure. I would use this SDK again for a tool server with a separate trusted web host. Evidence: `src/server/mcp.ts`, HTTP tests C03/C27/C28 and the Friction Log.
 
-**Use again?** Yes, for a tool service with a separate trusted UI host. Evidence: `src/server/mcp.ts`, HTTP tests C03/C27/C28, and `docs/verification/`.
+## Node.js 24, Express 5.3.0 and SQLite
 
-A later protocol review found that we had described every tool as additive-only. Planning and progress tools replace saved fields, so their `destructiveHint` is now true. The HTTP test checks the published annotations. These remain descriptive hints; approval is enforced separately by the service. [MCP ToolAnnotations, 2025-11-25](https://modelcontextprotocol.io/specification/2025-11-25/schema#toolannotations), checked October 23, 2026.
+One Node server serves the interface and MCP endpoint. Built-in SQLite makes the local version runnable without a cloud account. The tests confirm that a process restart preserves the plan and that repeating a confirmed request returns the original result.
 
-## Node.js 24, Express 5.3.0 and SQLite — runtime
+Node emitted an experimental SQLite warning in the tested release. The README specifies Node 24; the hosted application uses Redis for persistent state. I would keep Node, Express and SQLite for this local judging path. Evidence: `src/server/store.ts`, persistence and concurrency tests.
 
-**Use.** HTTP routes, cookie sessions, request validation, persistent local household state, and compare-and-swap writes.
+## Zod 4.6.7 and Luxon 3.7.2
 
-**Onboarding and what worked.** Node's built-in SQLite kept the local judging path independent of cloud accounts. The same application serves both the frontend and MCP endpoint. A repeated confirmed action returns its original result.
+Zod checks the tool arguments; Luxon handles exact timestamps and Los Angeles time. Tests cover unsupported step names, missing offsets, daylight-saving transitions and a drop-off that finishes after the deadline.
 
-**What needed work.** SQLite emits an experimental API warning in the tested Node release. The README therefore pins Node 24. Local disk is deliberately not used as hosted Vercel persistence. No Express or SQLite defect was identified in this build.
+A Friday conversation change once left Thursday selected in the form, even though the planner returned Friday. Reading the returned departure fixed this UI state error. These libraries helped make the time and input rules testable, and I would use them again. Evidence: planner tests C08/C10 and HTTP C29.
 
-**Use again?** Yes, for this small reproducible local application. Serverless hosting still needs an external durable store. Evidence: `src/server/store.ts`, domain concurrency test and HTTP persistence test.
+## React 19.3.1, Vite 8.3.5, TypeScript 7.0.2 and tsx 4.23.15
 
-## Zod 4.6.7 and Luxon 3.7.2 — runtime
+React provides the conversation, itinerary and native confirmation dialog. Vite builds the frontend; TypeScript checks the shared domain types; tsx runs the local server.
 
-**Use.** Strict tool input schemas and explicit time-zone-aware planning.
+Keyboard tests found that cancelling a dialog lost focus. We had captured focus after disabling the button that opened it. Moving that capture before the request fixed it. Hot reload also needed explicit React-root disposal to avoid a duplicate-root warning.
 
-**What worked.** Invalid step names and offset-free timestamps are rejected. Los Angeles labels are derived from exact instants. Opening time, completion time and return travel are checked separately.
+The hosted build exposed a separate issue: Node could not resolve extensionless imports in emitted server modules. Explicit `.js` imports, a JSON import attribute and a NodeNext build check fixed the runtime failure. I would use this stack again, with both browser and native-server checks in the release path.
 
-**What needed work.** The original Friday conversation handler updated a Thursday UI value even though the generated plan was correct. We changed the UI to read the returned departure. This was a state-copy mistake in our application. We did not observe a Zod or Luxon defect.
+## Playwright and axe-core
 
-**Use again?** Yes. These libraries kept parsing and validation explicit without requiring a language model to decide whether a time fits. Evidence: planner tests C08/C10 and HTTP C29.
+The browser tests click through approval, replanning, packing, handoff, receipt and refresh against the application’s HTTP endpoints. An isolated server and fresh database keep those runs separate from the demonstration household.
 
-## React 19.3.1, Vite 8.3.5, TypeScript 7.0.2 and tsx 4.23.15 — application development
+The tests caught lost keyboard focus, a confirmation dialog covering recovery after a lost response, and stale identity after another tab changed roles. After the fixes, all 17 local browser cases passed. Ten further hosted checks covered narrow and landscape screens, Maya’s unavailable time, and automated accessibility in saved-plan, handoff and receipt states.
 
-**Use.** Responsive UI, native confirmation dialog, production build, type checking and local server execution.
+Full-page screenshots of a native dialog capture more than its viewport-sized backdrop, so viewport screenshots work better in the gallery. Axe checks stay useful alongside keyboard and visual inspection; screen-reader testing is still pending. I would use both tools again. Evidence: `tests/browser/flow.spec.ts`, cycle11 and cycle13 verification records.
 
-**What worked.** The production frontend is a small static build. The same TypeScript domain model is used by the server and UI types. No build warning is treated as a successful runtime check.
+## Upstash Redis SDK 1.39.0 and Vercel
 
-**What needed work.** Disabling the confirmation trigger before opening the dialog meant we captured the wrong focused element. Keyboard testing caught it. We now capture focus before the request, then restore it when the dialog closes. During hot reload, we also explicitly dispose of the React root to avoid a duplicate-root warning.
+Redis holds the hosted household state with atomic revision checks, seven-day expiry and rate limits. Vercel serves the frontend and HTTP function.
 
-**Use again?** Yes. Evidence: `src/client/main.tsx`, build logs and browser cycle 2.
+The connected Vercel tool returned 403 for environment changes. The authorized dashboard provided another path. After the owner approved sharing the existing free store, we connected it to this project’s Production environment. A wrong Redis `eval` generic also needed correction against the installed SDK types.
 
-## Playwright and axe-core — verification
+The first deployment reached READY but returned HTTP 500 because of the Node import problem described above. After the fix, five hosted browser flows and nine API/MCP checks passed, including restore, replay, revision conflict and session isolation. I would use this setup again for the demo; those short checks do not establish load capacity or long-term reliability. Evidence: `cycle11-review.json` and `cycle11-hosted-api.json` under `docs/verification/`.
 
-**Use.** Real Chromium UI actions, screenshots, keyboard tests, four viewport widths, and automated WCAG A/AA checks. Versions are pinned in the lockfile.
+## Figma, Lucide and self-hosted fonts
 
-**What worked.** A single browser flow exercised approval, replanning, packing, handoff, receipt and refresh against real HTTP endpoints. The initial suite found the focus-restoration failure; the repaired suite passed. An isolated server and fresh database make repeated runs independent of the demonstration household. Follow-up tests deliberately lost a successful write response and changed the role from a second tab. They found two recovery problems in our UI, both repaired; the expanded suite passed all 14 cases.
+Figma holds editable desktop replanning and mobile handoff views. The app and frames share Lora headings, Source Sans 3 body text, colors and button styles. Lucide supplies the icons; font license files accompany the source.
 
-**What needed work.** Full-page screenshots of an open native dialog include the whole document while its backdrop follows the viewport. These are useful evidence but not the best presentation images. Automatic accessibility checks also do not replace screen-reader or manual usability testing.
+An auto-layout helper left rows too short and clipped the text. Explicit row sizing fixed the renders. A component property also needed its text child attached before binding. I would use these tools again and keep the code as the implementation source.
 
-**Use again?** Yes, for workflow regressions. Evidence: `tests/browser/flow.spec.ts` and `docs/verification/browser-cycle2.json`.
+## OpenAI Codex, GitHub and npm
 
-## Upstash Redis SDK 1.39.0 and Vercel — hosted path
+Codex assisted code, tests, review, design preparation and English drafting. GitHub holds the new MIT-licensed repository; npm installs pinned dependencies. Failed runs and repaired runs provide a record of what changed.
 
-**Use.** A Redis adapter with atomic revision checks, seven-day session expiry and rate limits; a Vercel build of the web application and HTTP function.
+An early install used the wrong working directory. We identified the task-created files, moved them into the isolated project and specified the directory in subsequent commands. Generated code also needed clean-install, browser and protocol checks. I would use this workflow again with source review and secret checks before publication. The app itself uses a guided parser, with no live model API.
 
-**Onboarding and what worked.** The first deployment built successfully. The adapter type-checks. The dashboard allowed the project environment settings to be entered.
+## FFmpeg and ffprobe
 
-**What needed work.** The connected Vercel tool returned 403 for integration discovery and environment writes. The dashboard provided the environment-setting path. The available storage-creation screen showed paid plans; we did not purchase one. After owner approval, we connected an existing free store to Production only. The first READY build failed at runtime because our ESM imports omitted file extensions. Explicit extensions and a NodeNext build check fixed it. A TypeScript error in our first Redis `eval` generic was fixed by reading the installed SDK types.
+FFmpeg encodes the actual browser recording and burns in English captions. ffprobe checks codec, dimensions and duration. The first finished cut measured 155.234 seconds; the revised cut is checked again after recording.
 
-**Use again?** Yes for this bounded demo. Five deployed browser flows and nine API/MCP checks passed, including save/restore, revision conflict, replay, and session isolation. This is a short functional check, not a load or long-term reliability study. Evidence: `docs/verification/cycle11-review.json` and `cycle11-hosted-api.json`.
-
-## Figma, Lucide and self-hosted fonts — design
-
-**Use.** Editable desktop replanning and focused mobile handoff views, shared colors and spacing, button variants, Lucide icons, Lora headings and Source Sans 3 body text. Font license copies are included.
-
-**What worked.** The frames remain editable, and the code uses the same fonts and palette. This avoided relying on presentation-only images.
-
-**What needed work.** An auto-layout helper changed row heights unexpectedly; screenshots exposed clipping. Setting fixed widths and content-driven heights corrected the affected rows. A component property was initially bound before its text child was appended; the rejected operation rolled back and was corrected. These were our construction mistakes, not evidence of a general Figma defect.
-
-**Use again?** Yes. The code is still the implementation source; Figma documents the layout. No external design template or raster image was copied.
-
-## OpenAI Codex, GitHub and npm — build workflow
-
-**Use.** Codex assisted implementation, review, test creation and English drafting. GitHub stores the new public MIT-licensed project. npm installs exact package versions.
-
-**What worked.** Small evidence-led cycles let tests challenge the generated code. Failed runs are retained alongside repaired runs. The public source is separate from private signing keys and raw browser traces.
-
-**What needed work.** One early install ran from the wrong working directory. Only newly created task files were identified and moved into this project. Subsequent commands use explicit project paths. Agent output needed real browser and protocol checks; a plausible implementation was not sufficient.
-
-**Use again?** Yes, with exact work directories, secret checks and independent execution evidence. No live model API is part of this runtime.
-
-## FFmpeg and ffprobe — demo production
-
-**Use.** Encoded a real Playwright browser recording as H.264, added English captions and removed idle frames at the end. ffprobe measured the finished video at 155.234 seconds, below the three-minute limit.
-
-**What worked.** The video shows the working local application, including the HTTP MCP call log. Captions explain the synthetic data and guided conversation without replacing the actual screen recording.
-
-**What needed work.** The arm64 path supplied by `ffprobe-static` 3.1.0 contained an x86_64 binary in this installation. We used `@ffprobe-installer/darwin-arm64` 5.0.1 instead. The encoder came from `ffmpeg-static` 5.3.0. These are development tools, not runtime dependencies or bundled app binaries.
-
-**Use again?** Yes. The local file's codec, dimensions and duration were inspected; public playback remains a separate upload check. Evidence: `docs/verification/video-local.json`.
+The arm64 path in `ffprobe-static` 3.1.0 contained an x86_64 binary in this installation. `@ffprobe-installer/darwin-arm64` 5.0.1 worked; `ffmpeg-static` 5.3.0 supplied the encoder. I would use them again for this recording workflow. They are local production tools, outside the app runtime. Evidence: `docs/verification/video-local.json`.

@@ -29,20 +29,20 @@ async function confirm(name, wait=1500){
   await expect(page.getByRole('dialog')).not.toBeVisible();
 }
 try {
-  await scene('A return deadline is not a plan.\nThe parcel still needs a time, a place, and someone to take it.',9,async()=>{
+  await scene('Leaving a day earlier? Move the return, too.\nReturn Relay finds a drop-off time around the trip.',9,async()=>{
     await page.goto(process.env.RR_RECORD_URL ?? 'http://127.0.0.1:4330');
     await expect(page.getByRole('button',{name:'Plan the headphones return'})).toBeEnabled();
   });
-  await scene('Return Relay fits the errand around a household calendar.\nThese orders, policies and schedules are sample data.',10,async()=>{
+  await scene('The headphones need to go back before a Friday trip.\nThis demonstration uses a synthetic household and store policy.',10,async()=>{
     await page.getByRole('button',{name:'Plan the headphones return'}).click();
     await expect(page.getByRole('region',{name:'Return plan'})).toBeVisible();
     await show('.return-header');
   });
-  await scene('The web host really calls MCP tools over Streamable HTTP.\nThis log comes from initialize, tools/list and tools/call requests.',9,async()=>{
+  await scene('Open the call log to see the MCP requests over Streamable HTTP.\nThe web host initializes the connection, discovers tools and calls them.',9,async()=>{
     await page.getByText('Actual MCP calls',{exact:true}).click();
     await show('.tool-trace');
   });
-  await scene('The first plan is a Thursday drop-off before a Friday trip.\nAlex reviews and approves the exact times before they are saved.',13,async()=>{
+  await scene('The first plan puts the drop-off on Thursday.\nAlex reviews the packing, travel and counter times, then saves it.',13,async()=>{
     await page.getByText('Actual MCP calls',{exact:true}).click();
     await page.getByRole('button',{name:'Review & save'}).click();
     await pause(4500);
@@ -57,50 +57,50 @@ try {
     await expect(page.getByText('The old drop-off is too late.',{exact:true})).toBeVisible();
     await show('.return-header');
   });
-  await scene('The replacement moves packing and drop-off to Wednesday.\nOpening hours, travel, preparation and the deadline still have to fit.',11,async()=>{
+  await scene('Wednesday fits the earlier departure and the household calendar.\nThe new plan includes packing, travel and counter hours.',11,async()=>{
     await show('.plan-sheet');
   });
-  await scene('A proposed change is not a saved commitment.\nThe old plan stays in place until Alex approves this replacement.',12,async()=>{
+  await scene('Compare the old and new times, then approve Wednesday.\nUntil this confirmation, Thursday stays saved.',12,async()=>{
     await page.getByRole('button',{name:'Review & save'}).click();
     await pause(5500);
     await page.getByRole('button',{name:'Confirm & save'}).click();
     await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
     await show('.return-header');
   });
-  await scene('Refresh the page: the approved plan is still here.\nState is stored on the server, not just in the conversation.',8,async()=>{
+  await scene('Refresh the page. Wednesday’s plan comes back from the server.\nThe saved itinerary and history survive the reload.',8,async()=>{
     await page.reload();
     await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
     await show('.plan-sheet');
   });
-  await scene('The parcel needs all four items before the handoff.\nAlex checks the packaging and confirms that it is packed.',12,async()=>{
+  await scene('Check the four packing items, including the sample return label.\nAlex confirms the parcel is ready for Maya.',12,async()=>{
     await show('.packing');
     for (const box of await page.getByRole('checkbox').all()){await box.check();await pause(500);}
     await confirm('Mark parcel packed',2500);
     await show('.handoff');
   });
-  await scene('Asking Maya is a request, not an acceptance.\nReturn Relay keeps the handoff pending.',11,async()=>{
+  await scene('Ask Maya to take the parcel at the saved time.\nThe status changes to “Waiting for Maya.”',11,async()=>{
     await confirm('Ask Maya to take it',2500);
     await expect(page.getByText('Waiting for Maya',{exact:true})).toBeVisible();
     await show('.handoff');
   });
-  await scene('Switch to the clearly labelled sample view.\nMaya has to accept the request herself in this demonstration.',12,async()=>{
+  await scene('Open Maya’s sample view and accept the request.\nThe judge plays both household roles in this demo.',12,async()=>{
     await page.getByRole('button',{name:'Open Maya’s view'}).click();
     await expect(page.getByRole('button',{name:'Accept as Maya'})).toBeVisible();
     await pause(2500);
     await confirm('Accept as Maya',2500);
     await show('.handoff');
   });
-  await scene('Maya reports the drop-off.\nThat report is not yet a carrier receipt.',10,async()=>{
+  await scene('Record Maya’s drop-off report.\nThe next step checks the sample carrier receipt.',10,async()=>{
     await confirm('Report drop-off as Maya',2500);
     await expect(page.getByText('Drop-off reported',{exact:true})).toBeVisible();
     await show('.next-action');
   });
-  await scene('A matching sample receipt confirms the demo drop-off.\nRefund status remains unknown.',12,async()=>{
+  await scene('Load the sample receipt and match it to the return.\nThe parcel has a receipt; the refund field stays “Unknown.”',12,async()=>{
     await confirm('Load sample carrier receipt',2500);
     await expect(page.getByRole('heading',{name:'Parcel accepted'})).toBeVisible();
     await show('.receipt');
   });
-  await scene('Return Relay: one return, from plan to handoff.\nGuided conversation, synthetic household, real MCP calls. No Amazon account connection.',12,async()=>{
+  await scene('Try the changed departure and the handoff in your own session.\nGuided web simulation, synthetic data, real MCP calls. No Amazon account connection.',12,async()=>{
     await page.getByRole('button',{name:'How it works'}).click();
     await show('.help');
     await page.screenshot({path:resolve(dir,'last-frame.png')});

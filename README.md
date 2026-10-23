@@ -1,16 +1,14 @@
 # Return Relay
 
-**Your trip can change. Your return plan should change with it.**
+**Leaving a day earlier? Move the return, too.**
 
-Return Relay is a self-built Alexa+ web simulation for the errand around a return: finding a time, packing the right things, changing the plan, and handing the parcel to someone who explicitly accepts it.
+You planned to return the headphones on Thursday, before a Friday trip. Now you leave Thursday morning. Return Relay checks the return deadline, drop-point hours and household calendar, then offers Wednesday instead. Review the new time, save it, pack the parcel and ask Maya to take it.
 
-The web host really calls nine MCP tools over **Streamable HTTP** using the official TypeScript SDK. It negotiates protocol **2025-11-25**. The conversation is a labelled, deterministic **guided mode**, not a live Alexa+ connection or a language-model call.
+[Open the demo](https://return-relay.vercel.app) — no sign-in required. Each visitor starts with a separate sample household, saved for seven days.
 
-Orders, store policies, calendars, family members and carrier receipts are synthetic. Nothing connects to an Amazon account, sends a family message, creates a real return or issues a refund.
+This is a **self-built Alexa+ web simulation**. A labelled guided parser handles the supported phrases. The web host calls nine MCP tools through the official TypeScript SDK over **Streamable HTTP**, negotiating protocol **2025-11-25**. The call log is visible in the app.
 
-## Try it online
-
-[Open Return Relay](https://return-relay.vercel.app). No account is needed. Each visitor receives a separate synthetic household. The hosted version uses the approved shared Redis store with Return Relay-specific keys; no real orders are connected.
+Orders, policies, calendars, family roles and receipts are synthetic. The demo has no live Alexa or language-model connection, Amazon account access, real returns, refunds or family messages.
 
 ## Run locally
 
@@ -37,7 +35,7 @@ For frontend development, run `npm run dev` and `npx vite --host 127.0.0.1` in t
 6. Load the **sample carrier receipt**. A matched sample receipt confirms only the demo drop-off. Refund remains **Unknown**.
 7. Refresh the page. The saved household and its revision history return.
 
-The adapter has an expired window. The bag has incomplete instructions. Neither produces a made-up return plan. The fixed demo clock is November 2, 2026 in Los Angeles; the visible schedule is a scenario, not today's availability.
+The adapter’s return deadline has passed. The bag needs a deadline and return method before planning can start. Both are available from the item list. The scenario uses a fixed clock: November 2, 2026, in Los Angeles.
 
 ## Architecture
 
@@ -67,13 +65,13 @@ The UI's **Actual MCP calls** panel records HTTP request IDs, method/tool, negot
 | `return_step_update` | Records packing, reported drop-off, or a matching sample receipt. |
 | `return_case_get` | Reads saved state, revision and history. |
 
-Every MCP write needs a host-issued approval bound to the session, actor, tool and exact arguments. A preview is signed and expires. A stale revision must be reviewed again. An idempotency key prevents a repeated confirmed request from adding a second event. The MCP access token alone cannot approve a write.
+Every MCP write needs a host-issued approval bound to the session, actor, tool and exact arguments. The server signs each preview and sets an expiry. If the saved plan changes, the user must review a fresh proposal. An idempotency key prevents a repeated confirmed request from adding a second event. The MCP access token alone cannot approve a write.
 
-Actor switching is an explicit demo control within one isolated sample household. It demonstrates workflow roles, **not independent family-member authentication**. Reset is a separate session-management action: its dialog explains what will be deleted and asks for confirmation before clearing that household.
+The role switch lets one visitor try both Alex and Maya within the sample household. Real family accounts would need independent authentication. **Reset sample** asks for confirmation before deleting that household’s saved plans and history.
 
 ## Planning rules
 
-The planner checks packing time, travel in both directions, counter processing, opening hours, actor availability, departure and the policy's deadline basis. It enumerates 15-minute starts within the fixed scenario. It does not estimate road traffic or learn a schedule. Unknown policies and received-by deadlines without transit evidence are left unresolved.
+The planner checks packing time, travel in both directions, counter processing, opening hours, actor availability, departure and the policy's deadline basis. It enumerates 15-minute starts within the fixed scenario. It does not estimate road traffic or learn a schedule. When instructions are missing, or a received-by deadline lacks transit information, the planner asks for those details.
 
 ## Hosted configuration
 
@@ -87,7 +85,7 @@ Business keys use the `return-relay:v1:` prefix. Sessions expire after seven day
 
 ## Verification
 
-`npm test` runs domain and real HTTP integration tests using temporary local stores. After `npx playwright install chromium`, `npm run test:browser` builds and tests the real interface on an isolated local server. Test logs and the acceptance matrix are added under `docs/verification/` as release candidates are verified. Local synthetic tests are not Amazon integration certification or household field research.
+`npm test` runs domain and real HTTP integration tests using temporary local stores. After `npx playwright install chromium`, `npm run test:browser` builds and tests the real interface on an isolated local server. Test logs and the acceptance matrix are added under `docs/verification/` as release candidates are verified. These checks cover the synthetic scenario and our application; Amazon integration and household user research have not been tested.
 
 To repeat the hosted checks against the synthetic demo:
 

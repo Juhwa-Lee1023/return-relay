@@ -2,45 +2,45 @@
 
 ## Tagline
 
-Your trip moved. Your return plan should move with it.
+Leaving a day earlier? Move the return, too.
 
 ## Inspiration
 
-A parcel can sit by the door even when everyone knows the return deadline. Someone still has to find a time, check the packaging, and take it to the counter. A changed trip can undo that plan. Asking a family member to help creates another loose end: did they actually agree?
+The headphones need to go back on Thursday. The trip starts Friday. Then departure moves to Thursday morning, leaving a parcel by the door and a return plan that no longer works.
 
-Return Relay follows those loose ends through one return. Its central moment is a simple change: “Actually, I’m leaving Thursday morning.”
+Return Relay picks up from that change. It finds an earlier drop-off time, includes the packing checklist, and lets someone else take the parcel after accepting the request.
 
 ## What it does
 
-The sample household originally leaves on Friday. Return Relay finds a Thursday drop-off that fits the store’s deadline, counter hours, packing time and household calendar. When departure moves to Thursday morning, it shows why that errand no longer fits and proposes Wednesday instead. The saved plan changes only after approval.
+Start with the headphones and save the proposed Thursday drop-off. Type **“Actually, I’m leaving Thursday morning.”** The app checks the store’s deadline, counter hours, travel time and household calendar, then offers Wednesday. The old and new times appear together so you can review the change before saving it.
 
-The parcel then needs four packing items. Alex can ask Maya to take it; the request stays pending until the person playing Maya explicitly accepts in her labelled sample view. Reporting a drop-off is separate from matching a sample carrier receipt. Neither turns into a refund.
+After packing the four required items, ask Maya to take the parcel. Open Maya’s sample view to accept the time and report the drop-off. Loading the sample carrier receipt adds a separate receipt record; the refund field stays **Unknown**. Refreshing the page brings back the saved plan, packing progress and handoff history.
 
-The exact plan and history survive a refresh. An adapter with an expired deadline and a bag with incomplete instructions show what happens when a return cannot be planned.
+Two more items show where planning stops: an adapter whose deadline has passed and a bag with missing return instructions.
 
 ## How it works
 
-This is a self-built Alexa+ web simulation backed by a real Streamable HTTP MCP server. The React interface talks to a web host, which uses the official TypeScript MCP client for `initialize`, `tools/list` and `tools/call`. Nine tools cover orders, policies, availability, previews, approved plans, handoffs and progress. A visible call log comes from those HTTP requests.
+Return Relay uses the permitted **self-built Alexa+ web simulation** route. The React interface sends actions to a web host, which calls a Streamable HTTP MCP server through the official TypeScript client. Nine tools cover orders, policies, availability, plan previews, approved changes, handoffs and progress. Open **Actual MCP calls** to inspect initialization, tool discovery and calls made during the session.
 
-The schedule calculation enumerates feasible times and compares the same set of constraints again before saving. Signed proposals expire. Write approvals bind the session, actor, tool and exact arguments. Revision checks reject outdated changes, and repeated confirmed requests return the original result instead of adding duplicate events. SQLite stores local sessions; the hosted version saves sessions in Redis. Deployed browser tests confirmed approval, rescheduling, handoff and reload, while separate API tests checked cross-session access and repeated confirmations.
+The planner checks candidate times against the same constraints before previewing and saving. Each approval names the exact change. Expiring proposals and revision checks stop an old preview from replacing a newer plan. Repeating a confirmed request returns its original result, avoiding a duplicate event. SQLite stores local sessions; Redis stores the hosted sessions.
 
-Conversation uses a labelled deterministic guided parser. It supports the demonstrated departure changes and asks for an exact date when a phrase is unclear. It is not a live language-model or Alexa+ device connection. Orders, policies, calendars, family members and receipts are synthetic. No Amazon account, real return, refund or family message is connected.
+The conversation uses a labelled guided parser for the supported departure changes. Orders, policies, calendars, family roles and receipts are synthetic. There is no live Alexa or language-model connection, Amazon account access, real return, refund or family message. The role switch lets the judge play both sides of a handoff in one browser.
 
 ## Challenges and changes made
 
-Testing found a date-control mismatch after a Friday conversation change, an expired session being reported as a generic connection failure, and error copy that could imply nothing had been saved after a lost response. We fixed all three and kept the failed test evidence. Browser testing then found that cancelling an approval dialog lost keyboard focus; capturing the trigger before the request fixed it.
+A successful save can still look like a failure when its response never reaches the browser. Our first recovery message suggested the change had not happened, and the open confirmation dialog blocked the recovery button. The fix closes the dialog and offers **Refresh saved plan**. The regression test drops the response after the write, then confirms that recovery shows one saved event.
 
-Later tests found a lost response leaving its confirmation dialog open, recovery that kept a stale role after a second-tab role change, and an availability query that ignored its date range. Each was repaired and retested.
+Keyboard testing caught another problem: cancelling a dialog lost focus because we had disabled its trigger before recording the focused element. Capturing it before the request fixed the issue. A two-tab test also exposed stale role information during recovery; the app now reloads the session as well as the case.
 
-Those issues mattered more than adding another feature: a return plan must make its saved state clear, especially after a change or interruption.
+The first hosted deployment built successfully but returned HTTP 500. Its emitted Node modules needed explicit file extensions. We fixed the imports, added a NodeNext build check, and reran the hosted flows. The Friction Log records these failures and the checks that followed.
 
 ## What we learned
 
-A tool call being authenticated is not the same as the person approving that change. A request for help is not acceptance. A drop-off report is not a carrier receipt, and a receipt is not a refund. Keeping those distinctions in the data model made the interface easier to explain and the failures easier to test.
+The useful unit is the saved change a person approved. That led to separate records for a proposed time, a committed plan, Maya’s acceptance and the carrier receipt. It also gave each recovery test a concrete question: which action reached the server, and what should the person see next?
 
 ## What is next
 
-The next integration would replace a single synthetic policy or calendar adapter with an authorized source while retaining the same proposal, approval and revision boundaries. Real household invitations would also need independent authentication. Neither is required to try the complete local scenario.
+Connect one authorized policy or calendar source, then test changes against it. Real household invitations would add separate accounts so that the recipient, rather than the demo visitor, accepts the handoff.
 
 ## Submission fields
 
@@ -48,12 +48,12 @@ The next integration would replace a single synthetic policy or calendar adapter
 - Mini challenges: none
 - Repository: https://github.com/Juhwa-Lee1023/return-relay
 - Demo: https://return-relay.vercel.app
-- Video: public URL to be added after upload and logged-out verification
+- Video: public URL pending upload and logged-out playback check
 - Built with: TypeScript, React, Node.js, Express, MCP TypeScript SDK, Zod, Luxon, SQLite, Upstash Redis, Vite, Playwright, axe-core, Figma, Vercel, GitHub, OpenAI Codex
 - New project: created during the hackathon period; no prior application or employer code reused
-- AI assistance: OpenAI Codex assisted implementation, test creation, review, documentation and demo preparation. Runtime conversation is the guided parser described above.
+- AI assistance: OpenAI Codex assisted implementation, tests, review, English copy, design preparation and demo production. Runtime conversation uses the guided parser described above.
 - Product Feedback: [PRODUCT_FEEDBACK.md](PRODUCT_FEEDBACK.md)
 - Friction Log: [FRICTION_LOG.md](FRICTION_LOG.md)
 - Judge instructions: [JUDGE_RUNBOOK.md](JUDGE_RUNBOOK.md)
 
-This file is the current submission draft. Publication of this repository is not competition submission.
+Submission status: draft. Final competition entry is pending.

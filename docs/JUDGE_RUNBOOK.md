@@ -13,7 +13,7 @@ npm test
 npm start
 ```
 
-Open **http://127.0.0.1:4318**. This starts the real HTTP MCP server and serves the built interface. The sample household is created on first visit. Its SQLite database and generated signing key live in the ignored `data/` directory.
+Open **http://127.0.0.1:4318**. This starts the real HTTP MCP server and serves the built interface. The sample household is created on first visit. The server stores its SQLite database and generated signing key in the ignored `data/` directory.
 
 ## Follow one parcel
 
@@ -21,7 +21,7 @@ Open **http://127.0.0.1:4318**. This starts the real HTTP MCP server and serves 
 2. Type **Actually, I’m leaving Thursday morning.** or use that exact suggestion. The old Thursday drop-off is too late. The new proposal moves it to Wednesday.
 3. Choose **Keep saved plan** once. The Friday trip and Thursday errand stay saved. Try the change again and approve it.
 4. Check all four items. Confirm **Mark parcel packed**, then **Ask Maya to take it**. The status should read **Waiting for Maya**.
-5. Choose **Open Maya’s view**. This is a labelled demo role switch, not a real family account. Confirm **Accept as Maya**, then **Report drop-off as Maya**.
+5. Choose **Open Maya’s view**. The role switch lets you try Maya’s actions in the same demo session. Confirm **Accept as Maya**, then **Report drop-off as Maya**.
 6. Confirm **Load sample carrier receipt**. The sample parcel is accepted; **Refund** remains **Unknown**.
 7. Refresh. The saved plan, steps and receipt remain. Open **Return instructions & saved history** to see the revisions.
 

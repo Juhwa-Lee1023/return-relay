@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-23T16:07:04.394792+00:00",
+  "cycle": 14,
+  "source_set_sha256": "f431c68330453b679febe2b07345d04619d5b67e57055e0a3b4b84aeacf3fc9e",
+  "review_roles": [
+    "English prose",
+    "reader comprehension",
+    "interface copy",
+    "submission consistency"
+  ],
+  "finding": "Replaced abstract headings and repeated contrasts with the changed-departure scenario. Updated stale registration status and browser test count. Preserved simulation and AI disclosures.",
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 17,
+    "browser_tests_failed": 0
+  },
+  "editorial_tools": {
+    "write-good": "1.0.8",
+    "alex": "11.0.1"
+  },
+  "suggestions_before": {
+    "write_good": 141,
+    "alex": 50
+  },
+  "suggestions_after": {
+    "write_good": 68,
+    "alex": 31
+  },
+  "note": "Suggestion counts are not AI-detection or quality scores. Retained technical and scope wording reviewed in context.",
+  "public_entry_bodies_reviewed": 11,
+  "video_ui_effect": "UI copy changed; new actual recording completed; encoding and visual checks in progress.",
+  "hosted_runtime": "PENDING updated deployment"
+}

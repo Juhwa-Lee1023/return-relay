@@ -1,6 +1,6 @@
 # Submission route
 
-Checked October 23, 2026. These notes guide this entry; the linked official pages control eligibility and submission requirements.
+Official rules checked October 23, 2026. Entry status updated October 24, 2026.
 
 ## Official rules
 
@@ -11,7 +11,7 @@ Checked October 23, 2026. These notes guide this entry; the linked official page
 - GitHub source, working setup instructions, an open-source license, a feature description and Product Feedback are required. We use a new public MIT repository.
 - The demonstration must show the application working. It must be public on YouTube or Vimeo; our video target is under three minutes.
 - We claim no mini-challenge entry, AWS credits or real Amazon service connection.
-- Personal eligibility and required agreements must be confirmed by the entrant. Repository publication is not competition submission.
+- The entrant confirmed eligibility and accepted the registration terms. Final entry is pending.
 
 ## Official FAQ
 
@@ -19,7 +19,7 @@ Checked October 23, 2026. These notes guide this entry; the linked official page
 
 The gated Alexa+ development tools are unavailable to entrants. A custom web client can demonstrate a self-hosted MCP server by making actual initialization, discovery and tool calls. A locally runnable public repository and demonstration video are sufficient; continuous public hosting is not mandatory.
 
-Return Relay follows that route with the official TypeScript MCP client and server. Vercel hosting is an additional delivery path. It is listed as working only after its persistent runtime and anonymous access pass verification.
+Return Relay follows that route with the official TypeScript MCP client and server. The Vercel demo also passed hosted save/restore, session isolation and browser checks; see cycle11 and cycle13 evidence.
 
 ## User's execution window
 
@@ -30,4 +30,4 @@ The entrant requested no final submission before October 24 at 03:30 KST. Featur
 - Protocol and workflow: `docs/verification/ACCEPTANCE_MATRIX.md`.
 - Public source: <https://github.com/Juhwa-Lee1023/return-relay>.
 - Video: actual local recording prepared; public link awaits upload and anonymous playback verification.
-- Registration and final submission: not yet confirmed. A local gate check has rejected early submission.
+- Registration: completed. Devpost project 1502840 / submission 1257279 is a draft. Final submission and receipt: pending.
