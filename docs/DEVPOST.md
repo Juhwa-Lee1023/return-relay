@@ -8,7 +8,7 @@ Leaving a day earlier? Move the return, too.
 
 The headphones need to go back on Thursday. The trip starts Friday. Then departure moves to Thursday morning, leaving a parcel by the door and a return plan that no longer works.
 
-Return Relay picks up from that change. It finds an earlier drop-off time, includes the packing checklist, and lets someone else take the parcel after accepting the request.
+Return Relay finds an earlier time and shows what to pack. If Maya can take the parcel, Alex sends her the plan. The handoff stays pending until she accepts.
 
 ## What it does
 
@@ -20,7 +20,7 @@ Two more items show where planning stops: an adapter whose deadline has passed a
 
 ## How it works
 
-Return Relay uses the permitted **self-built Alexa+ web simulation** route. The React interface sends actions to a web host, which calls a Streamable HTTP MCP server through the official TypeScript client. Nine tools cover orders, policies, availability, plan previews, approved changes, handoffs and progress. Open **Actual MCP calls** to inspect initialization, tool discovery and calls made during the session.
+Return Relay uses the permitted **self-built Alexa+ web simulation** route. The React app sends each action to the web host. The host uses the official TypeScript client to call our MCP server over Streamable HTTP. Nine tools cover orders, policies, availability, plan previews, approved changes, handoffs and progress. Open **Actual MCP calls** to inspect initialization, tool discovery and calls made during the session.
 
 The planner checks candidate times against the same constraints before previewing and saving. Each approval names the exact change. Expiring proposals and revision checks stop an old preview from replacing a newer plan. Repeating a confirmed request returns its original result, avoiding a duplicate event. SQLite stores local sessions; Redis stores the hosted sessions.
 
@@ -36,7 +36,7 @@ The first hosted deployment built successfully but returned HTTP 500. Its emitte
 
 ## What we learned
 
-The useful unit is the saved change a person approved. That led to separate records for a proposed time, a committed plan, Maya’s acceptance and the carrier receipt. It also gave each recovery test a concrete question: which action reached the server, and what should the person see next?
+When a save response disappears, the app needs to retrieve the saved plan before asking the person to try again. Each recovery test now checks both the screen and the stored events. The same approach keeps Maya’s acceptance separate from the carrier receipt.
 
 ## What is next
 

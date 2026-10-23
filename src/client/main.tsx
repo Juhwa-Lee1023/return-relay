@@ -417,8 +417,7 @@ function App() {
           >
             <X />
           </button>
-          <p className="eyebrow">About this working demo</p>
-          <h2>One return, from plan to handoff.</h2>
+          <h2>Try a return with an earlier departure</h2>
           <p>
             Choose the headphones, save a drop-off time, then change your
             departure to Thursday morning. Review the earlier time before
@@ -438,7 +437,6 @@ function App() {
       <main id="main" tabIndex={-1}>
         <div className="page-heading">
           <div>
-            <p className="eyebrow">Plan the return before your trip</p>
             <h1>{current ? "Your return plan" : "Return it before you leave."}</h1>
             <p className="intro">
               {current
@@ -500,7 +498,7 @@ function App() {
               <section className="order-list">
                 <div className="section-label">
                   <span>Your sample returns</span>
-                  <span>03</span>
+                  <span>3 items</span>
                 </div>
                 {orders.map((o, i) => {
                   const Icon = icons[i];
@@ -540,7 +538,7 @@ function App() {
                   <span>Talk through the change</span>
                   <span className="small-tag">Guided</span>
                 </div>
-                <div className="messages" aria-live="polite">
+                <div className="messages" role="region" aria-label="Conversation history" tabIndex={0} aria-live="polite">
                   {messages.slice(-5).map((m, i) => (
                     <div key={i} className={"message " + m.who}>
                       <span>{m.who === "you" ? "You" : "Relay"}</span>
@@ -604,10 +602,8 @@ function App() {
                         RELAY
                       </span>
                       <ArrowUpRight size={30} />
-                      <span className="barcode">|||| |||| || ||||| |||</span>
                     </span>
                   </div>
-                  <p className="eyebrow">Start with the headphones</p>
                   <h2>
                     Leaving a day earlier?
                     <br />
@@ -635,8 +631,8 @@ function App() {
                 <>
                   <section className="return-header">
                     <div>
-                      <span className="eyebrow">{selected?.merchant}</span>
                       <h2>{selected?.title}</h2>
+                      <p className="context-label">{selected?.merchant}</p>
                     </div>
                     <span
                       className={"status-badge " + (preview ? "proposed" : "")}
@@ -688,12 +684,8 @@ function App() {
                       )}
                       {!preview && (
                         <div className="next-action">
-                          <span className="eyebrow">
-                            {actor === "maya"
-                              ? "Maya’s sample view"
-                              : "Next step"}
-                          </span>
                           <h3>{status.title}</h3>
+                          {actor === "maya" && <p className="context-label">Maya’s sample view</p>}
                           <p>
                             {actor === "maya" &&
                             current.progress === "HANDOFF_REQUESTED"
@@ -724,7 +716,7 @@ function App() {
                             aria-label="Return plan"
                           >
                             <div className="sheet-top">
-                              <span className="eyebrow">
+                              <span className="context-label">
                                 {preview
                                   ? "Proposed itinerary"
                                   : "Saved itinerary"}
@@ -1085,8 +1077,8 @@ function App() {
                         <section className="receipt">
                           <div>
                             <ReceiptText size={28} />
-                            <p className="eyebrow">Synthetic carrier receipt</p>
                             <h3>Parcel accepted</h3>
+                            <p className="context-label">Synthetic carrier receipt</p>
                             <p>
                               Cedar Drop Point ·{" "}
                               {date(current.plan!.completion)}
@@ -1228,7 +1220,6 @@ function App() {
         >
           <X size={20} />
         </button>
-        <p className="eyebrow">One change to confirm</p>
         <h2 id="confirmation-heading">{confirm?.kind === "reset" ? "Reset this sample household?" : "Save these details?"}</h2>
         <p id="confirmation-summary" className="confirmation-summary">{confirm?.summary}</p>
         <div className="confirmation-note">

@@ -2,7 +2,7 @@
 
 **Leaving a day earlier? Move the return, too.**
 
-You planned to return the headphones on Thursday, before a Friday trip. Now you leave Thursday morning. Return Relay checks the return deadline, drop-point hours and household calendar, then offers Wednesday instead. Review the new time, save it, pack the parcel and ask Maya to take it.
+You planned to return the headphones on Thursday, before a Friday trip. Now you leave Thursday morning. Return Relay checks the return deadline, counter hours and household calendar, then offers Wednesday instead. Review the new time, save it, pack the parcel and ask Maya to take it.
 
 [Open the demo](https://return-relay.vercel.app) — no sign-in required. Each visitor starts with a separate sample household, saved for seven days.
 

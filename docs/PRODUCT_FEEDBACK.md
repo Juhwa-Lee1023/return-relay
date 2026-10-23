@@ -64,4 +64,10 @@ An early install used the wrong working directory. We identified the task-create
 
 FFmpeg encodes the actual browser recording and burns in English captions. ffprobe checks codec, dimensions and duration. The revised cut runs for 155.234 seconds. Frame checks confirmed that the updated interface and captions remain readable.
 
-The arm64 path in `ffprobe-static` 3.1.0 contained an x86_64 binary in this installation. `@ffprobe-installer/darwin-arm64` 5.0.1 worked; `ffmpeg-static` 5.3.0 supplied the encoder. I would use them again for this recording workflow. They are local production tools, outside the app runtime. Evidence: `docs/verification/video-local.json`.
+The arm64 path in `ffprobe-static` 3.1.0 contained a binary built for x86_64 in this installation. `@ffprobe-installer/darwin-arm64` 5.0.1 worked; `ffmpeg-static` 5.3.0 supplied the encoder. I would use them again for this recording workflow. They are local production tools, outside the app runtime. Evidence: `docs/verification/video-local.json`.
+
+## English and visual checks
+
+We ran write-good, alex and retext over the public documents, submission answers, interface text and captions. They helped find vague phrasing and an article issue. Suggestions such as replacing the technical word “host” with “presenter” did not fit this project.
+
+Impeccable found small labels and repeated headings in the rendered mobile app. After those fixes, visual review caught a receipt icon overlapping its heading at 320px. We reserved space beside the heading and checked the screen again. A clean detector result does not replace reading the copy or using the interface.
