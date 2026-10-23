@@ -48,7 +48,7 @@ Recorded from building Return Relay on October 23, 2026. Exact package versions 
 
 **Use.** Real Chromium UI actions, screenshots, keyboard tests, four viewport widths, and automated WCAG A/AA checks. Versions are pinned in the lockfile.
 
-**What worked.** A single browser flow exercised approval, replanning, packing, handoff, receipt and refresh against real HTTP endpoints. The initial suite found the focus-restoration failure; the repaired suite passed. An isolated server and fresh database make repeated runs independent of the demonstration household.
+**What worked.** A single browser flow exercised approval, replanning, packing, handoff, receipt and refresh against real HTTP endpoints. The initial suite found the focus-restoration failure; the repaired suite passed. An isolated server and fresh database make repeated runs independent of the demonstration household. Follow-up tests deliberately lost a successful write response and changed the role from a second tab. They found two recovery problems in our UI, both repaired; the expanded suite passed all 14 cases.
 
 **What needed work.** Full-page screenshots of an open native dialog include the whole document while its backdrop follows the viewport. These are useful evidence but not the best presentation images. Automatic accessibility checks also do not replace screen-reader or manual usability testing.
 

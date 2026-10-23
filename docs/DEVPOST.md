@@ -22,13 +22,15 @@ The exact plan and history survive a refresh. An adapter with an expired deadlin
 
 This is a self-built Alexa+ web simulation backed by a real Streamable HTTP MCP server. The React interface talks to a web host, which uses the official TypeScript MCP client for `initialize`, `tools/list` and `tools/call`. Nine tools cover orders, policies, availability, previews, approved plans, handoffs and progress. A visible call log comes from those HTTP requests.
 
-The schedule calculation enumerates feasible times and compares the same set of constraints again before saving. Signed proposals expire. Write approvals bind the session, actor, tool and exact arguments. Revision checks reject outdated changes, and repeated confirmed requests return the original result instead of adding duplicate events. SQLite provides the reproducible local persistence path; the hosted configuration uses Redis.
+The schedule calculation enumerates feasible times and compares the same set of constraints again before saving. Signed proposals expire. Write approvals bind the session, actor, tool and exact arguments. Revision checks reject outdated changes, and repeated confirmed requests return the original result instead of adding duplicate events. SQLite provides the tested local persistence path; a Redis adapter is included for hosted deployment.
 
 Conversation uses a labelled deterministic guided parser. It supports the demonstrated departure changes and asks for an exact date when a phrase is unclear. It is not a live language-model or Alexa+ device connection. Orders, policies, calendars, family members and receipts are synthetic. No Amazon account, real return, refund or family message is connected.
 
 ## Challenges and changes made
 
 Testing found a date-control mismatch after a Friday conversation change, an expired session being reported as a generic connection failure, and error copy that could imply nothing had been saved after a lost response. We fixed all three and kept the failed test evidence. Browser testing then found that cancelling an approval dialog lost keyboard focus; capturing the trigger before the request fixed it.
+
+Later tests found a lost response leaving its confirmation dialog open, recovery that kept a stale role after a second-tab role change, and an availability query that ignored its date range. Each was repaired and retested.
 
 Those issues mattered more than adding another feature: a return plan must make its saved state clear, especially after a change or interruption.
 

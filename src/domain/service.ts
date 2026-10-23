@@ -91,9 +91,16 @@ export class RelayService {
           "INVALID_RANGE",
           "End time must be after start time.",
         );
+      const overlaps = (window: { start: string; end: string }) =>
+        instant(window.start) < end && instant(window.end) > start;
       return {
-        availability: demo.availability,
-        locations: demo.locations,
+        availability: Object.fromEntries(
+          Object.entries(demo.availability).map(([actor, windows]) => [actor, windows.filter(overlaps)]),
+        ),
+        locations: demo.locations
+          .map(location => ({ ...location, windows: location.windows.filter(overlaps) }))
+          .filter(location => location.windows.length > 0),
+        requested_range: { start: start.toISO(), end: end.toISO() },
         trip_departure: c.plan?.departure_at ?? demo.trip.initial_departure,
         source: "synthetic_fixture",
         timezone: demo.clock.timezone,

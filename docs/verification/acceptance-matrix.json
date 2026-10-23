@@ -1,0 +1,618 @@
+{
+  "checked_at": "2026-10-23T11:27:13.066574+00:00",
+  "scope": "Development checkpoint, not final readiness. Test counts are distinct from acceptance cases.",
+  "cases": [
+    {
+      "id": "C01",
+      "priority": "P0",
+      "category": "core",
+      "name": "Changed trip invalidates old Thursday drop-off",
+      "steps": "With initial plan shown, move departure to Thursday 07:00.",
+      "expected": "Preview explains conflict and proposes a feasible earlier window; no unapproved write.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C02",
+      "priority": "P0",
+      "category": "core",
+      "name": "Approval gates plan commit",
+      "steps": "Attempt to commit without valid approval envelope.",
+      "expected": "APPROVAL_REQUIRED; state/revision unchanged.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C03",
+      "priority": "P0",
+      "category": "core",
+      "name": "Exact change binding",
+      "steps": "Approve proposal A then attempt to commit proposal B.",
+      "expected": "Rejected; approval cannot authorize different data.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C04",
+      "priority": "P0",
+      "category": "core",
+      "name": "Stale revision",
+      "steps": "Change case in another tab then commit the old preview.",
+      "expected": "STALE_REVISION; re-preview and re-confirm.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C05",
+      "priority": "P0",
+      "category": "core",
+      "name": "Idempotent duplicate click",
+      "steps": "Send the same confirmed commit twice with one idempotency key.",
+      "expected": "One write, stable result and no duplicate plan/event.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C06",
+      "priority": "P0",
+      "category": "core",
+      "name": "Expired approval",
+      "steps": "Use a confirmation after its configured expiry.",
+      "expected": "Denied; no silent renewal.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C07",
+      "priority": "P1",
+      "category": "time",
+      "name": "No feasible slot",
+      "steps": "Constrain all availability after departure.",
+      "expected": "No feasible plan, explanation and options; no impossible recommendation.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C08",
+      "priority": "P1",
+      "category": "time",
+      "name": "Opening boundary",
+      "steps": "Candidate start fits but processing ends after closure.",
+      "expected": "Rejected; completion and travel matter.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C09",
+      "priority": "P1",
+      "category": "time",
+      "name": "Relative date ambiguity",
+      "steps": "Say before Friday with multiple possible interpretations.",
+      "expected": "Clarification or explicit datetime summary before commitment.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C10",
+      "priority": "P1",
+      "category": "time",
+      "name": "Timezone and DST",
+      "steps": "Exercise zone-aware dates on both sides of a DST transition.",
+      "expected": "Exact instants persist; labels and deadline comparison remain correct.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle5-dst-service.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Both repeated-hour offsets tested in parsing and complete planning. The two acceptance deadlines yield completions exactly one hour apart, each before its own deadline and departure."
+    },
+    {
+      "id": "C11",
+      "priority": "P1",
+      "category": "policy",
+      "name": "Unknown policy",
+      "steps": "Choose RR-DEMO-1003.",
+      "expected": "Shows missing deadline basis; no eligibility or successful return claim.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C12",
+      "priority": "P1",
+      "category": "policy",
+      "name": "Expired return window",
+      "steps": "Choose RR-DEMO-1002 at demo clock.",
+      "expected": "Expired status; no automatically invented exception.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C13",
+      "priority": "P1",
+      "category": "policy",
+      "name": "Received-by versus handoff-by",
+      "steps": "Change a policy to received_by without transit evidence.",
+      "expected": "Do not treat drop-off before deadline as guaranteed eligible.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C14",
+      "priority": "P1",
+      "category": "policy",
+      "name": "Unclear order",
+      "steps": "Search a term matching multiple orders.",
+      "expected": "Ask user to disambiguate rather than selecting silently.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C15",
+      "priority": "P0",
+      "category": "handoff",
+      "name": "Request versus acceptance",
+      "steps": "Create handoff request.",
+      "expected": "REQUESTED only, visibly awaiting sample assignee.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C16",
+      "priority": "P0",
+      "category": "handoff",
+      "name": "Wrong actor acceptance",
+      "steps": "Try accepting as a different sample principal.",
+      "expected": "Denied, correct owner check.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C17",
+      "priority": "P1",
+      "category": "handoff",
+      "name": "Explicit sample acceptance",
+      "steps": "Switch through labelled demo role control and accept own request.",
+      "expected": "Acceptance event attributed to sample actor; no real person contacted.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C18",
+      "priority": "P0",
+      "category": "status",
+      "name": "Drop-off versus refund",
+      "steps": "Report parcel dropped off.",
+      "expected": "DROPOFF_REPORTED; refund remains unknown/pending.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C19",
+      "priority": "P0",
+      "category": "status",
+      "name": "Verified demo scan",
+      "steps": "Provide sample carrier event bound to the case.",
+      "expected": "Demo-confirmed status only; event is labelled synthetic.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C20",
+      "priority": "P0",
+      "category": "status",
+      "name": "Invalid transition",
+      "steps": "Attempt refund or completion with no evidence.",
+      "expected": "Rejected rather than language-model override.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C21",
+      "priority": "P0",
+      "category": "persistence",
+      "name": "Refresh/resume",
+      "steps": "Commit then refresh/reopen same isolated session.",
+      "expected": "Persisted exact plan/revision and steps recovered.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C22",
+      "priority": "P0",
+      "category": "security",
+      "name": "Cross-session isolation",
+      "steps": "Attempt read/write/reset from another demo session.",
+      "expected": "No other household data/action access.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C23",
+      "priority": "P0",
+      "category": "security",
+      "name": "Prompt injection datum",
+      "steps": "Include untrusted fixture demanding status override.",
+      "expected": "No approval bypass or refund change.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C24",
+      "priority": "P0",
+      "category": "security",
+      "name": "Secret exposure",
+      "steps": "Inspect client bundle, repo history, logs, recording.",
+      "expected": "No provider key, admin token or real PII.",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/verification/secret-scan.json",
+        "docs/verification/video-local.json"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Known signing secret and common token patterns absent from inspected history/bundle; selected video frames inspected. Repeat on final frozen release; not a universal secret-detection guarantee."
+    },
+    {
+      "id": "C25",
+      "priority": "P0",
+      "category": "security",
+      "name": "Origin/auth checks",
+      "steps": "Use unexpected Origin/Host and unauthorized direct call.",
+      "expected": "Transport and identity protections enforced, not CORS-only.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C26",
+      "priority": "P1",
+      "category": "security",
+      "name": "Usage and timeout",
+      "steps": "Exceed per-session request cap or simulate upstream hang.",
+      "expected": "Bounded error, no cost spiral or stuck loop.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Real MCP per-session cap returns 429; a deliberately hanging upstream is interrupted at about 10 seconds. Local SQLite limiter tested; hosted Redis limiter not yet exercised."
+    },
+    {
+      "id": "C27",
+      "priority": "P0",
+      "category": "mcp",
+      "name": "Protocol handshake",
+      "steps": "Connect official compatible client over HTTP.",
+      "expected": "Recorded supported negotiated protocol and valid lifecycle.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C28",
+      "priority": "P0",
+      "category": "mcp",
+      "name": "Actual tool execution",
+      "steps": "List then call preview/confirmed commit/get through UI.",
+      "expected": "Wire request IDs and outputs prove the UI uses MCP.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt",
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C29",
+      "priority": "P1",
+      "category": "mcp",
+      "name": "Schema rejection",
+      "steps": "Send malformed fields/unknown enum.",
+      "expected": "Validated error with unchanged business state.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Local synthetic fixtures; domain or actual HTTP MCP integration as named in the test log."
+    },
+    {
+      "id": "C30",
+      "priority": "P1",
+      "category": "mcp",
+      "name": "Restart recovery",
+      "steps": "Restart backend according to supported hosting model.",
+      "expected": "Business data recover as documented; no fake persistent-memory claim.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/restart-cycle3.json"
+      ],
+      "tested_commit": "ee4c487",
+      "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
+      "scope": "Actual process stop/restart with the same SQLite directory restored the exact plan; repeated confirmation added no event. Hosted recovery is untested."
+    },
+    {
+      "id": "C31",
+      "priority": "P1",
+      "category": "ux",
+      "name": "Microphone denied",
+      "steps": "Deny microphone and use keyboard.",
+      "expected": "Entire flow works; no forced permission.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Browser reports microphone denied by policy. Typed planning and approval work; product does not request or use microphone access."
+    },
+    {
+      "id": "C32",
+      "priority": "P1",
+      "category": "ux",
+      "name": "Responsive and accessible",
+      "steps": "Test 360/390/768/1440 widths, keyboard, zoom, reduced motion.",
+      "expected": "No clipped controls; focus/contrast/labels and status text usable.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-browser.txt",
+        "docs/verification/browser-real-zoom.json",
+        "docs/verification/browser-real-200pct.jpg"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Four viewport widths, keyboard cancel/focus, reduced motion, selected-view axe checks, and actual Chrome 200% zoom passed. This is not a full screen-reader or WCAG certification."
+    },
+    {
+      "id": "C33",
+      "priority": "P1",
+      "category": "ux",
+      "name": "Loading/empty/error",
+      "steps": "Trigger fresh session, no match, network error.",
+      "expected": "Actionable copy; no fabricated successful result.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-browser.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "No-plan policy states, failed session request/reconnect, successful write with a lost response, and stale-role recovery tested. No-match search is a service-only check."
+    },
+    {
+      "id": "C34",
+      "priority": "P0",
+      "category": "truth",
+      "name": "Live versus guided mode",
+      "steps": "Disable model provider and run fallback.",
+      "expected": "Mode labelled, real MCP still used, no hidden fake model inference.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/cycle4-service-fixed.txt"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "No model provider exists in this runtime. API and UI explicitly label guided mode and synthetic data; real MCP remains in use."
+    },
+    {
+      "id": "C35",
+      "priority": "P0",
+      "category": "delivery",
+      "name": "Clean checkout run",
+      "steps": "Fresh install/seed/build/test/run from README.",
+      "expected": "Exact reproducible commands and declared dependencies.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/clean-cycle3.json",
+        "docs/verification/restart-cycle3.json"
+      ],
+      "tested_commit": "ee4c487",
+      "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
+      "scope": "Anonymous public clone, clean npm install, build, 35 tests, server start and restart performed at ee4c487. Repeat on final freeze commit."
+    },
+    {
+      "id": "C36",
+      "priority": "P0",
+      "category": "delivery",
+      "name": "Public demo and code access",
+      "steps": "Open links without author login.",
+      "expected": "Judge can access intended scope and code per selected publication route.",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/verification/clean-cycle3.json"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Public repository anonymously cloned. Hosted build exists, but persistent runtime and anonymous demo path are not yet verified."
+    },
+    {
+      "id": "C37",
+      "priority": "P0",
+      "category": "delivery",
+      "name": "Video validation",
+      "steps": "Inspect uploaded final video from logged-out session.",
+      "expected": "English or translated, actual footage, public, duration <180s, no secrets.",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/verification/video-local.json"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Actual local English-captioned recording is 155.234 seconds. No public upload or logged-out playback yet."
+    },
+    {
+      "id": "C38",
+      "priority": "P0",
+      "category": "delivery",
+      "name": "Copy and feedback truth",
+      "steps": "Compare Devpost text, UI, README, friction and actual release.",
+      "expected": "No unsupported feature, fake incident/user/metric, missing product feedback.",
+      "status": "PARTIAL",
+      "evidence": [
+        "docs/DEVPOST.md",
+        "docs/PRODUCT_FEEDBACK.md",
+        "docs/FRICTION_LOG.md"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "English source draft reviewed against current implementation. Final form fields and final release/link consistency are pending."
+    },
+    {
+      "id": "C39",
+      "priority": "P0",
+      "category": "submission",
+      "name": "No early submission",
+      "steps": "Run action gate before 03:30 KST.",
+      "expected": "Final submit blocked, draft/assets allowed.",
+      "status": "PASS",
+      "evidence": [
+        "docs/verification/deadline-gate-before-freeze.json"
+      ],
+      "tested_commit": "working tree after ee4c487",
+      "tested_source_set_sha256": "62869ab3ce0b5611c85cdf2517739e73e5bb66ea85cc338f75e56f3a535bbcf2",
+      "scope": "Actual clock gate run before 03:30 KST rejected final submission. A check at freeze remains required."
+    },
+    {
+      "id": "C40",
+      "priority": "P0",
+      "category": "submission",
+      "name": "Receipt and no duplicate",
+      "steps": "Submit within final window, simulate uncertain response.",
+      "expected": "Inspect receipt/status before any retry; preserve actual evidence.",
+      "status": "NOT_RUN",
+      "evidence": [],
+      "tested_commit": null,
+      "tested_source_set_sha256": "25f4eed6877395d96083c3a989df2e6e9ee4efce6b76218b7efeddcd2558c81d",
+      "scope": "Final submission has not occurred. Do not retry an uncertain submit without checking the entry status."
+    }
+  ]
+}

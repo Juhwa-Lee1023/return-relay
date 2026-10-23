@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-23T11:27:13.066574+00:00",
+  "browser": "Chrome on macOS",
+  "browser_zoom_percent": 200,
+  "viewport_css_px": {
+    "width": 600,
+    "height": 549
+  },
+  "scroll_width_css_px": 600,
+  "confirm_button_rect": {
+    "top": 371.1015625,
+    "bottom": 416.6953125,
+    "left": 352.53125,
+    "right": 513
+  },
+  "result": "PASS",
+  "checks": [
+    "No horizontal page overflow",
+    "Confirmation fully visible",
+    "Cancel returns focus to Review & save"
+  ],
+  "restored_browser_zoom_percent": 100,
+  "scope": "Actual UI inspection, not CSS zoom. Local production build; no screen-reader audit."
+}

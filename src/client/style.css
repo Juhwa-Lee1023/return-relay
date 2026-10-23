@@ -1225,7 +1225,7 @@ footer p {
   .simulation {
     margin: 13px 24px 0;
     flex-wrap: wrap;
-    font-size: 10px;
+    font-size: 12px;
     gap: 6px;
   }
   .sim-separator:last-of-type {
@@ -1253,11 +1253,11 @@ footer p {
     padding-left: 15px;
   }
   .demo-clock strong {
-    font-size: 11px;
+    font-size: 12px;
   }
   .demo-clock span,
   .demo-clock small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .workspace {
     display: flex;
@@ -1299,11 +1299,11 @@ footer p {
     width: 20px;
   }
   .order strong {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.4;
   }
   .order small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .order-arrow {
     position: absolute;
@@ -1328,7 +1328,7 @@ footer p {
     margin-left: 35px;
   }
   .suggestion {
-    font-size: 11px;
+    font-size: 12px;
   }
   .welcome {
     padding: 28px;
@@ -1350,7 +1350,7 @@ footer p {
   }
   .welcome-steps {
     gap: 16px;
-    font-size: 8px;
+    font-size: 12px;
   }
   .return-header {
     flex-direction: row;
@@ -1360,7 +1360,7 @@ footer p {
     font-size: 23px;
   }
   .status-badge {
-    font-size: 9px;
+    font-size: 12px;
   }
   .timeline li {
     grid-template-columns: 32px 85px 1fr;
@@ -1381,7 +1381,7 @@ footer p {
   }
   .plan-foot {
     flex-direction: row;
-    font-size: 9px;
+    font-size: 12px;
   }
   footer {
     margin: 0 24px;
@@ -1390,7 +1390,7 @@ footer p {
     gap: 18px;
   }
   footer p {
-    font-size: 9px;
+    font-size: 12px;
     max-width: 290px;
   }
   .help {
@@ -1428,7 +1428,7 @@ footer p {
   .simulation {
     margin-left: 20px;
     margin-right: 20px;
-    font-size: 9px;
+    font-size: 12px;
   }
   .simulation > .sim-separator {
     margin: 0 1px;
@@ -1441,7 +1441,7 @@ footer p {
     font-size: 42px;
   }
   .page-heading .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
   }
   .demo-clock {
     border: 0;
@@ -1456,13 +1456,13 @@ footer p {
     flex-wrap: wrap;
   }
   .demo-clock span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .demo-clock strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .demo-clock small {
-    font-size: 9px;
+    font-size: 12px;
   }
   .demo-clock svg {
     width: 13px;
@@ -1486,17 +1486,17 @@ footer p {
     padding-left: 6px;
   }
   .order strong {
-    font-size: 10px;
+    font-size: 12px;
   }
   .order small {
-    font-size: 9px;
+    font-size: 12px;
     line-height: 1.4;
   }
   .order-arrow {
     display: none;
   }
   .conversation .section-label {
-    font-size: 9px;
+    font-size: 12px;
   }
   .return-header {
     flex-direction: column;
@@ -1507,10 +1507,10 @@ footer p {
     font-size: 25px;
   }
   .return-header .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
   }
   .status-badge {
-    font-size: 10px;
+    font-size: 12px;
   }
   .proposal-banner {
     gap: 10px;
@@ -1525,11 +1525,11 @@ footer p {
     padding: 17px 17px 0;
   }
   .sheet-top .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
     letter-spacing: 1px;
   }
   .small-tag {
-    font-size: 9px;
+    font-size: 12px;
   }
   .trip-row {
     padding: 17px;
@@ -1564,14 +1564,14 @@ footer p {
     line-height: 1.4;
   }
   .timeline li span:not(.timeline-dot) {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.6;
     margin-top: 4px;
   }
   .plan-foot {
     padding: 12px 17px;
     flex-direction: column;
-    font-size: 9px;
+    font-size: 12px;
   }
   .plan-actions {
     padding: 17px;
@@ -1584,11 +1584,11 @@ footer p {
     padding: 11px 14px;
   }
   .plan-actions .quiet {
-    font-size: 11px;
+    font-size: 12px;
   }
   .change-summary {
     padding: 13px 17px;
-    font-size: 11px;
+    font-size: 12px;
     gap: 9px;
   }
   .change-summary svg {
@@ -1605,10 +1605,10 @@ footer p {
     font-size: 15px;
   }
   .handoff-person p {
-    font-size: 11px;
+    font-size: 12px;
   }
   .role-switch {
-    font-size: 10px;
+    font-size: 12px;
     align-items: flex-start;
   }
   .role-switch span {
@@ -1616,7 +1616,7 @@ footer p {
   }
   .role-switch button {
     margin-left: 24px;
-    font-size: 11px;
+    font-size: 12px;
   }
   .evidence dl {
     grid-template-columns: 1fr;
@@ -1630,11 +1630,11 @@ footer p {
   }
   .welcome .primary {
     width: 100%;
-    font-size: 11px;
+    font-size: 12px;
     gap: 8px;
   }
   .welcome-steps {
-    font-size: 7px;
+    font-size: 12px;
     letter-spacing: 0.5px;
     gap: 14px;
   }
@@ -1645,7 +1645,7 @@ footer p {
     height: 128px;
   }
   .welcome > .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 1.2px;
   }
   .confirm-dialog {
@@ -1658,7 +1658,7 @@ footer p {
     font-size: 14px;
   }
   .confirmation-note {
-    font-size: 10px;
+    font-size: 12px;
   }
   .modal-actions {
     gap: 10px;
@@ -1677,7 +1677,7 @@ footer p {
   }
   footer {
     margin: 0 20px;
-    font-size: 9px;
+    font-size: 12px;
     gap: 15px;
   }
   .help {
@@ -1690,7 +1690,7 @@ footer p {
     padding: 23px;
   }
   .receipt-row {
-    font-size: 11px;
+    font-size: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1701,4 +1701,17 @@ footer p {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* Small-screen reading and touch targets; do not shrink content to make it fit. */
+@media (max-width: 780px) {
+  button, .icon-button, .masthead nav .quiet { min-height: 44px; }
+  .masthead nav .quiet { min-width: 44px; }
+  .conversation input, .date-controls select, .custom-date input { font-size: 16px; }
+  .message, .suggestion, .proposal-banner p, .next-action p, .help p:not(.eyebrow),
+  .packing-items label, .handoff-person p, .role-switch, .receipt-row { font-size: 14px; }
+  .primary, .secondary, .role-switch button, .plan-actions .quiet { font-size: 14px; }
+  .welcome-steps { flex-wrap: wrap; }
+  .timeline li { padding-bottom: 20px; }
+  .change-summary { flex-wrap: wrap; }
 }

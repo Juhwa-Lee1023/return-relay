@@ -1,0 +1,145 @@
+
+> return-relay@0.1.0 pretest:browser
+> npm run build
+
+
+> return-relay@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1937 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.63 kB │ gzip:   0.38 kB
+dist/assets/source-sans-3-latin-700-normal-CkzU-mV9.woff2   15.59 kB
+dist/assets/source-sans-3-latin-600-normal-DeckBYAU.woff2   15.66 kB
+dist/assets/source-sans-3-latin-400-normal-DQi5PRDE.woff2   15.69 kB
+dist/assets/source-sans-3-latin-700-normal-B-h9tW5h.woff    19.90 kB
+dist/assets/source-sans-3-latin-400-normal-RR2C27NP.woff    19.99 kB
+dist/assets/source-sans-3-latin-600-normal-Ck0n4g8U.woff    19.99 kB
+dist/assets/lora-latin-400-normal-DnxXpLNu.woff2            21.14 kB
+dist/assets/lora-latin-400-normal-DBJS-Hc6.woff             25.96 kB
+dist/assets/index-CNkZOSgy.css                              23.19 kB │ gzip:   5.58 kB
+dist/assets/index-CMpcVdd2.js                              323.25 kB │ gzip: 100.81 kB
+
+✓ built in 309ms
+
+> return-relay@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:9605) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:9606) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 14 tests using 1 worker
+
+(node:9607) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/flow.spec.ts:28:1 › approve, change departure, hand off, distinguish receipt from refund, restore (2.3s)
+  ✓   2 tests/browser/flow.spec.ts:64:1 › unknown policy and passed deadline do not offer a plan (389ms)
+  ✓   3 tests/browser/flow.spec.ts:74:1 › keyboard approval can be cancelled without saving (478ms)
+  ✓   4 tests/browser/flow.spec.ts:86:1 › WCAG automated checks cover welcome, preview, and confirmation (1.2s)
+  ✓   5 tests/browser/flow.spec.ts:95:3 › responsive 360px: no page overflow and reachable approval (446ms)
+  ✓   6 tests/browser/flow.spec.ts:95:3 › responsive 390px: no page overflow and reachable approval (455ms)
+  ✓   7 tests/browser/flow.spec.ts:95:3 › responsive 768px: no page overflow and reachable approval (442ms)
+  ✓   8 tests/browser/flow.spec.ts:95:3 › responsive 1440px: no page overflow and reachable approval (453ms)
+  ✓   9 tests/browser/flow.spec.ts:106:1 › C31: microphone permission denied still allows typed planning (696ms)
+  ✓  10 tests/browser/flow.spec.ts:116:1 › C32: text zoom and reduced motion keep controls usable (432ms)
+  ✓  11 tests/browser/flow.spec.ts:129:1 › C33: blocked session request shows recovery and never fabricates a plan (301ms)
+  ✓  12 tests/browser/flow.spec.ts:139:1 › C33: failed confirmation response is recovered by reading saved state (555ms)
+  ✘  13 tests/browser/flow.spec.ts:155:1 › C04: an approval from an older tab cannot replace a newer plan (11.1s)
+(node:9644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  14 tests/browser/flow.spec.ts:172:1 › role changed in another tab is recovered with the current session (11.2s)
+
+
+  1) tests/browser/flow.spec.ts:155:1 › C04: an approval from an older tab cannot replace a newer plan 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected substring: "changed"
+    Received string:    "We could not confirm that step.Refresh this return before reviewing the change.Refresh saved plan"
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 10000ms
+      - waiting for getByRole('alert')
+        23 × locator resolved to <div role="alert" class="error">…</div>
+           - unexpected value "We could not confirm that step.Refresh this return before reviewing the change.Refresh saved plan"
+
+
+      163 |   await page.getByRole('button',{name:'Review & save'}).click();
+      164 |   if(await page.getByRole('dialog').isVisible()) await page.getByRole('button',{name:'Confirm & save'}).click();
+    > 165 |   await expect(page.getByRole('alert')).toContainText('changed');
+          |                                         ^
+      166 |   await page.getByRole('button',{name:'Refresh saved plan'}).click();
+      167 |   await expect(page.getByRole('region',{name:'Return plan'})).toContainText('Wed');
+      168 |   await page.getByText('Return instructions & saved history',{exact:true}).click();
+        at $RETURN_RELAY_WORKDIR/app/tests/browser/flow.spec.ts:165:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-C04-an-approval-from--1da52-cannot-replace-a-newer-plan/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-C04-an-approval-from--1da52-cannot-replace-a-newer-plan/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/flow-C04-an-approval-from--1da52-cannot-replace-a-newer-plan/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/flow-C04-an-approval-from--1da52-cannot-replace-a-newer-plan/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/flow-C04-an-approval-from--1da52-cannot-replace-a-newer-plan/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/browser/flow.spec.ts:172:1 › role changed in another tab is recovered with the current session 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'Back to Alex' })
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'Back to Alex' }) with timeout 10000ms
+      - waiting for getByRole('button', { name: 'Back to Alex' })
+
+
+      180 |   await expect(page.getByRole('alert')).toContainText('Refresh this page');
+      181 |   await page.getByRole('button',{name:'Refresh saved plan'}).click();
+    > 182 |   await expect(page.getByRole('button',{name:'Back to Alex'})).toBeVisible();
+          |                                                                ^
+      183 |   await expect(page.getByRole('button',{name:'I dropped it off myself'})).toHaveCount(0);
+      184 | });
+      185 |
+        at $RETURN_RELAY_WORKDIR/app/tests/browser/flow.spec.ts:182:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-role-changed-in-anoth-64094-ed-with-the-current-session/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-role-changed-in-anoth-64094-ed-with-the-current-session/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/flow-role-changed-in-anoth-64094-ed-with-the-current-session/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/flow-role-changed-in-anoth-64094-ed-with-the-current-session/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/flow-role-changed-in-anoth-64094-ed-with-the-current-session/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/browser/flow.spec.ts:155:1 › C04: an approval from an older tab cannot replace a newer plan 
+    tests/browser/flow.spec.ts:172:1 › role changed in another tab is recovered with the current session 
+  12 passed (32.8s)

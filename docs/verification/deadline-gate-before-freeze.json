@@ -1,0 +1,19 @@
+{
+  "phase": "BUILD_AND_ITERATE",
+  "checked_at": "2026-10-23T11:07:17.719594+00:00",
+  "deadline": "2026-10-24T04:00:00+09:00",
+  "submission_not_before": "2026-10-24T03:30:00+09:00",
+  "seconds_until_freeze": 26562.280406,
+  "seconds_until_deadline": 28362.280406,
+  "continue_real_review": true,
+  "new_features_allowed": true,
+  "final_submit_allowed_by_local_gate": false,
+  "blocking_reasons": [
+    "TOO_EARLY_FOR_FINAL_SUBMISSION",
+    "READINESS_EVIDENCE_NOT_SUPPLIED"
+  ],
+  "executed_submission": false,
+  "scheduled_job_created": false,
+  "scope": "Local evidence/time validation only; not proof of browser access, official eligibility or receipt.",
+  "diagnostic_clock_override": false
+}

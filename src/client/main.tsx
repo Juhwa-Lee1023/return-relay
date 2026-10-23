@@ -159,19 +159,25 @@ function App() {
     setDeparture(data.result.case.plan?.departure_at ?? INITIAL);
     return data.result.case as ReturnCase;
   }
-  async function boot() {
+  async function boot(preferredCase?: string) {
     setBooting(true);
     try {
       const d = await request("/session", {});
       setOrders(d.result.orders);
       setCsrf(d.csrf);
       setActor(d.principal.actor);
-      const selected = localStorage.getItem("rr-selected-case");
+      const selected = preferredCase ?? localStorage.getItem("rr-selected-case");
       if (
         selected &&
         d.result.orders.some((o: Order) => o.case_id === selected)
-      )
+      ) {
         await load(selected, d.csrf);
+      } else {
+        setCurrent(null);
+        setPolicy(null);
+        setPreview(null);
+        localStorage.removeItem("rr-selected-case");
+      }
     } catch (e) {
       setError(String(e instanceof Error ? e.message : e));
     } finally {
@@ -273,18 +279,27 @@ function App() {
   async function save() {
     if (!confirm) return;
     await run(async () => {
-      const d = await request("/confirm", { ticket: confirm.ticket });
-      setCurrent(d.result);
-      setChecked(
-        d.result.prepared ? (d.result.plan?.required_items ?? []) : [],
-      );
-      setPreview(null);
-      setConfirm(null);
-      setDeparture(d.result.plan?.departure_at ?? INITIAL);
-      setMessages((m) => [
-        ...m,
-        { who: "relay", text: d.result.events.at(-1)?.summary ?? "Saved." },
-      ]);
+      try {
+        const d = await request("/confirm", { ticket: confirm.ticket });
+        setCurrent(d.result);
+        setChecked(d.result.prepared ? (d.result.plan?.required_items ?? []) : []);
+        setPreview(null);
+        setConfirm(null);
+        setDeparture(d.result.plan?.departure_at ?? INITIAL);
+        setMessages((m) => [
+          ...m,
+          { who: "relay", text: d.result.events.at(-1)?.summary ?? "Saved." },
+        ]);
+      } catch (error) {
+        // A response can be lost after the write. Reveal the recovery action,
+        // then let the user read the saved revision before deciding to retry.
+        setConfirm(null);
+        setPreview(null);
+        if (error instanceof TypeError) {
+          throw new Error("The response did not arrive. Refresh saved plan to check whether this change was saved.");
+        }
+        throw error;
+      }
     });
   }
   async function role(next: Actor) {
@@ -428,7 +443,7 @@ function App() {
                 <button
                   onClick={() =>
                     run(async () => {
-                      await load(current.id);
+                      await boot(current.id);
                       setPreview(null);
                     })
                   }

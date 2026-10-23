@@ -182,6 +182,29 @@ test("C10: DST inputs preserve exact instants and reject missing offsets", () =>
   assert.equal(utc("2026-11-01T01:30:00-08:00"), "2026-11-01T09:30:00.000Z");
   assert.throws(() => instant("2026-11-01T01:30:00"), { code: "INVALID_TIME" });
 });
+test("C10: a repeated DST hour still respects the exact acceptance deadline", () => {
+  const constraints = {
+    now: "2026-11-01T00:00:00-07:00",
+    availability: {
+      alex: [{ start: "2026-11-01T00:00:00-07:00", end: "2026-11-01T03:00:00-08:00" }],
+      maya: [],
+    },
+    locations: [{ ...demo.locations[0], windows: [{ start: "2026-11-01T00:00:00-07:00", end: "2026-11-01T03:00:00-08:00" }] }],
+  };
+  const before = findPlan("RR-DEMO-1001", "2026-11-01T03:00:00-08:00", "alex", {
+    ...constraints, policy: { ...getPolicy("RR-DEMO-1001"), deadline: "2026-11-01T01:45:00-07:00" },
+  }).plan!;
+  const after = findPlan("RR-DEMO-1001", "2026-11-01T03:00:00-08:00", "alex", {
+    ...constraints, policy: { ...getPolicy("RR-DEMO-1001"), deadline: "2026-11-01T01:45:00-08:00" },
+  }).plan!;
+  assert.equal(before.completion, "2026-11-01T08:35:00.000Z");
+  assert.equal(after.completion, "2026-11-01T09:35:00.000Z");
+  assert.equal(instant(after.completion).toMillis() - instant(before.completion).toMillis(), 3600_000);
+  for (const plan of [before, after]) {
+    assert.ok(instant(plan.completion) <= instant(plan.deadline));
+    assert.ok(instant(plan.completion).plus({ minutes: plan.travel_minutes }) <= instant(plan.departure_at));
+  }
+});
 test("C11: unknown policy cannot produce a plan", () => {
   assert.equal(
     findPlan("RR-DEMO-1003", demo.trip.initial_departure).code,
@@ -211,6 +234,16 @@ test("C14: multiple matches stay multiple", async () => {
   )) as { orders: unknown[] };
   assert.equal(r.orders.length, 3);
   assert.equal((await ctx.store.get(ctx.p.sid))!.version, 0);
+});
+
+test("Schedule query returns only windows overlapping the requested range", async () => {
+  const {service,p,c}=await context();
+  const result=await service.execute('schedule_windows_get',{case_id:c.id,start:'2026-11-04T00:00:00-08:00',end:'2026-11-05T00:00:00-08:00'},p) as any;
+  assert.ok(result.availability.alex.length>0);
+  for(const windows of Object.values(result.availability) as any[][])
+    for(const window of windows) assert.equal(instant(window.start).setZone('America/Los_Angeles').day,4);
+  for(const location of result.locations)
+    for(const window of location.windows)assert.equal(instant(window.start).setZone('America/Los_Angeles').day,4);
 });
 test("C15-C20: handoff, acceptance, report, sample receipt and refund are distinct", async () => {
   const ctx = await context();

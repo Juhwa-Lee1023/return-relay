@@ -102,3 +102,83 @@ for (const width of [360,390,768,1440]) {
     await page.screenshot({path:`test-results/approval-${width}.png`,fullPage:true});
   });
 }
+
+test('C31: microphone permission denied still allows typed planning', async ({page}) => {
+  await start(page); await select(page); await save(page);
+  const permission = await page.evaluate(async()=>(await navigator.permissions.query({name:'microphone' as PermissionName})).state);
+  expect(permission).toBe('denied');
+  await page.getByRole('textbox',{name:'Message Return Relay'}).fill('Thursday morning');
+  await page.getByRole('button',{name:'Send message'}).click();
+  await expect(page.getByText('The old drop-off is too late.',{exact:true})).toBeVisible();
+  await save(page);
+});
+
+test('C32: text zoom and reduced motion keep controls usable', async ({page}) => {
+  await page.setViewportSize({width:768,height:900});
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await start(page); await select(page);
+  // Fault/setting injection in a test browser only: approximate 200% page zoom
+  // through CSS zoom. True OS browser zoom is a separate manual check.
+  await page.addStyleTag({content:'body { zoom: 2; }'});
+  await page.getByRole('button',{name:'Review & save'}).click();
+  await expect(page.getByRole('button',{name:'Confirm & save'})).toBeInViewport();
+  expect(await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
+  await page.getByRole('button',{name:'Go back',exact:true}).click();
+});
+
+test('C33: blocked session request shows recovery and never fabricates a plan', async ({page}) => {
+  await page.route('**/api/session',route=>route.abort('failed'));
+  await page.goto('/');
+  await expect(page.getByRole('alert')).toContainText('We could not confirm that step.');
+  await expect(page.getByRole('region',{name:'Return plan'})).toHaveCount(0);
+  await page.unroute('**/api/session');
+  await page.getByRole('button',{name:'Reconnect'}).click();
+  await expect(page.getByRole('button',{name:'Plan the headphones return'})).toBeEnabled();
+});
+
+test('C33: failed confirmation response is recovered by reading saved state', async ({page}) => {
+  await start(page); await select(page);
+  await page.getByRole('button',{name:'Review & save'}).click();
+  // Let the real write finish, then lose only its response in this test browser.
+  await page.route('**/api/confirm',async route=>{await route.fetch();await route.abort('failed');});
+  await page.getByRole('button',{name:'Confirm & save'}).click();
+  await expect(page.getByRole('alert')).toBeVisible();
+  await expect(page.getByRole('alert')).toContainText('check whether this change was saved');
+  await expect(page.locator('.proposal-banner')).toHaveCount(0);
+  await page.unroute('**/api/confirm');
+  await page.getByRole('button',{name:'Refresh saved plan'}).click();
+  await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
+  await page.getByText('Return instructions & saved history',{exact:true}).click();
+  await expect(page.locator('.event-list li')).toHaveCount(1);
+});
+
+test('C04: an approval from an older tab cannot replace a newer plan', async ({page,context}) => {
+  await start(page); await select(page); await save(page);
+  const other=await context.newPage(); await other.goto('/');
+  await expect(other.getByText('Plan saved',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'“Actually, I’m leaving Thursday morning.”'}).click();
+  await expect(page.getByRole('button',{name:'Review & save'})).toBeVisible();
+  await other.getByRole('button',{name:'“Actually, I’m leaving Thursday morning.”'}).click();
+  await save(other);
+  await page.getByRole('button',{name:'Review & save'}).click();
+  await expect(page.getByRole('alert')).toContainText('Refresh this return');
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await page.getByRole('button',{name:'Refresh saved plan'}).click();
+  await expect(page.getByRole('region',{name:'Return plan'})).toContainText('Wed');
+  await page.getByText('Return instructions & saved history',{exact:true}).click();
+  await expect(page.locator('.event-list li')).toHaveCount(2);
+});
+
+test('role changed in another tab is recovered with the current session', async ({page,context}) => {
+  await start(page); await select(page); await save(page);
+  for(const box of await page.getByRole('checkbox').all())await box.check();
+  await confirm(page,'Mark parcel packed');
+  const other=await context.newPage(); await other.goto('/');
+  await other.getByRole('button',{name:'Open Maya’s view'}).click();
+  await expect(other.getByRole('button',{name:'Back to Alex'})).toBeVisible();
+  await page.getByRole('button',{name:'I dropped it off myself'}).click();
+  await expect(page.getByRole('alert')).toContainText('Refresh this page');
+  await page.getByRole('button',{name:'Refresh saved plan'}).click();
+  await expect(page.getByRole('button',{name:'Back to Alex'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'I dropped it off myself'})).toHaveCount(0);
+});

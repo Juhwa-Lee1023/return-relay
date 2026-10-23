@@ -1,0 +1,49 @@
+[
+  {
+    "step": "clone",
+    "command": [
+      "git",
+      "-c",
+      "credential.helper=",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/Juhwa-Lee1023/return-relay",
+      "$RETURN_RELAY_WORKDIR/qa/clean-checkout-cycle3"
+    ],
+    "exit_code": 0,
+    "start": "2026-10-23T10:59:32.887627+00:00",
+    "end": "2026-10-23T10:59:33.617348+00:00"
+  },
+  {
+    "step": "install",
+    "command": [
+      "npm",
+      "ci"
+    ],
+    "exit_code": 0,
+    "start": "2026-10-23T10:59:33.617381+00:00",
+    "end": "2026-10-23T10:59:36.892392+00:00"
+  },
+  {
+    "step": "build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit_code": 0,
+    "start": "2026-10-23T10:59:36.892431+00:00",
+    "end": "2026-10-23T10:59:38.698591+00:00"
+  },
+  {
+    "step": "domain-http",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit_code": 0,
+    "start": "2026-10-23T10:59:38.698615+00:00",
+    "end": "2026-10-23T10:59:40.242344+00:00"
+  }
+]

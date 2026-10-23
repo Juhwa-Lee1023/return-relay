@@ -12,3 +12,5 @@ Dependency versions are pinned in package-lock.json. Runtime libraries and their
 - zod 4.6.7 — MIT
 
 Lucide icons are used under the ISC license. Lora and Source Sans 3 are self-hosted through Fontsource under the SIL Open Font License 1.1. Their license texts are included in docs/font-licenses/. The parcel illustration and fictional scenario data were created for this project. Return Relay is not affiliated with or endorsed by Amazon.
+
+Full license and copyright notices for these direct runtime dependencies are in `docs/dependency-licenses/`. Package-distributed transitive notices remain with each dependency installed by `npm ci`. Media encoding tools are development-only and are not shipped in the app.

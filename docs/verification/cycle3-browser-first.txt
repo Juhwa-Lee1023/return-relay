@@ -1,0 +1,74 @@
+
+> return-relay@0.1.0 pretest:browser
+> npm run build
+
+
+> return-relay@0.1.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1937 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.63 kB │ gzip:   0.38 kB
+dist/assets/source-sans-3-latin-700-normal-CkzU-mV9.woff2   15.59 kB
+dist/assets/source-sans-3-latin-600-normal-DeckBYAU.woff2   15.66 kB
+dist/assets/source-sans-3-latin-400-normal-DQi5PRDE.woff2   15.69 kB
+dist/assets/source-sans-3-latin-700-normal-B-h9tW5h.woff    19.90 kB
+dist/assets/source-sans-3-latin-400-normal-RR2C27NP.woff    19.99 kB
+dist/assets/source-sans-3-latin-600-normal-Ck0n4g8U.woff    19.99 kB
+dist/assets/lora-latin-400-normal-DnxXpLNu.woff2            21.14 kB
+dist/assets/lora-latin-400-normal-DBJS-Hc6.woff             25.96 kB
+dist/assets/index-CNkZOSgy.css                              23.19 kB │ gzip:   5.58 kB
+dist/assets/index-LXHisdmK.js                              323.09 kB │ gzip: 100.75 kB
+
+✓ built in 350ms
+
+> return-relay@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:8170) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:8171) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:8172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/flow.spec.ts:28:1 › approve, change departure, hand off, distinguish receipt from refund, restore (2.5s)
+  ✓   2 tests/browser/flow.spec.ts:64:1 › unknown policy and passed deadline do not offer a plan (359ms)
+  ✓   3 tests/browser/flow.spec.ts:74:1 › keyboard approval can be cancelled without saving (510ms)
+  ✓   4 tests/browser/flow.spec.ts:86:1 › WCAG automated checks cover welcome, preview, and confirmation (1.2s)
+  ✓   5 tests/browser/flow.spec.ts:95:3 › responsive 360px: no page overflow and reachable approval (435ms)
+  ✓   6 tests/browser/flow.spec.ts:95:3 › responsive 390px: no page overflow and reachable approval (471ms)
+  ✓   7 tests/browser/flow.spec.ts:95:3 › responsive 768px: no page overflow and reachable approval (440ms)
+  ✓   8 tests/browser/flow.spec.ts:95:3 › responsive 1440px: no page overflow and reachable approval (496ms)
+  ✓   9 tests/browser/flow.spec.ts:106:1 › C31: microphone permission denied still allows typed planning (685ms)
+  ✓  10 tests/browser/flow.spec.ts:116:1 › C32: text zoom and reduced motion keep controls usable (417ms)
+  ✓  11 tests/browser/flow.spec.ts:129:1 › C33: blocked session request shows recovery and never fabricates a plan (296ms)
+  ✘  12 tests/browser/flow.spec.ts:139:1 › C33: failed confirmation response is recovered by reading saved state (45.1s)
+
+
+  1) tests/browser/flow.spec.ts:139:1 › C33: failed confirmation response is recovered by reading saved state 
+
+    Test timeout of 45000ms exceeded.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-C33-failed-confirmati-f97b2-ered-by-reading-saved-state/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/flow-C33-failed-confirmati-f97b2-ered-by-reading-saved-state/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/flow-C33-failed-confirmati-f97b2-ered-by-reading-saved-state/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/flow-C33-failed-confirmati-f97b2-ered-by-reading-saved-state/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/browser/flow.spec.ts:139:1 › C33: failed confirmation response is recovered by reading saved state 
+  11 passed (54.8s)

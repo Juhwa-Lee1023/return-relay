@@ -54,7 +54,7 @@ test at tests/http.test.ts:30:1
   
   200 !== 403
   
-      at TestContext.<anonymous> (/Users/juhwalee/.codex/.chatgpt-projects/g-p-6a40c868a75481919dfcc927a98d8bf0/artifacts/return-relay-20261023/app/tests/http.test.ts:30:143)
+      at TestContext.<anonymous> ($RETURN_RELAY_WORKDIR/app/tests/http.test.ts:30:143)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1389:7)
       at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
@@ -72,7 +72,7 @@ test at tests/http.test.ts:46:1
   
   503 !== 401
   
-      at TestContext.<anonymous> (/Users/juhwalee/.codex/.chatgpt-projects/g-p-6a40c868a75481919dfcc927a98d8bf0/artifacts/return-relay-20261023/app/tests/http.test.ts:46:261)
+      at TestContext.<anonymous> ($RETURN_RELAY_WORKDIR/app/tests/http.test.ts:46:261)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
       at async Test.run (node:internal/test_runner/test:1389:7)
       at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {

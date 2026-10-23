@@ -290,3 +290,29 @@ test("C34 HTTP: health truthfully identifies guided mode and synthetic data", as
   assert.equal(data.storage, "sqlite");
   assert.equal(r.headers.get("cache-control"), "no-store");
 });
+
+test("C26 HTTP: real MCP traffic is bounded per sample session", async () => {
+  const who=await session();
+  const {data}=await http('/api/mcp-access',{},who);
+  let accepted=0, rejected=0;
+  for(let i=0;i<301;i++){
+    const {r, data:body}=await http('/api/mcp',{jsonrpc:'2.0',id:i,method:'initialize',params:{protocolVersion:'2025-11-25',capabilities:{},clientInfo:{name:'rate-limit-test',version:'1'}}},undefined,{Authorization:`Bearer ${data.token}`,Accept:'application/json, text/event-stream'});
+    if(r.status===429){assert.equal(body.error.data.code,'RATE_LIMIT');rejected++;break;}
+    assert.equal(r.status,200);accepted++;
+  }
+  assert.ok(accepted>250 && accepted<301);
+  assert.equal(rejected,1);
+});
+
+test("C26 HTTP: an upstream that never answers is interrupted", async () => {
+  const hanging=createServer(()=>{});
+  await new Promise<void>(r=>hanging.listen(0,'127.0.0.1',r));
+  const target=`http://127.0.0.1:${(hanging.address() as {port:number}).port}`;
+  const {withMcp}=await import('../src/server/mcp');
+  const start=Date.now();
+  try{
+    await assert.rejects(()=>withMcp(target,'test-only-capability',async client=>client.listTools()));
+    assert.ok(Date.now()-start>=9000);
+    assert.ok(Date.now()-start<15000);
+  }finally{hanging.closeAllConnections();await new Promise<void>(r=>hanging.close(()=>r()));}
+});
