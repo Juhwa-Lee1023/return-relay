@@ -1,0 +1,93 @@
+{
+  "checked_at": "2026-10-23T18:01:23.164742+00:00",
+  "before_failed": [
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "target": "verification/cycle17-browser.txt",
+      "exists_in_release_zip": false
+    },
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "target": "verification/cycle17-service.txt",
+      "exists_in_release_zip": false
+    }
+  ],
+  "after": [
+    {
+      "source": "README.md",
+      "link": "LICENSE",
+      "exists": true
+    },
+    {
+      "source": "README.md",
+      "link": "THIRD_PARTY_NOTICES.md",
+      "exists": true
+    },
+    {
+      "source": "docs/DEVPOST.md",
+      "link": "PRODUCT_FEEDBACK.md",
+      "exists": true
+    },
+    {
+      "source": "docs/DEVPOST.md",
+      "link": "FRICTION_LOG.md",
+      "exists": true
+    },
+    {
+      "source": "docs/DEVPOST.md",
+      "link": "JUDGE_RUNBOOK.md",
+      "exists": true
+    },
+    {
+      "source": "docs/JUDGE_RUNBOOK.md",
+      "link": "verification/cycle17-review.json",
+      "exists": true
+    },
+    {
+      "source": "docs/PRODUCT_FEEDBACK.md",
+      "link": "FRICTION_LOG.md",
+      "exists": true
+    },
+    {
+      "source": "docs/PRODUCT_FEEDBACK.md",
+      "link": "verification/cycle17-review.json",
+      "exists": true
+    },
+    {
+      "source": "docs/RULES_AND_ROUTE.md",
+      "link": "verification/cycle17-hosted-api.json",
+      "exists": true
+    },
+    {
+      "source": "docs/RULES_AND_ROUTE.md",
+      "link": "verification/cycle17-review.json",
+      "exists": true
+    },
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "link": "verification/cycle17-hosted-api.json",
+      "exists": true
+    },
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "link": "verification/cycle17-browser-after-isolation.txt",
+      "exists": true
+    },
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "link": "verification/cycle17-service-after.txt",
+      "exists": true
+    },
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "link": "verification/video-local.json",
+      "exists": true
+    },
+    {
+      "source": "docs/CONTEST_FIT_REVIEW.md",
+      "link": "verification/video-local.json",
+      "exists": true
+    }
+  ],
+  "all_passed": true
+}

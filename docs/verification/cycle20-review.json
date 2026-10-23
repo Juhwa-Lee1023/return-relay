@@ -1,0 +1,44 @@
+{
+  "cycle": 20,
+  "checked_at": "2026-10-23T18:01:23.164742+00:00",
+  "source_set_sha256": "df37dfacaeebb582f17c47a08c098c2074a423fde2c37d915b1574c1c117a9e9",
+  "scope": "Release ZIP vs hosted asset hash equality and current document-link audit",
+  "finding": "Contest-fit document linked two nonexistent log filenames; original cycle17 logs exist with after/after-isolation suffixes.",
+  "fix": "Correct the two relative log links and verify their recorded 47 service/19 browser pass counts.",
+  "before_results": {
+    "assets_matching": 11,
+    "document_links_passed": 13,
+    "document_links_failed": 2
+  },
+  "after_results": {
+    "current_document_links_passed": 15,
+    "current_document_links_failed": 0
+  },
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 47,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 19,
+    "browser_tests_failed": 0
+  },
+  "test_evidence_reused": {
+    "scope": "No runtime/test code changed. Build,47 service,19 browser results from cycle18 retained; actual delivered ZIP clean installation/build/47 service pass from cycle19. No fresh browser execution claimed.",
+    "files": [
+      "cycle18-build.txt",
+      "cycle18-service.txt",
+      "cycle18-browser.txt"
+    ]
+  },
+  "release_consistency": {
+    "runtime_unchanged": true,
+    "video_unchanged": true,
+    "anonymous_hosted_assets_matching_clean_zip_build": 11
+  },
+  "video_ui_effect": "Two Markdown link targets only; runtime, visual appearance and video bytes unchanged.",
+  "pending": [
+    "Existing YouTube upload terms confirmation",
+    "Public video URL and main-story save",
+    "Final entry after03:30 KST"
+  ],
+  "submitted": false
+}

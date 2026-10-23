@@ -32,8 +32,8 @@ No award probability or numerical judging score is assigned.
 | Item | State | Evidence |
 | --- | --- | --- |
 | Real HTTP MCP runtime | Verified | [cycle17-hosted-api.json](verification/cycle17-hosted-api.json); nine current hosted checks |
-| Full application flow | Verified locally | [cycle17-browser.txt](verification/cycle17-browser.txt); 19 cases, including replanning, handoff and recovery |
-| Domain and HTTP service checks | Verified locally | [cycle17-service.txt](verification/cycle17-service.txt); 47 cases |
+| Full application flow | Verified locally | [cycle17-browser-after-isolation.txt](verification/cycle17-browser-after-isolation.txt); 19 cases, including replanning, handoff and recovery |
+| Domain and HTTP service checks | Verified locally | [cycle17-service-after.txt](verification/cycle17-service-after.txt); 47 cases |
 | Public source, license and setup | Available | Repository root README, LICENSE and dependency lockfile |
 | English description and tool feedback | Updated | DEVPOST, PRODUCT_FEEDBACK, FRICTION_LOG and JUDGE_RUNBOOK documents |
 | Working demo video | Local file verified | 155.234 seconds; [video-local.json](verification/video-local.json) |
