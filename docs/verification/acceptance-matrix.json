@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T12:35:34.537941+00:00",
+  "checked_at": "2026-10-23T12:57:28.225104+00:00",
   "scope": "Development checkpoint, not final readiness. Test counts are distinct from acceptance cases.",
   "cases": [
     {
@@ -477,12 +477,12 @@
       "expected": "Business data recover as documented; no fake persistent-memory claim.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/clean-cycle9.json",
-        "docs/verification/restart-cycle9.json"
+        "docs/verification/cycle10-package-execution.json",
+        "docs/verification/restart-package-cycle10.json"
       ],
-      "tested_commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
-      "tested_source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
-      "scope": "Anonymous public checkout of 42c5ed6, npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. This is the revision immediately before the cycle 9 tool-metadata-only repair. Hosted recovery remains untested."
+      "tested_commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
+      "tested_source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
+      "scope": "Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. Hosted storage remains untested."
     },
     {
       "id": "C31",
@@ -577,12 +577,12 @@
       "expected": "Exact reproducible commands and declared dependencies.",
       "status": "PASS",
       "evidence": [
-        "docs/verification/clean-cycle9.json",
-        "docs/verification/restart-cycle9.json"
+        "docs/verification/cycle10-package-execution.json",
+        "docs/verification/restart-package-cycle10.json"
       ],
-      "tested_commit": "42c5ed6b39c4ad079b65c9fa34b3e6f1419e8b65",
-      "tested_source_set_sha256": "e440798bcd4a09c016f5bfafc00c3efcc8f1d2a926056960b0858a347ecd5752",
-      "scope": "Anonymous public checkout of 42c5ed6, npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. This is the revision immediately before the cycle 9 tool-metadata-only repair. Hosted recovery remains untested."
+      "tested_commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
+      "tested_source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
+      "scope": "Extracted distributable source ZIP matches the tested a19626c source. Clean npm ci, full type-check/build, 42 service tests and actual SQLite process restart/idempotent replay passed. Hosted storage remains untested."
     },
     {
       "id": "C36",

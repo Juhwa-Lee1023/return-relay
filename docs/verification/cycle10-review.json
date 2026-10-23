@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-10-23T12:57:28.225104+00:00",
+  "cycle": 10,
+  "review_roles": [
+    "release/reproducibility",
+    "evidence integrity"
+  ],
+  "product_source_changed": false,
+  "tested_source_commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
+  "source_set_sha256": "a1970a3f9c26df86c7c26c76f21bcb30fb630d0de007c468c683148702074e3c",
+  "finding": {
+    "id": "OWN-003",
+    "severity": "Low",
+    "issue": "Checkpoint helper contained fixed test counts and a cycle6 source-manifest reference.",
+    "handling": "Replaced it before generating the next archive. Prior released checkpoint was accurate for its recorded revision; no later archive with stale counts was published.",
+    "script": "qa/package-checkpoint.py",
+    "script_sha256": "41588af1d3745a4b20af22ae07d5535bade00a7c60571c248adb919621184794"
+  },
+  "package": {
+    "filename": "Return_Relay_Checkpoint_a19626c.zip",
+    "bytes": 2846129,
+    "sha256": "c3ef0ea6d1bfe9acba6040862097c81ac02f1bda04c53dde1306719595dcfa58",
+    "source_commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
+    "frozen": false
+  },
+  "executed_from_extracted_zip": {
+    "manifest_and_zip_integrity": "PASS",
+    "npm_ci": "PASS",
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0,
+    "process_restart_and_idempotent_replay": "PASS"
+  },
+  "browser_evidence": {
+    "passed": 17,
+    "executed_in_cycle": 9,
+    "source_hash_matches_package": true,
+    "rerun_in_cycle10": false
+  },
+  "negative_checks": {
+    "stale_review": "REJECTED",
+    "overwrite_existing_archive": "REJECTED",
+    "existing_archive_hash_unchanged": true
+  },
+  "archive_inspection": {
+    "forbidden_paths": 0,
+    "known_signing_key_matches": 0,
+    "video_hash_matches_inspected_file": true
+  },
+  "scope": "Local synthetic application and reproducible distribution; no hosted Redis or public video verification added. No competition submission."
+}

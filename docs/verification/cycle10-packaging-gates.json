@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-23T12:56:20.549642+00:00",
+  "checks": [
+    {
+      "case": "stale_review",
+      "exit_code": 1,
+      "output": "Source changed since this review.",
+      "expected_rejection": "Source changed since this review.",
+      "passed": true
+    },
+    {
+      "case": "existing_checkpoint",
+      "exit_code": 1,
+      "output": "Checkpoint for this commit already exists.",
+      "expected_rejection": "Checkpoint for this commit already exists.",
+      "passed": true
+    }
+  ],
+  "existing_archive_unchanged": true,
+  "archive_sha256": "c3ef0ea6d1bfe9acba6040862097c81ac02f1bda04c53dde1306719595dcfa58"
+}

@@ -1,0 +1,52 @@
+{
+  "commit": "a19626c053659e2ac491f7e13e643ab8fb701d22",
+  "package_sha256": "c3ef0ea6d1bfe9acba6040862097c81ac02f1bda04c53dde1306719595dcfa58",
+  "steps": [
+    {
+      "step": "verify_outer_manifest_and_source_archive",
+      "exit_code": 0,
+      "checked_files": 11
+    },
+    {
+      "step": "install",
+      "command": [
+        "npm",
+        "ci"
+      ],
+      "started_at": "2026-10-23T12:55:39.656377+00:00",
+      "ended_at": "2026-10-23T12:55:44.260002+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "started_at": "2026-10-23T12:55:44.261049+00:00",
+      "ended_at": "2026-10-23T12:55:45.993696+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "tests",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "started_at": "2026-10-23T12:55:45.993915+00:00",
+      "ended_at": "2026-10-23T12:55:59.338945+00:00",
+      "exit_code": 0
+    },
+    {
+      "step": "restart",
+      "command": [
+        "node",
+        "scripts/check-restart.mjs"
+      ],
+      "started_at": "2026-10-23T12:55:59.339865+00:00",
+      "ended_at": "2026-10-23T12:56:00.673956+00:00",
+      "exit_code": 0
+    }
+  ]
+}
