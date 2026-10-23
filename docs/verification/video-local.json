@@ -5,17 +5,18 @@
   "format": "H264 MP4",
   "language": "English captions",
   "footage": "Actual local app UI actions",
-  "recorded_base_commit": "f6991e19cadcf83ce23a5d78e21aab43b2383a23",
-  "recorded_worktree": "Cycle14 copy changes subsequently committed as a45a7ce595647dcef7da4ffb3963edffb159ff76; working tree UI and script unchanged during capture",
-  "source_commit": "a45a7ce595647dcef7da4ffb3963edffb159ff76",
-  "ui_sha256": "a62dd0025f116cfa668073e8dda20fe44ca8786f1ea6230d1cda322ac05337e2",
+  "recorded_base_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+  "recorded_worktree": "Clean source; no UI or script changes during recording",
+  "source_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+  "ui_sha256": "622ecb3b62219f5ff9416a8024b1f46087fed972cd900d38d60d91cf783c4ebf",
+  "css_sha256": "273a5dc5508edd16d2b49855aa06b5b0e612bb995a6c0bd8a316157e97265427",
   "record_script_sha256": "71a4f78bed3940a902ba19363056170c3e2b324c7a8da762eafc8779acfcfade",
   "scenes": 14,
   "page_errors": [],
   "uploaded": false,
   "public_access_verified": false,
-  "sha256": "7ca1a8ab9270c88ccd68081a31d9b270fea10da74a4a54e70974b8e2e7db6ce1",
-  "checked_at": "2026-10-23T16:08:57.212434+00:00",
+  "sha256": "a8e0912102dd1689376fbe43c251a42451142fb1dea708f13e4c49c8d1f8d463",
+  "checked_at": "2026-10-23T16:43:31.931638+00:00",
   "visual_review": {
     "frames_seconds": [
       5,
@@ -23,6 +24,6 @@
       115,
       148
     ],
-    "result": "Actual UI and English captions readable; no observed clipping or subtitle overlap."
+    "result": "Actual interface and captions readable. Caption background aligned with the app navy; checked after final encoding."
   }
 }

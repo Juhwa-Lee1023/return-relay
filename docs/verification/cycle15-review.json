@@ -1,0 +1,90 @@
+{
+  "checked_at": "2026-10-23T16:42:21.392358+00:00",
+  "cycle": 15,
+  "source_set_sha256": "954fe51002f2872269b73869699586477d5ad9d9c39bfe3c6778372a0fd768eb",
+  "runtime_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+  "review_scope": "Current public documents, eight form answers, UI, captions, existing Figma screens and actual browser states. Historical verification records kept intact.",
+  "findings_fixed": [
+    "Vague handoff and recovery prose",
+    "Article issue and sentence capitalization",
+    "10px functional labels and call counter",
+    "Repeated all-caps kickers",
+    "Decorative fake barcode",
+    "Unfocusable scrollable conversation",
+    "42.59px suggestion button",
+    "Receipt icon overlapping heading at 320px"
+  ],
+  "final_results": {
+    "typecheck_build": "PASS",
+    "service_tests_passed": 42,
+    "service_tests_failed": 0,
+    "browser_tests_passed": 17,
+    "browser_tests_failed": 0,
+    "layout_state_viewport_pairs_passed": 20,
+    "layout_state_viewport_pairs_failed": 0,
+    "impeccable_start_viewport_checks_passed": 2,
+    "impeccable_remaining_findings": 0
+  },
+  "editorial_tools": {
+    "alex": "11.0.1",
+    "impeccable": "4.7.0",
+    "retext-english": "5.0.0",
+    "retext-indefinite-article": "5.0.0",
+    "retext-readability": "8.0.0",
+    "retext-repeated-words": "5.0.0",
+    "retext-simplify": "8.0.0",
+    "typescript": "5.9.3",
+    "unified": "11.0.5",
+    "vfile": "6.0.3",
+    "write-good": "1.0.8"
+  },
+  "editorial_assessment": {
+    "scope": "Editorial heuristics and contextual review, not AI authorship detection",
+    "unresolved_article_findings": 0,
+    "unresolved_repeated_word_findings": 0,
+    "stock_marketing_phrases": 0,
+    "retained_suggestions": {
+      "write_good": 68,
+      "alex": 35,
+      "retext_simplify": 58,
+      "retext_readability": 110
+    },
+    "retained_reasons": "Technical terms, state/security messages, fictional named characters and markdown/extraction artifacts; no ignore file used for detector checks."
+  },
+  "first_failed_browser_run": {
+    "passed": 12,
+    "failed": 5,
+    "cause": "Shared test server session creation limit; trace confirmed HTTP 429 at /api/session. Retried on the suite-owned fresh server without weakening the limit.",
+    "raw_trace": "Retained privately because it may include session data."
+  },
+  "hosted_runtime": {
+    "status": "PASS",
+    "checks_passed": 10,
+    "checks_failed": 0,
+    "deployment_id": "dpl_A31weMtsMZZGovMEt5LRmQF6kd2V",
+    "source_commit": "81735a63fdb3bfe71d2f74688307049879dff4d6",
+    "evidence": "cycle15-hosted.json"
+  },
+  "figma_review": {
+    "url": "https://www.figma.com/design/eCCehWBtA9W2bW0N2zd6qE/Return-Relay",
+    "frames": [
+      "2:2",
+      "2:3"
+    ],
+    "result": "Edited existing typography, labels and colors; inspected both final renders."
+  },
+  "video_ui_effect": "Re-recorded 14 actual UI scenes on the committed source; encoding and final frame check recorded separately in video-local.json.",
+  "submission_sync": {
+    "additional_info": "saved with current copy and editorial tools",
+    "thumbnail": "updated with current deployed app",
+    "project_details": "current text entered; save awaits public video URL",
+    "gallery": "two prior actual screenshots retained in draft; latest replacement PNGs prepared locally",
+    "video_public": "pending previously requested YouTube upload terms confirmation",
+    "final_submission": false
+  },
+  "limitations": [
+    "No authorship-detector guarantee",
+    "Automated accessibility is not a full screen-reader or physical-device audit",
+    "Synthetic data and guided parser disclosures retained"
+  ]
+}
