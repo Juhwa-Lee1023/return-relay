@@ -95,11 +95,17 @@ export class RelayService {
         instant(window.start) < end && instant(window.end) > start;
       return {
         availability: Object.fromEntries(
-          Object.entries(demo.availability).map(([actor, windows]) => [actor, windows.filter(overlaps)]),
+          Object.entries(demo.availability).map(([actor, windows]) => [
+            actor,
+            windows.filter(overlaps),
+          ]),
         ),
         locations: demo.locations
-          .map(location => ({ ...location, windows: location.windows.filter(overlaps) }))
-          .filter(location => location.windows.length > 0),
+          .map((location) => ({
+            ...location,
+            windows: location.windows.filter(overlaps),
+          }))
+          .filter((location) => location.windows.length > 0),
         requested_range: { start: start.toISO(), end: end.toISO() },
         trip_departure: c.plan?.departure_at ?? demo.trip.initial_departure,
         source: "synthetic_fixture",
@@ -341,7 +347,7 @@ export class RelayService {
         instant(String(args.departure_at))
     )
       conflicts.push(
-        `Your saved drop-off is ${label(c.plan.dropoff_start)}, after you need to leave. It no longer fits the trip.`,
+        `The saved errand gets you home at ${label(instant(c.plan.completion).plus({ minutes: c.plan.travel_minutes }).toISO()!)}, after your ${label(String(args.departure_at))} departure. It no longer fits the trip.`,
       );
     const out: Preview = {
       proposal_id: null,

@@ -1,0 +1,96 @@
+
+> return-relay@0.1.0 pretest:browser
+> npm run build
+
+
+> return-relay@0.1.0 build
+> tsc --noEmit && tsc --noEmit -p tsconfig.server.json && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1937 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.63 kB │ gzip:   0.38 kB
+dist/assets/source-sans-3-latin-700-normal-CkzU-mV9.woff2   15.59 kB
+dist/assets/source-sans-3-latin-600-normal-DeckBYAU.woff2   15.66 kB
+dist/assets/source-sans-3-latin-400-normal-DQi5PRDE.woff2   15.69 kB
+dist/assets/source-sans-3-latin-700-normal-B-h9tW5h.woff    19.90 kB
+dist/assets/source-sans-3-latin-400-normal-RR2C27NP.woff    19.99 kB
+dist/assets/source-sans-3-latin-600-normal-Ck0n4g8U.woff    19.99 kB
+dist/assets/lora-latin-400-normal-DnxXpLNu.woff2            21.14 kB
+dist/assets/lora-latin-400-normal-DBJS-Hc6.woff             25.96 kB
+dist/assets/index-BwuW6vYR.css                              23.71 kB │ gzip:   5.58 kB
+dist/assets/index-BNKJvklv.js                              323.90 kB │ gzip: 100.88 kB
+
+✓ built in 96ms
+
+> return-relay@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:51551) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:51552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 19 tests using 1 worker
+
+(node:51553) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/browser/flow.spec.ts:28:1 › review17: a negated departure asks for a date and preserves the saved plan (561ms)
+  ✓   2 tests/browser/flow.spec.ts:38:1 › review17: blocked optional local storage does not block planning or saved state (482ms)
+  ✓   3 tests/browser/flow.spec.ts:51:1 › approve, change departure, hand off, distinguish receipt from refund, restore (1.6s)
+  ✓   4 tests/browser/flow.spec.ts:87:1 › unknown policy and passed deadline do not offer a plan (301ms)
+  ✓   5 tests/browser/flow.spec.ts:97:1 › keyboard approval can be cancelled without saving (344ms)
+  ✓   6 tests/browser/flow.spec.ts:109:1 › WCAG automated checks cover welcome, preview, and confirmation (852ms)
+  ✓   7 tests/browser/flow.spec.ts:118:3 › responsive 360px: no page overflow and reachable approval (341ms)
+  ✓   8 tests/browser/flow.spec.ts:118:3 › responsive 390px: no page overflow and reachable approval (361ms)
+  ✓   9 tests/browser/flow.spec.ts:118:3 › responsive 768px: no page overflow and reachable approval (364ms)
+  ✓  10 tests/browser/flow.spec.ts:118:3 › responsive 1440px: no page overflow and reachable approval (351ms)
+  ✓  11 tests/browser/flow.spec.ts:129:1 › C31: microphone permission denied still allows typed planning (552ms)
+  ✓  12 tests/browser/flow.spec.ts:139:1 › C32: text zoom and reduced motion keep controls usable (342ms)
+  ✓  13 tests/browser/flow.spec.ts:152:1 › C33: blocked session request shows recovery and never fabricates a plan (237ms)
+  ✓  14 tests/browser/flow.spec.ts:162:1 › C33: failed confirmation response is recovered by reading saved state (500ms)
+  ✓  15 tests/browser/flow.spec.ts:178:1 › C04: an approval from an older tab cannot replace a newer plan (965ms)
+  ✓  16 tests/browser/flow.spec.ts:195:1 › role changed in another tab is recovered with the current session (925ms)
+  ✓  17 tests/browser/flow.spec.ts:209:1 › reset asks first; cancelling keeps the saved plan and keyboard focus (635ms)
+  ✓  18 tests/browser/flow.spec.ts:225:1 › confirmed reset clears the household and a reload starts with no saved changes (669ms)
+  ✘  19 tests/browser/flow.spec.ts:240:1 › a lost reset response closes the dialog and recovery reads the fresh household (45.1s)
+
+
+  1) tests/browser/flow.spec.ts:240:1 › a lost reset response closes the dialog and recovery reads the fresh household 
+
+    Test timeout of 45000ms exceeded.
+
+    Error: locator.click: Test timeout of 45000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Plan the headphones return' })
+
+
+       7 | }
+       8 | async function select(page: Page) {
+    >  9 |   await page.getByRole('button', {name: 'Plan the headphones return'}).click();
+         |                                                                        ^
+      10 |   await expect(page.getByRole('region', {name: 'Return plan'})).toBeVisible();
+      11 | }
+      12 | async function save(page: Page) {
+        at select (/Users/juhwalee/.codex/.chatgpt-projects/g-p-6a40c868a75481919dfcc927a98d8bf0/artifacts/return-relay-20261023/app/tests/browser/flow.spec.ts:9:72)
+        at /Users/juhwalee/.codex/.chatgpt-projects/g-p-6a40c868a75481919dfcc927a98d8bf0/artifacts/return-relay-20261023/app/tests/browser/flow.spec.ts:250:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/flow-a-lost-reset-response-49465-y-reads-the-fresh-household/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    tests/browser/flow.spec.ts:240:1 › a lost reset response closes the dialog and recovery reads the fresh household 
+  18 passed (56.3s)

@@ -328,3 +328,37 @@ test("C26 HTTP: an upstream that never answers is interrupted", async () => {
     assert.ok(Date.now()-start<15000);
   }finally{hanging.closeAllConnections();await new Promise<void>(r=>hanging.close(()=>r()));}
 });
+
+test("review17: uncertain or explicitly timed messages ask for a date without changing state", async () => {
+  const who = await session();
+  const before = await saved(who);
+  for (const text of [
+    "I'm not leaving Thursday morning.",
+    "I'm leaving Thursday morning at 9am.",
+    "Thursday morning or Friday morning?",
+    "Maybe Thursday morning.",
+    "I'm leaving next Thursday morning.",
+    "I can't leave Thursday morning.",
+    "I’m leaving Thursday morning at nine.",
+  ]) {
+    const {r, data} = await http('/api/chat', {case_id:who.id,expected_revision:0,text}, who);
+    assert.equal(r.status, 200);
+    assert.equal(data.needs_date, true, text);
+    assert.equal(data.result?.proposal_id, undefined);
+    assert.deepEqual(await saved(who), before);
+  }
+});
+
+test("review17: malformed JSON is a client error without reflecting request content", async () => {
+  const r = await fetch(base+'/api/chat', {method:'POST',headers:{'content-type':'application/json'},body:'{"private_sentinel":'});
+  assert.equal(r.status,400);
+  const data=await r.json();
+  assert.equal(data.code,'INVALID_JSON');
+  assert.doesNotMatch(JSON.stringify(data),/private_sentinel|SyntaxError|stack/);
+});
+
+test("review17: oversized JSON is rejected with 413 rather than a server outage", async () => {
+  const r=await fetch(base+'/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:'a'.repeat(25*1024)})});
+  assert.equal(r.status,413);
+  assert.equal((await r.json()).code,'REQUEST_TOO_LARGE');
+});

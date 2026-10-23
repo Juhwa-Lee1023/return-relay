@@ -457,3 +457,27 @@ test("A delayed family acceptance cannot revive a handoff after replanning", asy
     approved(maya, "handoff_accept", currentRevision)), { code: "ASSIGNEE_REQUIRED" });
   assert.deepEqual(await ctx.store.get(ctx.p.sid), before);
 });
+
+test("review17: plan explanation uses the selected location's actual durations", () => {
+  const result = findPlan("RR-DEMO-1001", demo.trip.initial_departure, "alex", {
+    locations: demo.locations.map(location => ({...location, travel_minutes: 25, processing_minutes: 35})),
+  });
+  assert.ok(result.plan);
+  assert.equal(result.plan.travel_minutes, 25);
+  assert.equal(result.plan.processing_minutes, 35);
+  assert.match(result.reasons.join(" "), /25 minutes each way/);
+  assert.match(result.reasons.join(" "), /35 minutes at the counter/);
+});
+
+test("review17: conflict explains return-home time when drop-off itself precedes departure", async () => {
+  const ctx = await context();
+  const {result: c} = await commit(ctx);
+  const departure = instant(c.plan!.completion).plus({minutes: 5}).toISO()!;
+  assert.ok(instant(c.plan!.dropoff_start) < instant(departure));
+  const preview = await ctx.service.execute("return_plan_preview", {
+    case_id: c.id, expected_revision: c.revision, departure_at: departure,
+  }, ctx.p) as Preview;
+  assert.equal(preview.conflicts.length, 1);
+  assert.match(preview.conflicts[0], /home/);
+  assert.doesNotMatch(preview.conflicts[0], /saved drop-off is .* after you need to leave/);
+});

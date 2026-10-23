@@ -25,6 +25,29 @@ async function axe(page: Page) {
   expect(results.violations, JSON.stringify(results.violations.map(v => ({id:v.id, impact:v.impact, nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))})),null,2)).toEqual([]);
 }
 
+test('review17: a negated departure asks for a date and preserves the saved plan', async ({page}) => {
+  await start(page); await select(page); await save(page);
+  await page.getByRole('textbox',{name:'Message Return Relay'}).fill("I'm not leaving Thursday morning.");
+  await page.getByRole('button',{name:'Send message'}).click();
+  await expect(page.getByText('What date and time will you leave? Choose a departure time below so I can check the whole errand.',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Review & save',exact:true})).toHaveCount(0);
+  await page.reload();
+  await expect(page.getByRole('region',{name:'Return plan'})).toContainText('Thursday, November 5');
+});
+
+test('review17: blocked optional local storage does not block planning or saved state', async ({page}) => {
+  await page.addInitScript(() => {
+    for (const method of ['getItem','setItem','removeItem']) {
+      Object.defineProperty(Storage.prototype,method,{value(){throw new DOMException('Storage blocked','SecurityError');},configurable:true});
+    }
+  });
+  await start(page); await select(page); await save(page);
+  await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
+  await page.reload(); await select(page);
+  await expect(page.getByText('Plan saved',{exact:true})).toBeVisible();
+  await expect(page.getByRole('region',{name:'Return plan'})).toContainText('Thursday, November 5');
+});
+
 test('approve, change departure, hand off, distinguish receipt from refund, restore', async ({page}) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));

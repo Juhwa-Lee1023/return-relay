@@ -110,7 +110,7 @@ export function findPlan(
         plan: chosen,
         reasons: [
           "Fits the sample calendar and drop-point opening hours.",
-          "Includes 30 minutes to pack, 15 minutes each way, and 20 minutes at the counter.",
+          `Includes 30 minutes to pack, ${chosen.travel_minutes} minutes each way, and ${chosen.processing_minutes} minutes at the counter.`,
           "Completes before both the trip departure and the carrier-acceptance deadline.",
         ],
       }

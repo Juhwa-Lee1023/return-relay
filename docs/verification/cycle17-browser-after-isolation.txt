@@ -1,0 +1,66 @@
+
+> return-relay@0.1.0 pretest:browser
+> npm run build
+
+
+> return-relay@0.1.0 build
+> tsc --noEmit && tsc --noEmit -p tsconfig.server.json && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1937 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                              0.63 kB │ gzip:   0.38 kB
+dist/assets/source-sans-3-latin-700-normal-CkzU-mV9.woff2   15.59 kB
+dist/assets/source-sans-3-latin-600-normal-DeckBYAU.woff2   15.66 kB
+dist/assets/source-sans-3-latin-400-normal-DQi5PRDE.woff2   15.69 kB
+dist/assets/source-sans-3-latin-700-normal-B-h9tW5h.woff    19.90 kB
+dist/assets/source-sans-3-latin-400-normal-RR2C27NP.woff    19.99 kB
+dist/assets/source-sans-3-latin-600-normal-Ck0n4g8U.woff    19.99 kB
+dist/assets/lora-latin-400-normal-DnxXpLNu.woff2            21.14 kB
+dist/assets/lora-latin-400-normal-DBJS-Hc6.woff             25.96 kB
+dist/assets/index-BwuW6vYR.css                              23.71 kB │ gzip:   5.58 kB
+dist/assets/index-BNKJvklv.js                              323.90 kB │ gzip: 100.88 kB
+
+✓ built in 86ms
+
+> return-relay@0.1.0 test:browser
+> playwright test
+
+[WebServer] (node:51843) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:51844) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:51892) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:51893) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 19 tests using 1 worker
+
+(node:51894) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [core] › tests/browser/flow.spec.ts:51:1 › approve, change departure, hand off, distinguish receipt from refund, restore (1.7s)
+  ✓   2 [core] › tests/browser/flow.spec.ts:87:1 › unknown policy and passed deadline do not offer a plan (315ms)
+  ✓   3 [core] › tests/browser/flow.spec.ts:97:1 › keyboard approval can be cancelled without saving (328ms)
+  ✓   4 [core] › tests/browser/flow.spec.ts:109:1 › WCAG automated checks cover welcome, preview, and confirmation (868ms)
+  ✓   5 [core] › tests/browser/flow.spec.ts:118:3 › responsive 360px: no page overflow and reachable approval (375ms)
+  ✓   6 [core] › tests/browser/flow.spec.ts:118:3 › responsive 390px: no page overflow and reachable approval (360ms)
+  ✓   7 [core] › tests/browser/flow.spec.ts:118:3 › responsive 768px: no page overflow and reachable approval (381ms)
+  ✓   8 [core] › tests/browser/flow.spec.ts:118:3 › responsive 1440px: no page overflow and reachable approval (370ms)
+  ✓   9 [core] › tests/browser/flow.spec.ts:129:1 › C31: microphone permission denied still allows typed planning (554ms)
+  ✓  10 [core] › tests/browser/flow.spec.ts:139:1 › C32: text zoom and reduced motion keep controls usable (378ms)
+  ✓  11 [core] › tests/browser/flow.spec.ts:152:1 › C33: blocked session request shows recovery and never fabricates a plan (238ms)
+  ✓  12 [core] › tests/browser/flow.spec.ts:162:1 › C33: failed confirmation response is recovered by reading saved state (484ms)
+  ✓  13 [core] › tests/browser/flow.spec.ts:178:1 › C04: an approval from an older tab cannot replace a newer plan (955ms)
+  ✓  14 [core] › tests/browser/flow.spec.ts:195:1 › role changed in another tab is recovered with the current session (930ms)
+  ✓  15 [core] › tests/browser/flow.spec.ts:209:1 › reset asks first; cancelling keeps the saved plan and keyboard focus (637ms)
+  ✓  16 [core] › tests/browser/flow.spec.ts:225:1 › confirmed reset clears the household and a reload starts with no saved changes (664ms)
+  ✓  17 [core] › tests/browser/flow.spec.ts:240:1 › a lost reset response closes the dialog and recovery reads the fresh household (668ms)
+(node:51950) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  18 [input-boundaries] › tests/browser/flow.spec.ts:28:1 › review17: a negated departure asks for a date and preserves the saved plan (561ms)
+  ✓  19 [input-boundaries] › tests/browser/flow.spec.ts:38:1 › review17: blocked optional local storage does not block planning or saved state (477ms)
+
+  19 passed (12.7s)

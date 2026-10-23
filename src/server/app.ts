@@ -60,12 +60,10 @@ app.use((req, res, next) => {
     !hosts.has(req.get("host") ?? "") ||
     (req.get("origin") && !origins.has(req.get("origin")!))
   )
-    return res
-      .status(403)
-      .json({
-        code: "ORIGIN_DENIED",
-        message: "This request came from an unrecognized origin.",
-      });
+    return res.status(403).json({
+      code: "ORIGIN_DENIED",
+      message: "This request came from an unrecognized origin.",
+    });
   if (req.path.startsWith("/api")) res.setHeader("Cache-Control", "no-store");
   next();
 });
@@ -263,9 +261,32 @@ app.post(
         trace: [],
       });
     let departure: string | undefined;
-    if (/thursday.*morning|morning.*thursday/.test(text))
+    const days = new Set(
+      text.match(
+        /\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b/g,
+      ) ?? [],
+    );
+    // This guided demo maps only an unqualified weekday/morning phrase.
+    // Negations, alternatives and explicit times need the date control.
+    const needsExactDate =
+      days.size > 1 ||
+      (days.size > 0 &&
+        (/\b(?:not|never|maybe|might|could|would|perhaps|possibly|if|next|last|before|after|was|were|left|had)\b|n['’]t\b|\d/.test(
+          text,
+        ) ||
+          /\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|noon|midnight)\b/.test(
+            text,
+          )));
+    if (needsExactDate)
+      return res.json({
+        message:
+          "What date and time will you leave? Choose a departure time below so I can check the whole errand.",
+        needs_date: true,
+        trace: [],
+      });
+    if (/\bthursday\b.*\bmorning\b|\bmorning\b.*\bthursday\b/.test(text))
       departure = demo.trip.changed_departure;
-    else if (/friday.*morning|morning.*friday/.test(text))
+    else if (/\bfriday\b.*\bmorning\b|\bmorning\b.*\bfriday\b/.test(text))
       departure = demo.trip.initial_departure;
     else if (
       /before friday|tomorrow|earlier|later|thursday|friday|leave|leaving/.test(
@@ -463,26 +484,38 @@ if (existsSync(resolve("dist"))) {
   app.get("/{*path}", (_req, res) => res.sendFile(resolve("dist/index.html")));
 }
 app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+  const bodyError =
+    err instanceof Error && "type" in err ? err.type : undefined;
   const error =
     err instanceof DomainError
       ? err
-      : err instanceof z.ZodError
+      : bodyError === "entity.parse.failed"
         ? new DomainError(
-            "INVALID_INPUT",
-            "Some fields are missing or invalid. Check the request and try again.",
+            "INVALID_JSON",
+            "The request could not be read. Check its JSON format and try again.",
             400,
           )
-        : new DomainError(
-            "SERVICE_UNAVAILABLE",
-            "The connection did not complete. Refresh the saved plan to check whether your change was recorded.",
-            503,
-          );
-  res
-    .status(error.status)
-    .json({
-      code: error.code,
-      message: error.message,
-      ...(err instanceof Error && "trace" in err ? { trace: err.trace } : {}),
-    });
+        : bodyError === "entity.too.large"
+          ? new DomainError(
+              "REQUEST_TOO_LARGE",
+              "The request is too large. Shorten it and try again.",
+              413,
+            )
+          : err instanceof z.ZodError
+            ? new DomainError(
+                "INVALID_INPUT",
+                "Some fields are missing or invalid. Check the request and try again.",
+                400,
+              )
+            : new DomainError(
+                "SERVICE_UNAVAILABLE",
+                "The connection did not complete. Refresh the saved plan to check whether your change was recorded.",
+                503,
+              );
+  res.status(error.status).json({
+    code: error.code,
+    message: error.message,
+    ...(err instanceof Error && "trace" in err ? { trace: err.trace } : {}),
+  });
 });
 export default app;

@@ -49,6 +49,22 @@ function date(v: string, format = "ccc, LLL d · h:mm a") {
   return DateTime.fromISO(v).setZone(ZONE).toFormat(format);
 }
 const icons = [Headphones, Plug, ShoppingBag];
+// Remembering the selected item is optional; the server owns the saved plan.
+function rememberedCase(): string | null {
+  try {
+    return localStorage.getItem("rr-selected-case");
+  } catch {
+    return null;
+  }
+}
+function rememberCase(id: string | null): void {
+  try {
+    if (id) localStorage.setItem("rr-selected-case", id);
+    else localStorage.removeItem("rr-selected-case");
+  } catch {
+    /* Privacy settings may disable this convenience cache. */
+  }
+}
 const progressCopy: Record<
   string,
   { label: string; title: string; body: string }
@@ -168,7 +184,7 @@ function App() {
       setOrders(d.result.orders);
       setCsrf(d.csrf);
       setActor(d.principal.actor);
-      const selected = preferredCase ?? localStorage.getItem("rr-selected-case");
+      const selected = preferredCase ?? rememberedCase();
       if (
         selected &&
         d.result.orders.some((o: Order) => o.case_id === selected)
@@ -178,7 +194,7 @@ function App() {
         setCurrent(null);
         setPolicy(null);
         setPreview(null);
-        localStorage.removeItem("rr-selected-case");
+        rememberCase(null);
       }
     } catch (e) {
       setError(String(e instanceof Error ? e.message : e));
@@ -212,7 +228,7 @@ function App() {
         },
       ]);
       const c = await load(o.case_id);
-      localStorage.setItem("rr-selected-case", o.case_id);
+      rememberCase(o.case_id);
       if (!c.plan && o.eligible_by_fixture) {
         const d = await request("/preview", {
           case_id: c.id,
@@ -260,6 +276,9 @@ function App() {
       if (d.kind === "preview") {
         setPreview(d.result);
         if (d.result.plan) setDeparture(d.result.plan.departure_at);
+      } else if (d.needs_date) {
+        setPreview(null);
+        setDeparture(current?.plan?.departure_at ?? INITIAL);
       }
     });
     input.current?.focus();
@@ -288,7 +307,9 @@ function App() {
       try {
         const d = await request("/confirm", { ticket: confirm.ticket });
         setCurrent(d.result);
-        setChecked(d.result.prepared ? (d.result.plan?.required_items ?? []) : []);
+        setChecked(
+          d.result.prepared ? (d.result.plan?.required_items ?? []) : [],
+        );
         setPreview(null);
         setConfirm(null);
         setDeparture(d.result.plan?.departure_at ?? INITIAL);
@@ -302,7 +323,9 @@ function App() {
         setConfirm(null);
         setPreview(null);
         if (error instanceof TypeError) {
-          throw new Error("The response did not arrive. Refresh saved plan to check whether this change was saved.");
+          throw new Error(
+            "The response did not arrive. Refresh saved plan to check whether this change was saved.",
+          );
         }
         throw error;
       }
@@ -344,12 +367,14 @@ function App() {
         setConfirm(null);
         setPreview(null);
         if (error instanceof TypeError) {
-          throw new Error("The response did not arrive. Refresh saved plan to check whether the reset finished.");
+          throw new Error(
+            "The response did not arrive. Refresh saved plan to check whether the reset finished.",
+          );
         }
         throw error;
       }
       setConfirm(null);
-      localStorage.removeItem("rr-selected-case");
+      rememberCase(null);
       setCurrent(null);
       setPreview(null);
       setPolicy(null);
@@ -393,7 +418,8 @@ function App() {
               lastFocus.current = document.activeElement as HTMLElement;
               setConfirm({
                 kind: "reset",
-                summary: "This deletes the saved plans, packing updates and handoff history for your sample household. You will start again with the original sample items.",
+                summary:
+                  "This deletes the saved plans, packing updates and handoff history for your sample household. You will start again with the original sample items.",
               });
             }}
           >
@@ -420,24 +446,26 @@ function App() {
           <h2>Try a return with an earlier departure</h2>
           <p>
             Choose the headphones, save a drop-off time, then change your
-            departure to Thursday morning. Review the earlier time before
-            saving it. After packing, ask Maya to take the parcel and try
-            accepting from Maya’s view.
+            departure to Thursday morning. Review the earlier time before saving
+            it. After packing, ask Maya to take the parcel and try accepting
+            from Maya’s view.
           </p>
           <p>
-            This self-built Alexa+ web simulation uses sample orders,
-            policies, calendars, family roles and a carrier receipt. A guided
-            parser handles the supported phrases; nine MCP tools carry out
-            the actions over HTTP and save your session for seven days.
-            Live Alexa, language-model calls, Amazon accounts, real returns
-            and family messages are outside this demo.
+            This self-built Alexa+ web simulation uses sample orders, policies,
+            calendars, family roles and a carrier receipt. A guided parser
+            handles the supported phrases; nine MCP tools carry out the actions
+            over HTTP and save your session for seven days. Live Alexa,
+            language-model calls, Amazon accounts, real returns and family
+            messages are outside this demo.
           </p>
         </section>
       )}
       <main id="main" tabIndex={-1}>
         <div className="page-heading">
           <div>
-            <h1>{current ? "Your return plan" : "Return it before you leave."}</h1>
+            <h1>
+              {current ? "Your return plan" : "Return it before you leave."}
+            </h1>
             <p className="intro">
               {current
                 ? "Check the drop-off time, pack the parcel, and ask Maya for help."
@@ -538,7 +566,13 @@ function App() {
                   <span>Talk through the change</span>
                   <span className="small-tag">Guided</span>
                 </div>
-                <div className="messages" role="region" aria-label="Conversation history" tabIndex={0} aria-live="polite">
+                <div
+                  className="messages"
+                  role="region"
+                  aria-label="Conversation history"
+                  tabIndex={0}
+                  aria-live="polite"
+                >
                   {messages.slice(-5).map((m, i) => (
                     <div key={i} className={"message " + m.who}>
                       <span>{m.who === "you" ? "You" : "Relay"}</span>
@@ -611,8 +645,8 @@ function App() {
                   </h2>
                   <p>
                     Plan a Thursday drop-off, then move your trip to Thursday
-                    morning. Return Relay will find an earlier time and show
-                    the change for you to approve.
+                    morning. Return Relay will find an earlier time and show the
+                    change for you to approve.
                   </p>
                   <button
                     className="primary"
@@ -685,7 +719,9 @@ function App() {
                       {!preview && (
                         <div className="next-action">
                           <h3>{status.title}</h3>
-                          {actor === "maya" && <p className="context-label">Maya’s sample view</p>}
+                          {actor === "maya" && (
+                            <p className="context-label">Maya’s sample view</p>
+                          )}
                           <p>
                             {actor === "maya" &&
                             current.progress === "HANDOFF_REQUESTED"
@@ -1078,7 +1114,9 @@ function App() {
                           <div>
                             <ReceiptText size={28} />
                             <h3>Parcel accepted</h3>
-                            <p className="context-label">Synthetic carrier receipt</p>
+                            <p className="context-label">
+                              Synthetic carrier receipt
+                            </p>
                             <p>
                               Cedar Drop Point ·{" "}
                               {date(current.plan!.completion)}
@@ -1220,11 +1258,21 @@ function App() {
         >
           <X size={20} />
         </button>
-        <h2 id="confirmation-heading">{confirm?.kind === "reset" ? "Reset this sample household?" : "Save these details?"}</h2>
-        <p id="confirmation-summary" className="confirmation-summary">{confirm?.summary}</p>
+        <h2 id="confirmation-heading">
+          {confirm?.kind === "reset"
+            ? "Reset this sample household?"
+            : "Save these details?"}
+        </h2>
+        <p id="confirmation-summary" className="confirmation-summary">
+          {confirm?.summary}
+        </p>
         <div className="confirmation-note">
           <Check size={18} />
-          <span>{confirm?.kind === "reset" ? "This cannot be undone." : "This updates only your sample household."}</span>
+          <span>
+            {confirm?.kind === "reset"
+              ? "This cannot be undone."
+              : "This updates only your sample household."}
+          </span>
         </div>
         <div className="modal-actions">
           <button
@@ -1235,7 +1283,13 @@ function App() {
             {confirm?.kind === "reset" ? "Keep household" : "Go back"}
           </button>
           <button className="primary" disabled={busy} onClick={save}>
-            {confirm?.kind === "reset" ? (busy ? "Resetting…" : "Reset household") : (busy ? "Saving…" : "Confirm & save")}
+            {confirm?.kind === "reset"
+              ? busy
+                ? "Resetting…"
+                : "Reset household"
+              : busy
+                ? "Saving…"
+                : "Confirm & save"}
             <ArrowRight size={18} />
           </button>
         </div>

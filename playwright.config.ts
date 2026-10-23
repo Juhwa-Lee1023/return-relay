@@ -14,14 +14,19 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  webServer: process.env.RR_TEST_URL ? undefined : {
+  projects: [
+    {name: 'core', grepInvert: /review17:/, use: {baseURL: process.env.RR_TEST_URL ?? 'http://127.0.0.1:4326'}},
+    {name: 'input-boundaries', grep: /review17:/, use: {baseURL: process.env.RR_TEST_URL ?? 'http://127.0.0.1:4327'}},
+  ],
+  // Separate local stores keep independent suites below the real session-creation limit.
+  webServer: process.env.RR_TEST_URL ? undefined : [4326, 4327].map(port => ({
     command: 'npm start',
-    url: 'http://127.0.0.1:4326/api/health',
+    url: `http://127.0.0.1:${port}/api/health`,
     reuseExistingServer: false,
     env: {
-      PORT: '4326',
-      RR_PUBLIC_ORIGIN: 'http://127.0.0.1:4326',
-      RR_DATA_DIR: `.private/browser-${Date.now()}`,
+      PORT: String(port),
+      RR_PUBLIC_ORIGIN: `http://127.0.0.1:${port}`,
+      RR_DATA_DIR: `.private/browser-${port}-${Date.now()}`,
     },
-  },
+  })),
 });
