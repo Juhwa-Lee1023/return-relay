@@ -62,6 +62,6 @@ An early install used the wrong working directory. We identified the task-create
 
 ## FFmpeg and ffprobe
 
-FFmpeg encodes the actual browser recording and burns in English captions. ffprobe checks codec, dimensions and duration. The first finished cut measured 155.234 seconds; the revised cut is checked again after recording.
+FFmpeg encodes the actual browser recording and burns in English captions. ffprobe checks codec, dimensions and duration. The revised cut runs for 155.234 seconds. Frame checks confirmed that the updated interface and captions remain readable.
 
 The arm64 path in `ffprobe-static` 3.1.0 contained an x86_64 binary in this installation. `@ffprobe-installer/darwin-arm64` 5.0.1 worked; `ffmpeg-static` 5.3.0 supplied the encoder. I would use them again for this recording workflow. They are local production tools, outside the app runtime. Evidence: `docs/verification/video-local.json`.

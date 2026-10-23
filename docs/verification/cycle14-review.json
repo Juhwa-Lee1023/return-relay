@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-23T16:07:04.394792+00:00",
+  "checked_at": "2026-10-23T16:17:07.143430+00:00",
   "cycle": 14,
   "source_set_sha256": "f431c68330453b679febe2b07345d04619d5b67e57055e0a3b4b84aeacf3fc9e",
   "review_roles": [
@@ -25,11 +25,36 @@
     "alex": 50
   },
   "suggestions_after": {
-    "write_good": 68,
+    "write_good": 67,
     "alex": 31
   },
   "note": "Suggestion counts are not AI-detection or quality scores. Retained technical and scope wording reviewed in context.",
   "public_entry_bodies_reviewed": 11,
-  "video_ui_effect": "UI copy changed; new actual recording completed; encoding and visual checks in progress.",
-  "hosted_runtime": "PENDING updated deployment"
+  "video_ui_effect": "Recorded the revised UI in 14 scenes with no page errors. Encoded 155.234-second H264 video and reviewed frames at 5, 51, 115 and 148 seconds; interface and captions readable.",
+  "hosted_runtime": {
+    "status": "PASS",
+    "checks_passed": 10,
+    "checks_failed": 0,
+    "deployment_id": "dpl_Ho2ukZ3ZNBkMUeLMxnVVU3k5pdrT",
+    "source_commit": "a45a7ce595647dcef7da4ffb3963edffb159ff76",
+    "evidence": "cycle14-hosted.json",
+    "association_note": "The test file omitted RR_DEPLOYED_COMMIT and records null; deployment source was checked separately before the run. No deployment change occurred during these checks."
+  },
+  "figma_review": {
+    "file": "https://www.figma.com/design/eCCehWBtA9W2bW0N2zd6qE/Return-Relay",
+    "frames": [
+      "2:2",
+      "2:3"
+    ],
+    "result": "Updated existing desktop/mobile text; reviewed rendered frames for clipping and overlap."
+  },
+  "submission_sync": {
+    "overview": "saved",
+    "additional_info": "saved",
+    "thumbnail": "updated with current actual app screenshot",
+    "gallery": "two updated actual app screenshots uploaded",
+    "project_details": "updated text entered but unsaved until required public video URL is available",
+    "video_public": "pending YouTube terms confirmation",
+    "final_submission": false
+  }
 }

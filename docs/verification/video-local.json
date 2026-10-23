@@ -5,9 +5,24 @@
   "format": "H264 MP4",
   "language": "English captions",
   "footage": "Actual local app UI actions",
-  "recorded_commit": "ee4c487",
+  "recorded_base_commit": "f6991e19cadcf83ce23a5d78e21aab43b2383a23",
+  "recorded_worktree": "Cycle14 copy changes subsequently committed as a45a7ce595647dcef7da4ffb3963edffb159ff76; working tree UI and script unchanged during capture",
+  "source_commit": "a45a7ce595647dcef7da4ffb3963edffb159ff76",
+  "ui_sha256": "a62dd0025f116cfa668073e8dda20fe44ca8786f1ea6230d1cda322ac05337e2",
+  "record_script_sha256": "71a4f78bed3940a902ba19363056170c3e2b324c7a8da762eafc8779acfcfade",
+  "scenes": 14,
+  "page_errors": [],
   "uploaded": false,
   "public_access_verified": false,
-  "sha256": "7a5176520f8d7586dc1f493535050407bab2575d58964beaa6ae9f0d054e8cdb",
-  "checked_at": "2026-10-23T11:13:14.008814+00:00"
+  "sha256": "7ca1a8ab9270c88ccd68081a31d9b270fea10da74a4a54e70974b8e2e7db6ce1",
+  "checked_at": "2026-10-23T16:08:57.212434+00:00",
+  "visual_review": {
+    "frames_seconds": [
+      5,
+      51,
+      115,
+      148
+    ],
+    "result": "Actual UI and English captions readable; no observed clipping or subtitle overlap."
+  }
 }
